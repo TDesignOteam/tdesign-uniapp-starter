@@ -1,0 +1,1 @@
+const r={TabPanel:"Tabs",TabBarItem:"TabBar",GridItem:"Grid",Radio:"RadioGroup",Cell:"CellGroup",Avatar:"AvatarGroup",PickerItem:"Picker",SwiperNav:"Swiper",BackTop:"PullDownRefresh",FormKey:"FormKey"};export{r as R};
