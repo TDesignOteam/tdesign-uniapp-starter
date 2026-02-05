@@ -71,7 +71,7 @@ import MessagePlugin from '@tdesign/uniapp/message/index.js';
 
 import request from '@/api/request';
 
-import Card from '@/components/card-1.vue';
+import Card from '@/components/card.vue';
 import CustomTabBar from '@/components/custom-tab-bar.vue';
 import NavComp from '@/components/nav-bar.vue';
 
