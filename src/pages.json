@@ -1,0 +1,173 @@
+{
+	"pages": [
+		{
+			"path": "pages/home/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/message/index",
+			"style": {
+				"navigationStyle": "custom",
+				"disableScroll": true
+			}
+		},
+		{
+			"path": "pages/my/index",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		}
+	],
+	"subPackages": [
+		{
+			"root": "pages/search",
+			"pages": [
+				{
+					"path": "index",
+					"style": {
+						"navigationStyle": "custom"
+					}
+				}
+			]
+		},
+		{
+			"root": "pages/my/info-edit",
+			"pages": [
+				{
+					"path": "index",
+					"style": {
+						"navigationStyle": "custom"
+					}
+				}
+			]
+		},
+		{
+			"root": "pages/chat",
+			"pages": [
+				{
+					"path": "index",
+					"style": {
+						"navigationStyle": "custom"
+					}
+				}
+			]
+		},
+		{
+			"root": "pages/login",
+			"pages": [
+				{
+					"path": "login",
+					"style": {
+						"navigationStyle": "custom"
+					}
+				}
+			]
+		},
+		{
+			"root": "pages/loginCode",
+			"pages": [
+				{
+					"path": "loginCode",
+					"style": {
+						"navigationStyle": "custom"
+					}
+				}
+			]
+		},
+		{
+			"root": "pages/dataCenter",
+			"pages": [
+				{
+					"path": "index",
+					"style": {
+						"navigationStyle": "custom"
+					}
+				}
+			]
+		},
+		{
+			"root": "pages/setting",
+			"pages": [
+				{
+					"path": "index",
+					"style": {
+						"navigationStyle": "custom"
+					}
+				}
+			]
+		},
+		{
+			"root": "pages/release",
+			"pages": [
+				{
+					"path": "index",
+					"style": {
+						"navigationStyle": "custom"
+					}
+				}
+			]
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "TDesign UniApp",
+		"navigationBarBackgroundColor": "#fff",
+		"backgroundColor": "#f3f3f3"
+	},
+	"easycom": {
+		"custom": {
+			"^t-(.*)": "@tdesign/uniapp/$1/$1.vue"
+		}
+	},
+	"condition": {
+		"current": 0,
+		"list": [
+			{
+				"name": "首页",
+				"path": "pages/home/index"
+			},
+			{
+				"name": "消息",
+				"path": "pages/message/index"
+			},
+			{
+				"name": "我的",
+				"path": "pages/my/index"
+			},
+			{
+				"name": "搜索",
+				"path": "pages/search/index"
+			},
+			{
+				"name": "编辑资料",
+				"path": "pages/my/info-edit/index"
+			},
+			{
+				"name": "聊天",
+				"path": "pages/chat/index"
+			},
+			{
+				"name": "登录",
+				"path": "pages/login/login"
+			},
+			{
+				"name": "验证码登录",
+				"path": "pages/loginCode/loginCode"
+			},
+			{
+				"name": "数据中心",
+				"path": "pages/dataCenter/index"
+			},
+			{
+				"name": "设置",
+				"path": "pages/setting/index"
+			},
+			{
+				"name": "发布",
+				"path": "pages/release/index"
+			}
+		]
+	}
+}
