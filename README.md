@@ -12,6 +12,7 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License" /></a>
 </p>
 
+# TDesign Uniapp 组件库模板
 
 基于 Vue 3 + TypeScript + Vite + TDesign Uniapp 的跨端移动应用开发模板，支持 H5、微信小程序、支付宝小程序等多平台。
 
@@ -27,10 +28,10 @@
 
 ## 📦 分支说明
 
-| 分支                                                                          | 说明                                   |
-| ----------------------------------------------------------------------------- | -------------------------------------- |
-| `develop`                                                                     | 主分支，完整模板                       |
-| [`template`](https://github.com/novlan1/tdesign-uniapp-starter/tree/template) | 极简模板，适用于新项目启动、复现问题等 |
+| 分支                                                                               | 说明                                   |
+| ---------------------------------------------------------------------------------- | -------------------------------------- |
+| `develop`                                                                          | 主分支，完整模板                       |
+| [`template`](https://github.com/TDesignOteam/tdesign-uniapp-starter/tree/template) | 极简模板，适用于新项目启动、复现问题等 |
 
 ## 🔧 环境要求
 
@@ -41,7 +42,7 @@
 
 ```bash
 # 克隆项目
-git clone https://github.com/novlan1/tdesign-uniapp-starter.git
+git clone https://github.com/TDesignOteam/tdesign-uniapp-starter.git
 
 # 进入项目目录
 cd tdesign-uniapp-starter
@@ -145,7 +146,7 @@ pnpm type-check
 ```
 
 ## 🔗 相关链接
-- [TDesign Uniapp组件库](https://tdesign.tencent.com/uniapp/getting-started)
+- [TDesign Uniapp 组件库](https://tdesign.tencent.com/uniapp/getting-started)
 - [uni-app 官方文档](https://uniapp.dcloud.net.cn/)
 - [Vue 3 文档](https://cn.vuejs.org/)
 - [Vite 文档](https://cn.vitejs.dev/)
