@@ -10,3 +10,7 @@
 
 - 主分支（`develop`）为完整模板（进行中）
 - [template](https://github.com/novlan1/tdesign-uniapp-starter/tree/template) 分支为极简模板，适用于新项目启动、复现问题等
+
+扫码查看
+
+<img src="./docs/image/tdesign-uniapp-starte.-h5.png" width="300" />
