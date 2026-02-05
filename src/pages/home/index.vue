@@ -58,7 +58,9 @@
       发布
     </t-button>
   </view>
-  <t-message ref="t-message" />
+  <t-message
+    ref="t-message"
+  />
   <CustomTabBar />
 </template>
 
@@ -134,10 +136,12 @@ const onRefresh = async () => {
 };
 
 const showOperMsg = (content: string) => {
-  MessagePlugin.success({
-    offset: [120, 32] as unknown as object,
-    duration: 4000,
-    content,
+  setTimeout(() => {
+    MessagePlugin.success({
+      offset: [120, 32] as unknown as object,
+      duration: 4000,
+      content,
+    });
   });
 };
 

@@ -46,10 +46,10 @@ const getUnreadNum = () => {
 // 初始化 WebSocket
 const connect = () => {
   const socket = connectSocket();
-  console.log('🔌 [WebSocket connected, socket]:', socket);
+  console.log('WebSocket connected, socket:', socket);
 
   socket.onMessage((data: string) => {
-    console.log('📨 [App.vue socket.onMessage 收到数据]:', data);
+    console.log('App.vue socket.onMessage 收到数据:', data);
     const parsedData = safeJsonParse<{
       type: 'message';
       data: {
@@ -61,11 +61,11 @@ const connect = () => {
       };
     }>(data);
 
-    console.log('📋 [App.vue 解析后数据]:', parsedData);
+    console.log('App.vue 解析后数据:', parsedData);
     if (parsedData.type === 'message') {
       const { userId, message } = parsedData.data;
       // 将消息转发给聊天页面
-      console.log('📤 [App.vue uni.$emit onChatMessage]:', { userId, message });
+      console.log('App.vue uni.$emit onChatMessage:', { userId, message });
       uni.$emit('onChatMessage', { userId, message });
       // 如果是对方发来的消息（未读），更新未读计数
       if (!message.read) {
@@ -77,7 +77,7 @@ const connect = () => {
 };
 
 onLaunch(() => {
-  console.log('🚀 [App Launch]');
+  console.log('App Launch');
 
   // #ifdef MP-WEIXIN
   const updateManager = uni.getUpdateManager();
@@ -101,11 +101,11 @@ onLaunch(() => {
 });
 
 onShow(() => {
-  console.log('👁️ [App Show]');
+  console.log('App Show');
 });
 
 onHide(() => {
-  console.log('🙈 [App Hide]');
+  console.log('App Hide');
 });
 
 </script>

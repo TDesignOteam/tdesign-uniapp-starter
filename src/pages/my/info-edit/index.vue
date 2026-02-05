@@ -260,7 +260,7 @@ const onPhotosDrop = (e: any) => {
 };
 
 const onSaveInfo = () => {
-  console.log('💾 [保存信息]:', personInfo);
+  console.log('保存信息:', personInfo);
   uni.showToast({ title: '保存成功', icon: 'success' });
 };
 

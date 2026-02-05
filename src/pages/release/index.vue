@@ -78,13 +78,6 @@ import { ref } from 'vue';
 
 import type { UploadFile } from '@tdesign/uniapp/upload/type.ts';
 
-// interface FileItem {
-//   url: string;
-//   name: string;
-//   type: string;
-//   status: 'loading' | 'reload' | 'failed' | 'done';
-// }
-
 const originFiles = ref<UploadFile[]>([
   { url: '/static/image1.png', name: 'uploaded1.png', type: 'image', status: 'done' },
   { url: '/static/image2.png', name: 'uploaded2.png', type: 'image', status: 'done' },

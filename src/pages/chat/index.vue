@@ -206,11 +206,11 @@ const scrollToBottom = () => {
 
 // 处理 WebSocket 消息
 const handleChatMessage = (data: { userId: number; message: Message }) => {
-  console.log('📩 [handleChatMessage 收到消息]:', JSON.stringify(data));
-  console.log('👤 [当前聊天 userId]:', userId.value);
+  console.log('handleChatMessage 收到消息:', JSON.stringify(data));
+  console.log('当前聊天 userId:', userId.value);
   // 只处理当前聊天用户的消息
   if (data.userId !== userId.value) {
-    console.log('⚠️ [消息 userId 不匹配，忽略]');
+    console.log('消息 userId 不匹配，忽略');
     return;
   }
 
@@ -240,7 +240,7 @@ onLoad((options) => {
   });
 
   // 使用 uni.$on 监听事件
-  console.log('📝 [注册 uni.$on updateChat 和 onChatMessage]');
+  console.log('注册 uni.$on updateChat 和 onChatMessage');
   uni.$on('updateChat', update);
   // 监听 WebSocket 消息
   uni.$on('onChatMessage', handleChatMessage);
