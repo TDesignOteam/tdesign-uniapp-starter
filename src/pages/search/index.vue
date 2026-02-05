@@ -1,5 +1,9 @@
 <template>
-  <t-navbar title="搜索" left-arrow placeholder/>
+  <t-navbar
+    title="搜索"
+    left-arrow
+    placeholder
+  />
   <view class="page search-page">
     <view class="search-input">
       <t-search
@@ -8,16 +12,23 @@
         action="取消"
         shape="round"
         placeholder="请搜索你想要的内容"
+        :focus="true"
         @submit="handleSubmit"
         @action-click="actionHandle"
-        :focus="true"
       />
     </view>
     <view class="search-wrap">
       <view class="history-wrap">
         <view class="search-header">
-          <text class="search-title">历史记录</text>
-          <t-icon name="delete" size="large" class="search-clear" @click="handleClearHistory" />
+          <text class="search-title">
+            历史记录
+          </text>
+          <t-icon
+            name="delete"
+            size="large"
+            class="search-clear"
+            @click="handleClearHistory"
+          />
         </view>
         <view class="search-content">
           <view
@@ -28,13 +39,21 @@
             @click="handleHistoryTap(index)"
             @longpress="deleteCurr(index)"
           >
-            <t-tag class="history-item margin-12" :max-width="343" variant="light">{{ item }}</t-tag>
+            <t-tag
+              class="history-item margin-12"
+              :max-width="343"
+              variant="light"
+            >
+              {{ item }}
+            </t-tag>
           </view>
         </view>
       </view>
       <view class="popular-wrap">
         <view class="search-header">
-          <text class="search-title">搜索发现</text>
+          <text class="search-title">
+            搜索发现
+          </text>
         </view>
         <view class="search-content">
           <view
@@ -44,7 +63,14 @@
             hover-class="hover-history-item"
             @click="handlePopularTap(index)"
           >
-            <t-tag class="popular-item margin-12" :max-width="343" variant="light" icon="search">{{ item }}</t-tag>
+            <t-tag
+              class="popular-item margin-12"
+              :max-width="343"
+              variant="light"
+              icon="search"
+            >
+              {{ item }}
+            </t-tag>
           </view>
         </view>
       </view>
@@ -61,8 +87,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
+
 import { onShow } from '@dcloudio/uni-app';
+
 import request from '@/api/request';
 
 const historyWords = ref<string[]>([]);

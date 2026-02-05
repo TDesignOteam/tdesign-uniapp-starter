@@ -1,25 +1,53 @@
 <template>
   <t-toast ref="t-toast" />
   <view class="my">
-    <image class="nav-bg" src="/static/bg_navbar.png" />
+    <image
+      class="nav-bg"
+      src="/static/bg_navbar.png"
+    />
     <Nav title-text="我的" />
     <view class="my-info">
       <t-cell-group>
-        <t-cell v-if="isLoad" :bordered="false">
+        <t-cell
+          v-if="isLoad"
+          :bordered="false"
+        >
           <template #left-icon>
-            <t-avatar :image="personalInfo.image" size="large" />
+            <t-avatar
+              :image="personalInfo.image"
+              size="large"
+            />
           </template>
           <template #description>
             <view class="my-info__person">
-              <view class="name">{{ personalInfo.name }}</view>
+              <view class="name">
+                {{ personalInfo.name }}
+              </view>
               <view class="tags">
-                <t-tag class="tag" variant="light" icon="discount">{{ personalInfo.star }}</t-tag>
-                <t-tag class="tag" variant="light" icon="location">{{ personalInfo.city }}</t-tag>
+                <t-tag
+                  class="tag"
+                  variant="light"
+                  icon="discount"
+                >
+                  {{ personalInfo.star }}
+                </t-tag>
+                <t-tag
+                  class="tag"
+                  variant="light"
+                  icon="location"
+                >
+                  {{ personalInfo.city }}
+                </t-tag>
               </view>
             </view>
           </template>
           <template #right-icon>
-            <t-icon name="edit" size="40rpx" color="#000000e6" @click="onNavigateTo" />
+            <t-icon
+              name="edit"
+              size="40rpx"
+              color="#000000e6"
+              @click="onNavigateTo"
+            />
           </template>
         </t-cell>
         <t-cell
@@ -29,7 +57,10 @@
           @click="onLogin"
         >
           <template #left-icon>
-            <t-avatar icon="user" size="128rpx" />
+            <t-avatar
+              icon="user"
+              size="128rpx"
+            />
           </template>
         </t-cell>
       </t-cell-group>
@@ -47,8 +78,13 @@
     </view>
 
     <view class="my-service">
-      <view class="my-service--tips">推荐服务</view>
-      <t-grid :column="4" class="my-service__list">
+      <view class="my-service--tips">
+        推荐服务
+      </view>
+      <t-grid
+        :column="4"
+        class="my-service__list"
+      >
         <t-grid-item
           v-for="item in service"
           :key="item.name"
@@ -77,11 +113,15 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+
 import { onShow } from '@dcloudio/uni-app';
-import Nav from '@/components/Nav.vue';
-import CustomTabBar from '@/components/CustomTabBar.vue';
+
+import { showToast } from '@tdesign/uniapp/toast/index.js';
+
 import request from '@/api/request';
-import { showToast} from '@tdesign/uniapp/toast/index.js';
+import CustomTabBar from '@/components/custom-tab-bar.vue';
+import Nav from '@/components/nav-bar.vue';
+
 
 interface PersonalInfo {
   name: string;
@@ -116,7 +156,7 @@ const personalInfo = ref<PersonalInfo>({
   name: '',
   image: '',
   star: '',
-  city: ''
+  city: '',
 });
 
 const gridList = ref<GridItem[]>([
@@ -182,7 +222,7 @@ const onEleClick = (item: any) => {
   overflow-y: auto;
 
   --td-navbar-bg-color: transparent;
-  
+
   .nav-bg {
     width: 750rpx;
     height: 200rpx;
@@ -202,7 +242,7 @@ const onEleClick = (item: any) => {
     padding-bottom: 32rpx;
     overflow: hidden;
 
-    // .cell-class-title 
+    // .cell-class-title
     :deep(.t-cell__title) {
       font-weight: 600 !important;
     }

@@ -1,6 +1,11 @@
 <template>
   <view class="home-card">
-    <t-image t-class="home-card__image" custom-style="width: 340rpx;height:340rpx;" :src="url" mode="aspectFill" />
+    <t-image
+      t-class="home-card__image"
+      custom-style="width: 340rpx;height:340rpx;"
+      :src="url"
+      mode="aspectFill"
+    />
     <view class="home-card__info">
       <text>{{ desc }}</text>
       <view class="home-card__tag-group">
@@ -32,7 +37,7 @@ defineProps<{
 
 defineOptions({
   styleIsolation: 'shared',
-})
+});
 </script>
 
 <style lang="less" scoped>

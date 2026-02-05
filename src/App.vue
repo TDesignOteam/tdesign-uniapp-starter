@@ -1,10 +1,14 @@
 <script setup lang="ts">
-import { onLaunch, onShow, onHide } from "@dcloudio/uni-app";
-import { reactive } from "vue";
-import config from "./config";
-import { initMock } from "./mock/index";
-import createBus from "./utils/eventBus";
-import { connectSocket, fetchUnreadNum } from "./mock/chat";
+import { reactive } from 'vue';
+
+import { onLaunch, onShow, onHide } from '@dcloudio/uni-app';
+
+import { safeJsonParse } from 't-comm/es/json/json-parse';
+
+import config from './config';
+import { connectSocket, fetchUnreadNum } from './mock/chat';
+import { initMock } from './mock/index';
+import createBus from './utils/event-bus';
 
 // 初始化 Mock 数据
 if (config.isMock) {
@@ -15,7 +19,7 @@ if (config.isMock) {
 const globalData = reactive({
   userInfo: null,
   unreadNum: 0,
-  socket: null as any
+  socket: null as any,
 });
 
 // 全局事件总线
@@ -42,16 +46,26 @@ const getUnreadNum = () => {
 // 初始化 WebSocket
 const connect = () => {
   const socket = connectSocket();
-  console.log('WebSocket connected, socket:', socket);
-  
+  console.log('🔌 [WebSocket connected, socket]:', socket);
+
   socket.onMessage((data: string) => {
-    console.log('App.vue socket.onMessage 收到数据:', data);
-    const parsedData = JSON.parse(data);
-    console.log('App.vue 解析后数据:', parsedData);
+    console.log('📨 [App.vue socket.onMessage 收到数据]:', data);
+    const parsedData = safeJsonParse<{
+      type: 'message';
+      data: {
+        userId: string;
+        message: {
+          content: string;
+          read: boolean;
+        };
+      };
+    }>(data);
+
+    console.log('📋 [App.vue 解析后数据]:', parsedData);
     if (parsedData.type === 'message') {
       const { userId, message } = parsedData.data;
       // 将消息转发给聊天页面
-      console.log('App.vue uni.$emit onChatMessage:', { userId, message });
+      console.log('📤 [App.vue uni.$emit onChatMessage]:', { userId, message });
       uni.$emit('onChatMessage', { userId, message });
       // 如果是对方发来的消息（未读），更新未读计数
       if (!message.read) {
@@ -63,12 +77,11 @@ const connect = () => {
 };
 
 onLaunch(() => {
-  console.log("App Launch");
-  
+  console.log('🚀 [App Launch]');
+
   // #ifdef MP-WEIXIN
   const updateManager = uni.getUpdateManager();
-  updateManager.onCheckForUpdate((res) => {
-    // console.log(res.hasUpdate)
+  updateManager.onCheckForUpdate(() => {
   });
   updateManager.onUpdateReady(() => {
     uni.showModal({
@@ -82,27 +95,24 @@ onLaunch(() => {
     });
   });
   // #endif
-  
+
   getUnreadNum();
   connect();
 });
 
 onShow(() => {
-  console.log("App Show");
+  console.log('👁️ [App Show]');
 });
 
 onHide(() => {
-  console.log("App Hide");
+  console.log('🙈 [App Hide]');
 });
 
-// 导出全局方法供页面使用
-// export { globalData, eventBus, setUnreadNum, getUnreadNum };
 </script>
 
 <style lang="less">
 @import '@tdesign/uniapp/common/style/theme/index.less';
 
-/* 全局样式 */
 page {
   background-color: #f3f3f3;
 }

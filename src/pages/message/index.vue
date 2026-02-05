@@ -1,5 +1,8 @@
 <template>
-  <Nav nav-type="title" title-text="全部消息" />
+  <Nav
+    nav-type="title"
+    title-text="全部消息"
+  />
   <scroll-view
     class="message-list"
     scroll-y
@@ -17,7 +20,10 @@
       @click="toChat(item.userId)"
     >
       <template #right-icon>
-        <t-badge :count="computeUnreadNum(item.messages)" class="wrapper" />
+        <t-badge
+          :count="computeUnreadNum(item.messages)"
+          class="wrapper"
+        />
       </template>
     </t-cell>
   </scroll-view>
@@ -26,9 +32,11 @@
 
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue';
+
 import { onShow } from '@dcloudio/uni-app';
-import Nav from '@/components/Nav.vue';
-import CustomTabBar from '@/components/CustomTabBar.vue';
+
+import CustomTabBar from '@/components/custom-tab-bar.vue';
+import Nav from '@/components/nav-bar.vue';
 import { fetchMessageList, markMessagesRead } from '@/mock/chat';
 
 interface Message {
@@ -73,27 +81,24 @@ const getUserById = (userId: number) => {
   return { user: null, index: -1 };
 };
 
-const computeUnreadNum = (messages: Message[]) => {
-  return messages.filter((item) => !item.read).length;
-};
+const computeUnreadNum = (messages: Message[]) => messages.filter(item => !item.read).length;
 
 const computeTotalUnreadNum = () => {
   let unreadNum = 0;
   messageList.value.forEach(({ messages }) => {
-    unreadNum += messages.filter((item) => !item.read).length;
+    unreadNum += messages.filter(item => !item.read).length;
   });
   return unreadNum;
 };
 
 const toChat = (userId: number) => {
   const { user } = getUserById(userId);
-  console.log('user.user', user)
   if (user) {
     // 使用 uni.$emit 传递数据
     uni.$emit('updateChat', user);
   }
-  uni.navigateTo({ 
-    url: `/pages/chat/index?userId=${userId}&name=${encodeURIComponent(user.name)}&avatar=${encodeURIComponent(user.avatar)}`
+  uni.navigateTo({
+    url: `/pages/chat/index?userId=${userId}&name=${encodeURIComponent(user?.name || '')}&avatar=${encodeURIComponent(user?.avatar || '')}`,
   });
   setMessagesRead(userId);
 };
@@ -114,7 +119,6 @@ const setMessagesRead = (userId: number) => {
 
 // 处理 WebSocket 消息
 const handleSocketMessage = (data: { userId: number; message: Message }) => {
-  console.log('message/index.vue handleSocketMessage:', data);
   const { userId, message } = data;
   const { user, index } = getUserById(userId);
   if (user) {
@@ -129,7 +133,7 @@ const handleSocketMessage = (data: { userId: number; message: Message }) => {
 
 onMounted(() => {
   getMessageList();
-  
+
   // 使用 uni.$on 监听消息事件（App.vue 中 socket.onMessage 会通过 uni.$emit 转发）
   uni.$on('onChatMessage', handleSocketMessage);
 });

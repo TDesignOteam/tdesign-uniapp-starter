@@ -1,29 +1,55 @@
 <template>
-  <t-navbar title="数据中心" left-arrow placeholder/>
+  <t-navbar
+    title="数据中心"
+    left-arrow
+    placeholder
+  />
   <view class="data-center">
     <view class="card first">
       <view class="card-header">
-        <view class="card-header__title">整体情况</view>
-        <view class="card-header__desc">截止12:00累计数值</view>
+        <view class="card-header__title">
+          整体情况
+        </view>
+        <view class="card-header__desc">
+          截止12:00累计数值
+        </view>
       </view>
       <view class="card-content">
-        <view v-for="(item, index) in totalSituationDataList" :key="index" class="card-content__item">
-          <view class="card-content__item--desc">{{ item.name }}</view>
-          <view class="card-content__item--count">{{ item.number }}</view>
+        <view
+          v-for="(item, index) in totalSituationDataList"
+          :key="index"
+          class="card-content__item"
+        >
+          <view class="card-content__item--desc">
+            {{ item.name }}
+          </view>
+          <view class="card-content__item--count">
+            {{ item.number }}
+          </view>
         </view>
       </view>
     </view>
 
     <view class="card second">
       <view class="card-header">
-        <view class="card-header__title">互动情况</view>
+        <view class="card-header__title">
+          互动情况
+        </view>
       </view>
       <view class="card-content">
-        <view v-for="(item, index) in interactionSituationDataList" :key="index" class="card-content__item">
-          <view class="card-content__item--desc">{{ item.name }}</view>
+        <view
+          v-for="(item, index) in interactionSituationDataList"
+          :key="index"
+          class="card-content__item"
+        >
+          <view class="card-content__item--desc">
+            {{ item.name }}
+          </view>
           <view class="card-content__item--count">
             <text>{{ item.number }}</text>
-            <text class="unit">次</text>
+            <text class="unit">
+              次
+            </text>
           </view>
         </view>
       </view>
@@ -31,11 +57,19 @@
 
     <view class="card third">
       <view class="card-header">
-        <view class="card-header__title">完播率</view>
+        <view class="card-header__title">
+          完播率
+        </view>
       </view>
       <view class="card-content">
-        <view v-for="(item, index) in completeRateDataList" :key="index" class="card-content__item">
-          <text class="progress__label">{{ item.time }}</text>
+        <view
+          v-for="(item, index) in completeRateDataList"
+          :key="index"
+          class="card-content__item"
+        >
+          <text class="progress__label">
+            {{ item.time }}
+          </text>
           <view class="progress__content">
             <t-progress :percentage="item.percentage" />
           </view>
@@ -45,10 +79,15 @@
 
     <view class="card forth">
       <view class="card-header">
-        <view class="card-header__title">按区域统计</view>
+        <view class="card-header__title">
+          按区域统计
+        </view>
       </view>
       <view class="card-content">
-        <t-empty icon="info-circle-filled" description="Empty Data" />
+        <t-empty
+          icon="info-circle-filled"
+          description="Empty Data"
+        />
       </view>
     </view>
   </view>
@@ -56,6 +95,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+
 import request from '@/api/request';
 
 interface DataItem {

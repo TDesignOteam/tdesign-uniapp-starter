@@ -1,12 +1,27 @@
 <template>
-  <t-navbar left-arrow title="个人信息" placeholder />
+  <t-navbar
+    left-arrow
+    title="个人信息"
+    placeholder
+  />
   <view class="info-edit">
-    <t-cell t-class="info-edit__cell" title="用户名">
+    <t-cell
+      t-class="info-edit__cell"
+      title="用户名"
+    >
       <template #note>
-        <t-input borderless placeholder="请输入用户名" v-model:value="personInfo.name" @change="onNameChange" />
+        <t-input
+          v-model:value="personInfo.name"
+          borderless
+          placeholder="请输入用户名"
+          @change="onNameChange"
+        />
       </template>
     </t-cell>
-    <t-cell t-class="info-edit__cell" title="性别">
+    <t-cell
+      t-class="info-edit__cell"
+      title="性别"
+    >
       <template #note>
         <t-radio-group
           borderless
@@ -18,9 +33,22 @@
         />
       </template>
     </t-cell>
-    <t-cell arrow :note="personInfo.birth || ''" title="生日" @click="showPicker('birth')" />
-    <t-cell arrow :note="addressText || ''" title="地址" @click="showPicker('address')" />
-    <t-cell t-class="info-edit__cell" title="个人简介">
+    <t-cell
+      arrow
+      :note="personInfo.birth || ''"
+      title="生日"
+      @click="showPicker('birth')"
+    />
+    <t-cell
+      arrow
+      :note="addressText || ''"
+      title="地址"
+      @click="showPicker('address')"
+    />
+    <t-cell
+      t-class="info-edit__cell"
+      title="个人简介"
+    >
       <template #note>
         <t-textarea
           :disable-default-padding="true"
@@ -33,7 +61,11 @@
         />
       </template>
     </t-cell>
-    <t-cell :bordered="false" t-class="info-edit__cell" title="相片墙">
+    <t-cell
+      :bordered="false"
+      t-class="info-edit__cell"
+      title="相片墙"
+    >
       <template #note>
         <t-upload
           draggable
@@ -50,7 +82,14 @@
   </view>
 
   <view class="info-edit__save">
-    <t-button block size="medium" theme="primary" @click="onSaveInfo">保存</t-button>
+    <t-button
+      block
+      size="medium"
+      theme="primary"
+      @click="onSaveInfo"
+    >
+      保存
+    </t-button>
   </view>
 
   <t-date-time-picker
@@ -87,8 +126,12 @@
 
 <script setup lang="ts">
 import { ref, onMounted, reactive } from 'vue';
+
 import request from '@/api/request';
-import { areaList } from './areaData';
+
+import { areaList } from './area-data';
+
+import type { UploadFile } from '@tdesign/uniapp/upload/type.ts';
 
 interface PersonInfo {
   name: string;
@@ -96,7 +139,7 @@ interface PersonInfo {
   birth: string;
   address: string[];
   introduction: string;
-  photos: { url: string; name: string; type: string }[];
+  photos: UploadFile[];
 }
 
 interface Option {
@@ -134,16 +177,14 @@ const gridConfig = ref({
 });
 
 const getAreaOptions = (data: Record<string, string>, filter?: (item: Option) => boolean): Option[] => {
-  const res = Object.keys(data).map((key) => ({ value: key, label: data[key] }));
+  const res = Object.keys(data).map(key => ({ value: key, label: data[key] }));
   return typeof filter === 'function' ? res.filter(filter) : res;
 };
 
-const getCities = (provinceValue: string) => {
-  return getAreaOptions(
-    areaList.cities,
-    (city) => city.value.slice(0, 2) === provinceValue.slice(0, 2)
-  );
-};
+const getCities = (provinceValue: string) => getAreaOptions(
+  areaList.cities,
+  city => city.value.slice(0, 2) === provinceValue.slice(0, 2),
+);
 
 const initAreaData = () => {
   provinces.value = getAreaOptions(areaList.provinces);
@@ -219,7 +260,7 @@ const onPhotosDrop = (e: any) => {
 };
 
 const onSaveInfo = () => {
-  console.log('保存信息:', personInfo);
+  console.log('💾 [保存信息]:', personInfo);
   uni.showToast({ title: '保存成功', icon: 'success' });
 };
 

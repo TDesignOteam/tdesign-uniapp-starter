@@ -1,13 +1,25 @@
 <template>
-  <t-navbar left-arrow placeholder/>
+  <t-navbar
+    left-arrow
+    placeholder
+  />
   <view class="page login-code">
-    <view class="login-code__title">请输入验证码</view>
-    <view class="login-code__tips">验证码已通过短信发送至 {{ phoneNumber }}</view>
+    <view class="login-code__title">
+      请输入验证码
+    </view>
+    <view class="login-code__tips">
+      验证码已通过短信发送至 {{ phoneNumber }}
+    </view>
     <view class="login-code__input">
-      <t-input placeholder="输入验证码" v-model:value="verifyCode" type="number" @change="onVerifycodeChange">
+      <t-input
+        v-model:value="verifyCode"
+        placeholder="输入验证码"
+        type="number"
+        @change="onVerifycodeChange"
+      >
         <template #suffix>
           <view class="suffix">
-            <view class="suffix--line"></view>
+            <view class="suffix--line" />
             <t-link
               size="medium"
               hover
@@ -22,14 +34,24 @@
     </view>
 
     <view class="login-code__button">
-      <t-button theme="primary" size="large" block :disabled="!verifyCode" @click="login">登录</t-button>
+      <t-button
+        theme="primary"
+        size="large"
+        block
+        :disabled="!verifyCode"
+        @click="login"
+      >
+        登录
+      </t-button>
     </view>
   </view>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onUnmounted } from 'vue';
+
 import { onLoad } from '@dcloudio/uni-app';
+
 import request from '@/api/request';
 
 const phoneNumber = ref('');

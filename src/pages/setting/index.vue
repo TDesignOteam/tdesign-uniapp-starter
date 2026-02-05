@@ -1,7 +1,15 @@
 <template>
-  <t-navbar title="设置" left-arrow placeholder/>
+  <t-navbar
+    title="设置"
+    left-arrow
+    placeholder
+  />
   <view class="setting">
-    <t-cell-group v-for="(group, index) in menuData" :key="index" theme="card">
+    <t-cell-group
+      v-for="(group, index) in menuData"
+      :key="index"
+      theme="card"
+    >
       <t-cell
         v-for="item in group"
         :key="item.type"
@@ -18,7 +26,8 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
-import {showToast} from '@tdesign/uniapp/toast/index.js';
+
+import { showToast } from '@tdesign/uniapp/toast/index.js';
 
 interface MenuItem {
   title: string;

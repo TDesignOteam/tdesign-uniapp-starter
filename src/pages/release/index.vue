@@ -1,5 +1,9 @@
 <template>
-  <t-navbar title="发布动态" left-arrow placeholder/>
+  <t-navbar
+    title="发布动态"
+    left-arrow
+    placeholder
+  />
   <view class="page">
     <view class="release-container">
       <view class="upload box">
@@ -13,7 +17,9 @@
         />
       </view>
       <view class="desc box">
-        <view class="desc-label">添加描述</view>
+        <view class="desc-label">
+          添加描述
+        </view>
         <t-textarea
           placeholder="分享你此刻的想法"
           :maxlength="500"
@@ -37,11 +43,31 @@
         </t-cell>
       </view>
       <view class="location box">
-        <t-cell title="所在位置" hover arrow left-icon="location" @click="gotoMap" />
+        <t-cell
+          title="所在位置"
+          hover
+          arrow
+          left-icon="location"
+          @click="gotoMap"
+        />
       </view>
       <view class="btngroup box">
-        <t-button class="btn-class" theme="light" icon="file-copy" content="存草稿" size="large" @click="saveDraft" />
-        <t-button class="btn-class" theme="primary" icon="upload" content="发布" size="large" @click="release" />
+        <t-button
+          class="btn-class"
+          theme="light"
+          icon="file-copy"
+          content="存草稿"
+          size="large"
+          @click="saveDraft"
+        />
+        <t-button
+          class="btn-class"
+          theme="primary"
+          icon="upload"
+          content="发布"
+          size="large"
+          @click="release"
+        />
       </view>
     </view>
   </view>
@@ -50,15 +76,18 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-interface FileItem {
-  url: string;
-  name: string;
-  type: string;
-}
+import type { UploadFile } from '@tdesign/uniapp/upload/type.ts';
 
-const originFiles = ref<FileItem[]>([
-  { url: '/static/image1.png', name: 'uploaded1.png', type: 'image' },
-  { url: '/static/image2.png', name: 'uploaded2.png', type: 'image' },
+// interface FileItem {
+//   url: string;
+//   name: string;
+//   type: string;
+//   status: 'loading' | 'reload' | 'failed' | 'done';
+// }
+
+const originFiles = ref<UploadFile[]>([
+  { url: '/static/image1.png', name: 'uploaded1.png', type: 'image', status: 'done' },
+  { url: '/static/image2.png', name: 'uploaded2.png', type: 'image', status: 'done' },
 ]);
 
 const gridConfig = ref({
@@ -117,11 +146,11 @@ defineOptions({
   .box {
     width: 100%;
   }
-  
+
   .upload {
     height: 224rpx;
     position: relative;
-    
+
     // &-class
     :deep(.t-upload) {
       width: 688rpx;
@@ -131,7 +160,7 @@ defineOptions({
       transform: translate(-50%, -50%);
     }
   }
-  
+
   .desc {
     height: 264rpx;
     display: flex;
@@ -139,7 +168,7 @@ defineOptions({
     align-items: flex-start;
     justify-content: space-between;
     box-sizing: border-box;
-    
+
     // .desc-class
     :deep(.t-textarea) {
       width: 492rpx;
@@ -147,7 +176,7 @@ defineOptions({
       padding: 0;
     }
   }
-  
+
   .taggroup {
     // .cell-title-class
     :deep(.t-cell__title-text) {
@@ -163,14 +192,14 @@ defineOptions({
       margin-left: 24rpx;
     }
   }
-  
+
   .btngroup {
     display: flex;
     justify-content: space-evenly;
     padding: 32rpx;
     position: fixed;
     bottom: 64rpx;
-    
+
     // .btn-class
     :deep(.t-button) {
       width: 327rpx;

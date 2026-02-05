@@ -1,17 +1,37 @@
 <template>
   <view class="chat-page">
-    <t-navbar t-class="nav-bar" :title="name" left-arrow placeholder />
+    <t-navbar
+      t-class="nav-bar"
+      :title="name"
+      left-arrow
+      placeholder
+    />
     <view class="chat-container">
-      <scroll-view class="content" scroll-y :scroll-into-view="anchor">
-<view class="messages">
-          <template v-for="(item, index) in messages" :key="index">
-            <view v-if="index === 0 || item.time - (messages[index - 1]?.time ?? 0) > 120000" class="time">
+      <scroll-view
+        class="content"
+        scroll-y
+        :scroll-into-view="anchor"
+      >
+        <view class="messages">
+          <template
+            v-for="(item, index) in messages"
+            :key="index"
+          >
+            <view
+              v-if="index === 0 || item.time - (messages[index - 1]?.time ?? 0) > 120000"
+              class="time"
+            >
               {{ formatTime(item.time) }}
             </view>
 
-            <view v-if="item.from === 0" class="message-area">
+            <view
+              v-if="item.from === 0"
+              class="message-area"
+            >
               <view class="message self">
-                <text space="nbsp">{{ item.content }}</text>
+                <text space="nbsp">
+                  {{ item.content }}
+                </text>
                 <t-loading
                   v-if="item.messageId === null"
                   t-class="loading"
@@ -19,13 +39,24 @@
                   size="32rpx"
                 />
               </view>
-              <t-avatar :image="myAvatar" size="small" />
+              <t-avatar
+                :image="myAvatar"
+                size="small"
+              />
             </view>
 
-            <view v-else class="message-area">
-              <t-avatar :image="avatar" size="small" />
+            <view
+              v-else
+              class="message-area"
+            >
+              <t-avatar
+                :image="avatar"
+                size="small"
+              />
               <view class="message other">
-                <text space="nbsp">{{ item.content }}</text>
+                <text space="nbsp">
+                  {{ item.content }}
+                </text>
               </view>
             </view>
           </template>
@@ -34,8 +65,14 @@
       </scroll-view>
     </view>
 
-    <view class="block" :style="{ marginBottom: keyboardHeight + 'px' }" />
-    <view class="bottom" :style="{ marginBottom: keyboardHeight + 'px' }">
+    <view
+      class="block"
+      :style="{ marginBottom: keyboardHeight + 'px' }"
+    />
+    <view
+      class="bottom"
+      :style="{ marginBottom: keyboardHeight + 'px' }"
+    >
       <view class="input">
         <input
           v-model="inputValue"
@@ -49,17 +86,27 @@
           @keyboardheightchange="handleKeyboardHeightChange"
           @blur="handleBlur"
           @confirm="sendMessage"
-        />
+        >
       </view>
-      <t-button t-class="send" theme="primary" shape="round" :disabled="!inputValue" @click="sendMessage">发送</t-button>
+      <t-button
+        t-class="send"
+        theme="primary"
+        shape="round"
+        :disabled="!inputValue"
+        @click="sendMessage"
+      >
+        发送
+      </t-button>
     </view>
   </view>
 </template>
 
 <script setup lang="ts">
 import { ref, nextTick } from 'vue';
+
 import { onLoad, onUnload } from '@dcloudio/uni-app';
-import { fetchMessageList, markMessagesRead } from '@/mock/chat';
+
+import { fetchMessageList } from '@/mock/chat';
 
 interface Message {
   messageId: number | null;
@@ -93,9 +140,9 @@ const formatTime = (time: number) => {
   const Y0 = now.getFullYear();
   const M0 = now.getMonth() + 1;
   const D0 = now.getDate();
-  
-  const formatNum = (num: number) => num < 10 ? '0' + num : num;
-  
+
+  const formatNum = (num: number) => (num < 10 ? `0${num}` : num);
+
   if (Y === Y0) {
     if (M === M0 && D === D0) return `今天 ${formatNum(h)}:${formatNum(m)}`;
     if (M === M0 && D === D0 - 1) return `昨天 ${formatNum(h)}:${formatNum(m)}`;
@@ -130,26 +177,25 @@ const handleBlur = () => {
 const sendMessage = () => {
   const content = inputValue.value;
   if (!content) return;
-  
+
   const message: Message = {
     messageId: null,
     from: 0,
     content,
     time: Date.now(),
-    read: true
+    read: true,
   };
   // 使用重新赋值的方式触发响应式更新
   messages.value = [...messages.value, message];
   inputValue.value = '';
-  console.log('globalData', globalData?.socket?.send, userId.value)
-  
+
   if (globalData?.socket && userId.value) {
-    globalData.socket.send({ 
-      type: 'message', 
-      data: { userId: userId.value, content } 
+    globalData.socket.send({
+      type: 'message',
+      data: { userId: userId.value, content },
     });
   }
-  
+
   nextTick(scrollToBottom);
 };
 
@@ -160,21 +206,19 @@ const scrollToBottom = () => {
 
 // 处理 WebSocket 消息
 const handleChatMessage = (data: { userId: number; message: Message }) => {
-  console.log('handleChatMessage 收到消息:', JSON.stringify(data));
-  console.log('当前聊天 userId:', userId.value);
+  console.log('📩 [handleChatMessage 收到消息]:', JSON.stringify(data));
+  console.log('👤 [当前聊天 userId]:', userId.value);
   // 只处理当前聊天用户的消息
   if (data.userId !== userId.value) {
-    console.log('消息 userId 不匹配，忽略');
+    console.log('⚠️ [消息 userId 不匹配，忽略]');
     return;
   }
-  
+
   const { message } = data;
-  
+
   if (message.from === 0) {
     // 自己发送的消息，更新 messageId（取消 loading 状态）
-    const index = messages.value.findIndex(
-      (m) => m.messageId === null && m.content === message.content
-    );
+    const index = messages.value.findIndex(m => m.messageId === null && m.content === message.content);
     if (index !== -1) {
       const updatedMessages = [...messages.value];
       updatedMessages[index] = { ...updatedMessages[index], messageId: message.messageId };
@@ -188,18 +232,15 @@ const handleChatMessage = (data: { userId: number; message: Message }) => {
 };
 
 onLoad((options) => {
-  console.log('chat onLoad, options:', options);
-  
   fetchMessageList().then(({ data }) => {
-    console.log('fetchMessageList data:', data);
-    const user = data.find((user) => user.userId === Number(options?.userId));
+    const user = data.find(user => user.userId === Number(options?.userId));
     if (user) {
       update(user);
     }
   });
 
   // 使用 uni.$on 监听事件
-  console.log('注册 uni.$on updateChat 和 onChatMessage');
+  console.log('📝 [注册 uni.$on updateChat 和 onChatMessage]');
   uni.$on('updateChat', update);
   // 监听 WebSocket 消息
   uni.$on('onChatMessage', handleChatMessage);

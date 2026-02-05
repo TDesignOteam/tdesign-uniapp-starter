@@ -3,7 +3,10 @@
   <view class="home-container">
     <view class="home-content">
       <t-tabs default-value="recommend">
-        <t-tab-panel label="推荐" value="recommend">
+        <t-tab-panel
+          label="推荐"
+          value="recommend"
+        >
           <t-pull-down-refresh
             :value="enable"
             :loading-texts="['下拉刷新', '松手刷新', '正在刷新', '刷新完成']"
@@ -26,7 +29,10 @@
             </view>
           </t-pull-down-refresh>
         </t-tab-panel>
-        <t-tab-panel label="我的关注" value="follow">
+        <t-tab-panel
+          label="我的关注"
+          value="follow"
+        >
           <view class="home-card-list">
             <Card
               v-for="(item, index) in focusCardInfo"
@@ -42,7 +48,13 @@
   </view>
 
   <view class="home-release">
-    <t-button theme="primary" size="large" icon="add" shape="round" @click="goRelease">
+    <t-button
+      theme="primary"
+      size="large"
+      icon="add"
+      shape="round"
+      @click="goRelease"
+    >
       发布
     </t-button>
   </view>
@@ -52,17 +64,21 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+
 import { onLoad } from '@dcloudio/uni-app';
-import NavComp from '@/components/Nav.vue';
-import Card from '@/components/Card.vue';
-import CustomTabBar from '@/components/CustomTabBar.vue';
-import request from '@/api/request';
+
 import MessagePlugin from '@tdesign/uniapp/message/index.js';
+
+import request from '@/api/request';
+import Card from '@/components/card.vue';
+import CustomTabBar from '@/components/custom-tab-bar.vue';
+import NavComp from '@/components/nav-bar.vue';
+
 
 interface CardItem {
   url: string;
   desc: string;
-  tags: { text: string; theme: string }[];
+  tags: { text: string; theme: 'default' | 'primary' | 'warning' | 'danger' | 'success' }[];
 }
 
 type SwiperItem = string;
@@ -80,7 +96,7 @@ const fetchData = async () => {
 
   cardInfo.value = cardRes.data;
   focusCardInfo.value = cardRes.data.slice(0, 3);
-  swiperList.value = swiperRes.data.map(item => item.image)
+  swiperList.value = swiperRes.data.map((item: { image: string }) => item.image);
 };
 
 onMounted(() => {
@@ -103,7 +119,7 @@ onLoad((options) => {
 
 const onRefresh = async () => {
   enable.value = true;
-  
+
   const [cardRes, swiperRes] = await Promise.all([
     request('/home/cards'),
     request('/home/swipers'),
@@ -118,7 +134,7 @@ const onRefresh = async () => {
 
 const showOperMsg = (content: string) => {
   MessagePlugin.success({
-    offset: [120, 32],
+    offset: [120, 32] as unknown as object,
     duration: 4000,
     content,
   });

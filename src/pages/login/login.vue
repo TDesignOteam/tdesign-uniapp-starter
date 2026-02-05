@@ -1,14 +1,22 @@
 <template>
-  <t-navbar left-arrow placeholder/>
+  <t-navbar
+    left-arrow
+    placeholder
+  />
   <view class="page login">
-    <view class="login__title">欢迎登录 TDesign</view>
+    <view class="login__title">
+      欢迎登录 TDesign
+    </view>
     <view class="login__content">
       <view class="login__input">
-        <view v-if="isPasswordLogin" class="login__password">
+        <view
+          v-if="isPasswordLogin"
+          class="login__password"
+        >
           <t-input
+            v-model:value="passwordInfo.account"
             label="账号"
             placeholder="请输入手机号/邮箱"
-            v-model:value="passwordInfo.account"
             @change="onAccountChange"
           />
           <t-input
@@ -30,15 +38,26 @@
           <template #label>
             <view class="input-label">
               <text>+86</text>
-              <t-icon name="caret-down-small" size="40rpx" class="input-icon" />
+              <t-icon
+                name="caret-down-small"
+                size="40rpx"
+                class="input-icon"
+              />
             </view>
           </template>
         </t-input>
       </view>
 
-      <view class="login__tips">未注册的手机号验证通过后将自动注册</view>
+      <view class="login__tips">
+        未注册的手机号验证通过后将自动注册
+      </view>
 
-      <t-radio-group allow-uncheck borderless :value="radioValue" @change="onCheckChange">
+      <t-radio-group
+        allow-uncheck
+        borderless
+        :value="radioValue"
+        @change="onCheckChange"
+      >
         <t-radio
           label="同意《协议条款》"
           value="agree"
@@ -47,26 +66,70 @@
       </t-radio-group>
 
       <view class="login__button">
-        <t-button theme="primary" size="large" block :disabled="!isSubmit" @click="login">
+        <t-button
+          theme="primary"
+          size="large"
+          block
+          :disabled="!isSubmit"
+          @click="login"
+        >
           {{ isPasswordLogin ? '登录' : '验证并登录' }}
         </t-button>
       </view>
 
-      <view v-if="isPasswordLogin" class="login__password--forget">
+      <view
+        v-if="isPasswordLogin"
+        class="login__password--forget"
+      >
         <text>忘记密码？</text>
-        <t-link theme="primary" size="small">找回密码</t-link>
+        <t-link
+          theme="primary"
+          size="small"
+        >
+          找回密码
+        </t-link>
       </view>
     </view>
 
     <view class="login__others">
-      <text class="login__others-label">其他方式</text>
+      <text class="login__others-label">
+        其他方式
+      </text>
       <view class="login__others-buttons">
-        <t-button class="button" variant="outline" theme="default" size="medium" shape="round" @click="changeLogin">
+        <t-button
+          class="button"
+          variant="outline"
+          theme="default"
+          size="medium"
+          shape="round"
+          @click="changeLogin"
+        >
           {{ isPasswordLogin ? '验证码登录' : '密码登录' }}
         </t-button>
-        <t-button class="button" variant="outline" theme="default" size="medium" icon="logo-wechat-stroke" shape="circle" />
-        <t-button class="button" variant="outline" theme="default" size="medium" icon="logo-qq" shape="circle" />
-        <t-button class="button" variant="outline" theme="default" size="medium" icon="logo-wecom" shape="circle" />
+        <t-button
+          class="button"
+          variant="outline"
+          theme="default"
+          size="medium"
+          icon="logo-wechat-stroke"
+          shape="circle"
+        />
+        <t-button
+          class="button"
+          variant="outline"
+          theme="default"
+          size="medium"
+          icon="logo-qq"
+          shape="circle"
+        />
+        <t-button
+          class="button"
+          variant="outline"
+          theme="default"
+          size="medium"
+          icon="logo-wecom"
+          shape="circle"
+        />
       </view>
     </view>
   </view>
@@ -74,6 +137,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue';
+
 import request from '@/api/request';
 
 const phoneNumber = ref('');
@@ -132,7 +196,7 @@ const login = async () => {
     const res: any = await request('/login/getSendMessage');
     if (res.success) {
       uni.navigateTo({
-        url: `/pages/loginCode/loginCode?phoneNumber=${phoneNumber.value}`,
+        url: `/pages/login-code/login-code?phoneNumber=${phoneNumber.value}`,
       });
     }
   }

@@ -1,3 +1,5 @@
+import { safeJsonParse } from 't-comm/es/json/json-parse';
+
 /** 模拟网络请求的延迟 */
 function delay(ms = 500): Promise<void> {
   return new Promise((resolve) => {
@@ -54,7 +56,7 @@ const mockData = [
 
 // 模拟新增一条消息
 function addNewMessage(userId: number, from: number, content: string) {
-  const index = mockData.map((item) => item.userId).indexOf(userId);
+  const index = mockData.map(item => item.userId).indexOf(userId);
   const user = mockData.splice(index, 1)[0];
   mockData.unshift(user);
   let messageId = 0;
@@ -86,21 +88,19 @@ class MockSocketTask {
 
   onOpen = (callback: () => void) => {
     if (typeof callback === 'function') this.onopen = callback;
-  }
+  };
 
   onMessage = (callback: (data: string) => void) => {
-    console.log('onMessage', callback)
     if (typeof callback === 'function') this.onmessage = callback;
-  }
+  };
 
-   send = (data: any) => {
+  send = (data: any) => {
     // data 可能是字符串或对象，统一处理
-    const parsedData = typeof data === 'string' ? JSON.parse(data) : data;
+    const parsedData = typeof data === 'string' ? safeJsonParse(data) : data;
     if (parsedData.type === 'message') {
       const { userId, content } = parsedData.data;
       delay().then(() => {
         const message = addNewMessage(userId, 0, content);
-        console.log('addNewMessage', message, this.onmessage)
         this.onmessage(JSON.stringify({ type: 'message', data: { userId, message } }));
       });
       // 模拟3秒后对方回复消息
@@ -110,7 +110,7 @@ class MockSocketTask {
         this.onmessage(JSON.stringify({ type: 'message', data: { userId, message } }));
       });
     }
-  }
+  };
 }
 
 /** 连接 WebSocket，返回 SocketTask 对象 */
@@ -122,7 +122,7 @@ export function connectSocket() {
 export function fetchUnreadNum(): Promise<{ code: number; data: number }> {
   let unreadNum = 0;
   mockData.forEach((item) => {
-    unreadNum += item.messages.filter((message) => !message.read).length;
+    unreadNum += item.messages.filter(message => !message.read).length;
   });
   return delay().then(() => ({ code: 200, data: unreadNum }));
 }

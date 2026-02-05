@@ -66,10 +66,10 @@
 			]
 		},
 		{
-			"root": "pages/loginCode",
+			"root": "pages/login-code",
 			"pages": [
 				{
-					"path": "loginCode",
+					"path": "login-code",
 					"style": {
 						"navigationStyle": "custom"
 					}
@@ -77,7 +77,7 @@
 			]
 		},
 		{
-			"root": "pages/dataCenter",
+			"root": "pages/data-center",
 			"pages": [
 				{
 					"path": "index",
@@ -154,11 +154,11 @@
 			},
 			{
 				"name": "验证码登录",
-				"path": "pages/loginCode/loginCode"
+				"path": "pages/login-code/login-code"
 			},
 			{
 				"name": "数据中心",
-				"path": "pages/dataCenter/index"
+				"path": "pages/data-center/index"
 			},
 			{
 				"name": "设置",

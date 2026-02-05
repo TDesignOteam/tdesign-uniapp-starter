@@ -1,10 +1,33 @@
 <template>
   <!-- <view class="custom-tab-bar"> -->
-    <t-tab-bar fixed placeholder :value="value" theme="tag" :split="false" @change="handleChange">
-      <t-tab-bar-item icon="home" value="home">首页</t-tab-bar-item>
-      <t-tab-bar-item icon="chat" value="message" :badge-props="{ count: unreadNum }">消息</t-tab-bar-item>
-      <t-tab-bar-item icon="user" value="my">我的</t-tab-bar-item>
-    </t-tab-bar>
+  <t-tab-bar
+    fixed
+    placeholder
+    :value="value"
+    theme="tag"
+    :split="false"
+    @change="handleChange"
+  >
+    <t-tab-bar-item
+      icon="home"
+      value="home"
+    >
+      首页
+    </t-tab-bar-item>
+    <t-tab-bar-item
+      icon="chat"
+      value="message"
+      :badge-props="{ count: unreadNum }"
+    >
+      消息
+    </t-tab-bar-item>
+    <t-tab-bar-item
+      icon="user"
+      value="my"
+    >
+      我的
+    </t-tab-bar-item>
+  </t-tab-bar>
   <!-- </view> -->
 </template>
 
@@ -36,7 +59,7 @@ const getCurrentTabValue = () => {
 const syncState = () => {
   // 同步当前 tab 值
   value.value = getCurrentTabValue();
-  
+
   // 同步全局未读消息数量
   if (globalData) {
     unreadNum.value = globalData.unreadNum || 0;
@@ -53,17 +76,15 @@ eventBus?.on('unread-num-change', (num: number) => {
 });
 
 const handleChange = (e: any) => {
-  const val = e?.value
-  console.log(val);
-  
+  const val = e?.value;
   // 如果点击的是当前页面，不做任何操作
   if (val === value.value) {
     return;
   }
-  
+
   // 使用 redirectTo 切换页面（关闭当前页后跳转，避免页面栈累积）
-  uni.redirectTo({ 
-    url: `/pages/${val}/index`
+  uni.redirectTo({
+    url: `/pages/${val}/index`,
   });
 };
 </script>
@@ -79,7 +100,7 @@ const handleChange = (e: any) => {
   z-index: 999;
   background-color: #fff;
   padding-bottom: env(safe-area-inset-bottom);
-  
+
   --td-tab-bar-height: @tab-bar-height;
 
   :deep(.t-tab-bar) {

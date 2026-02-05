@@ -195,29 +195,35 @@ export function initMock() {
   // @ts-ignore
   uni.request = function (options: UniApp.RequestOptions) {
     const url = options.url || '';
-    
+
     // 检查是否有对应的 mock 数据
-    for (const key in mockStore) {
+    for (const key of Object.keys(mockStore)) {
       if (url.endsWith(key)) {
         const mockData = mockStore[key];
         setTimeout(() => {
           if (options.success) {
-            options.success({
+            const res: UniApp.RequestSuccessCallbackResult = {
               data: mockData,
               statusCode: 200,
               header: {},
               cookies: [],
               errMsg: 'request:ok',
-            } as UniApp.RequestSuccessCallbackResult);
+            };
+            options.success(res);
           }
           if (options.complete) {
             options.complete({} as any);
           }
         }, 300);
-        return { abort: () => {} } as UniApp.RequestTask;
+        const task: UniApp.RequestTask = {
+          abort: () => {},
+          onHeadersReceived: () => {},
+          offHeadersReceived: () => {},
+        };
+        return task;
       }
     }
-    
+
     // 如果没有 mock 数据，调用原始请求
     return originalRequest(options);
   };
