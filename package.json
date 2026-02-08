@@ -73,7 +73,7 @@
     "@dcloudio/uni-cli-shared": "3.0.0-4080420251103001",
     "@dcloudio/uni-stacktracey": "3.0.0-4080420251103001",
     "@dcloudio/vite-plugin-uni": "3.0.0-4080420251103001",
-    "@novlan/postcss-plugin-remove-selector": "^0.1.4",
+    "@novlan/postcss-plugin-remove-selector": "^0.1.5",
     "@plugin-light/cli": "^1.0.1",
     "@plugin-light/vite-plugin-legacy-polyfill": "^0.0.2",
     "@plugin-light/vite-plugin-rem-to-rpx": "^0.0.6",
