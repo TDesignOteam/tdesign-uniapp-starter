@@ -11,6 +11,7 @@
     "uniapp",
     "dcloudio",
     "tdesign",
+    "novlan"
   ],
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "always",
