@@ -1,5 +1,5 @@
 # action 的名称
-name: Deploy GitHub Pages - TDesign UniApp Vue2 Cli Demo
+name: Deploy GitHub Pages - TDesign UniApp Starter
 
 on:
   push:
