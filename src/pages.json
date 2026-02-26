@@ -112,7 +112,7 @@
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "TDesign UniApp",
+		"navigationBarTitleText": "TDesign Uniapp Starter",
 		"navigationBarBackgroundColor": "#fff",
 		"backgroundColor": "#f3f3f3"
 	},
