@@ -153,7 +153,7 @@ pnpm type-check
 
 ## 📱 扫码预览
 
-<img src="./docs/image/tdesign-uniapp-starte.-h5.png" width="300" />
+<img src="./docs/image/tdesign-uniapp-starter-h5.png" width="300" />
 
 ## 🎨 设计稿
 
