@@ -30,7 +30,10 @@ jobs:
         run: npm install -g pnpm@9
 
       - name: Install Dependencies
-        run: pnpm install
+        run: |
+          pnpm store prune 2>/dev/null || true
+          pnpm install
+
 
       # 生成静态文件
       - name: Build
