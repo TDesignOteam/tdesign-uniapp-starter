@@ -48,8 +48,8 @@ jobs:
             });
             core.setOutput('comment-id', comment.id);
 
-      - uses: pnpm/action-setup@v4
-        if: steps.check-author.outputs.allowed == 'true'
+      # - uses: pnpm/action-setup@v4
+      #   if: steps.check-author.outputs.allowed == 'true'
 
       - uses: actions/setup-node@v6
         if: steps.check-author.outputs.allowed == 'true'
@@ -58,11 +58,11 @@ jobs:
 
       - name: 安装依赖
         if: steps.check-author.outputs.allowed == 'true'
-        run: pnpm install
+        run: npm install
 
       - name: 安装 miniprogram-ci
         if: steps.check-author.outputs.allowed == 'true'
-        run: pnpm add miniprogram-ci --save-dev
+        run: npm install miniprogram-ci --save-dev
 
       - name: 构建 & 上传预览
         if: steps.check-author.outputs.allowed == 'true'
