@@ -62,7 +62,7 @@ jobs:
 
       - name: 安装 miniprogram-ci
         if: steps.check-author.outputs.allowed == 'true'
-        run: pnpm add miniprogram-ci -w --save-dev
+        run: pnpm add miniprogram-ci --save-dev
 
       - name: 构建 & 上传预览
         if: steps.check-author.outputs.allowed == 'true'
