@@ -23,7 +23,7 @@ jobs:
         with:
           mini_app_id: ${{ secrets.TDESIGN_UNI_APP_ID }}
           mini_app_private_key: ${{ secrets.TDESIGN_UNI_MINI_KEY }}
-          allowed_users: '{"novlan1":1,"yao":2}'
+          allowed_users: '{"novlan1":11,"anlyyao":12}'
           cos_secret_id: ${{ secrets.TENCENT_COS_SECRET_ID }}
           cos_secret_key: ${{ secrets.TENCENT_COS_SECRET_KEY }}
           cos_bucket: mike-1255355338
