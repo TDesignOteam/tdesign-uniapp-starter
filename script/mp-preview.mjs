@@ -21,8 +21,8 @@
  * - COMMIT_SHA: 当前 commit SHA
  */
 
-import { execSync } from 'node:child_process';
-import { writeFileSync, existsSync, unlinkSync, readFileSync } from 'node:fs';
+// import { execSync } from 'node:child_process';
+import { writeFileSync, existsSync, unlinkSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -54,7 +54,7 @@ const USER_ROBOT_MAP = {
 const DEFAULT_ROBOT = 10;
 
 /** 构建命令 */
-const BUILD_COMMAND = 'npm run build:mp';
+// const BUILD_COMMAND = 'npm run build:mp';
 
 /** 小程序项目产物目录（相对于项目根目录） */
 const PROJECT_PATH = resolve(ROOT_DIR, 'dist/build/mp-weixin');
@@ -76,7 +76,7 @@ const CI_SETTING = {
  * 不指定时默认 'all'（同时执行 preview 和 upload）
  */
 function getMode() {
-  const modeArg = process.argv.find((arg) => arg.startsWith('--mode='));
+  const modeArg = process.argv.find(arg => arg.startsWith('--mode='));
   const mode = modeArg ? modeArg.split('=')[1] : 'all';
   if (!['preview', 'upload', 'all'].includes(mode)) {
     throw new Error(`不支持的模式: ${mode}，可选值: preview, upload, all`);
@@ -94,14 +94,14 @@ function error(msg) {
   console.error(`[mp-ci] ❌ ${msg}`);
 }
 
-function run(cmd, options = {}) {
-  log(`执行命令: ${cmd}`);
-  execSync(cmd, {
-    stdio: 'inherit',
-    cwd: ROOT_DIR,
-    ...options,
-  });
-}
+// function run(cmd, options = {}) {
+//   log(`执行命令: ${cmd}`);
+//   execSync(cmd, {
+//     stdio: 'inherit',
+//     cwd: ROOT_DIR,
+//     ...options,
+//   });
+// }
 
 function getEnv(name, required = true) {
   const value = process.env[name];
@@ -180,15 +180,15 @@ function writePrivateKey() {
 /**
  * 执行小程序构建
  */
-function build() {
-  log('🔨 开始构建小程序...');
-  const startTime = Date.now();
+// function build() {
+//   log('🔨 开始构建小程序...');
+//   const startTime = Date.now();
 
-  run(BUILD_COMMAND);
+//   run(BUILD_COMMAND);
 
-  const duration = ((Date.now() - startTime) / 1000).toFixed(1);
-  log(`✅ 构建完成，耗时 ${duration}s`);
-}
+//   const duration = ((Date.now() - startTime) / 1000).toFixed(1);
+//   log(`✅ 构建完成，耗时 ${duration}s`);
+// }
 
 /**
  * 创建 miniprogram-ci 项目实例（公共复用）
@@ -230,7 +230,7 @@ async function preview({ appId, keyPath, robot, version, description }) {
     },
   });
 
-  log(`✅ 预览上传成功`);
+  log('✅ 预览上传成功');
   log(`预览二维码已保存至: ${QRCODE_OUTPUT}`);
 
   return previewResult;
@@ -280,7 +280,7 @@ function cleanup(keyPath) {
 
 async function main() {
   const mode = getMode();
-  const author = getEnv('PR_AUTHOR');
+  const author = getEnv('PR_AUTHOR', false) || 'unknown';
   const prNumber = getEnv('PR_NUMBER', false);
   const prTitle = getEnv('PR_TITLE', false);
   const commitSha = getEnv('COMMIT_SHA', false);
@@ -290,13 +290,18 @@ async function main() {
 
   log('========================================');
   log(`模式: ${modeLabel[mode]}`);
-  log(`PR #${prNumber}: ${prTitle}`);
+  if (prNumber) {
+    log(`PR #${prNumber}: ${prTitle}`);
+  } else {
+    log(`Push: ${prTitle || 'develop branch'}`);
+  }
   log(`发起者: ${author}`);
   log(`Commit: ${commitSha?.slice(0, 7)}`);
   log('========================================');
 
-  // 1. 校验用户白名单
-  if (!validateAuthor(author)) {
+  // 1. 校验用户白名单（仅 PR 场景校验，push 到 develop 分支时跳过）
+  const isPR = getEnv('IS_PR', false) !== 'false';
+  if (isPR && !validateAuthor(author)) {
     process.exit(0); // 非白名单用户，静默退出
   }
 
@@ -311,8 +316,12 @@ async function main() {
     // build();
 
     // 5. 根据模式执行预览或上传
-    const version = `PR#${prNumber}-${commitSha?.slice(0, 7) || 'unknown'}`;
-    const description = `PR #${prNumber}: ${prTitle || '预览版本'}`;
+    const version = prNumber
+      ? `PR#${prNumber}-${commitSha?.slice(0, 7) || 'unknown'}`
+      : `dev-${commitSha?.slice(0, 7) || 'unknown'}`;
+    const description = prNumber
+      ? `PR #${prNumber}: ${prTitle || '预览版本'}`
+      : prTitle || 'develop branch push';
 
     const ciParams = { appId, keyPath, robot, version, description };
 
