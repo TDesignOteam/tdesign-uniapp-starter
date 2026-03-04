@@ -58,7 +58,7 @@ jobs:
 
       - name: 安装依赖
         if: steps.check-author.outputs.allowed == 'true'
-        run: npm install
+        run: pnpm install
 
       - name: 安装 miniprogram-ci
         if: steps.check-author.outputs.allowed == 'true'
