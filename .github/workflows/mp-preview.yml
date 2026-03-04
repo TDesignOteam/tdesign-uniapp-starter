@@ -30,3 +30,4 @@ jobs:
           cos_region: ap-guangzhou
           cos_remote_path: tdesign-uniapp-starter/wx-mp-preview-qrcode.png
           cdn_prefix: 'https://cdn.uwayfly.com/'
+          description_prefix: 'starter'
