@@ -43,10 +43,10 @@ const USER_ROBOT_MAP = {
 const DEFAULT_ROBOT = 10;
 
 /** 构建命令 */
-const BUILD_COMMAND = 'npm run uniapp -- run build:mp';
+const BUILD_COMMAND = 'npm run build:mp';
 
 /** 小程序项目产物目录（相对于项目根目录） */
-const PROJECT_PATH = resolve(ROOT_DIR, 'packages/tdesign-uniapp/dist/build/mp-weixin');
+const PROJECT_PATH = resolve(ROOT_DIR, 'dist/build/mp-weixin');
 
 /** 预览二维码输出路径 */
 const QRCODE_OUTPUT = resolve(ROOT_DIR, 'preview-qrcode.png');
