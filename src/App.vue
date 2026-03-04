@@ -109,16 +109,3 @@ onHide(() => {
 });
 
 </script>
-
-<style lang="less">
-@import '@tdesign/uniapp/common/style/theme/index.less';
-
-page {
-  background-color: #f3f3f3;
-}
-
-.page {
-  height: 100vh;
-  background-color: #fff;
-}
-</style>
