@@ -1,6 +1,7 @@
 {
   "name": "tdesign-uniapp-starter",
   "version": "0.0.0",
+  "packageManager": "pnpm@10.27.0",
   "scripts": {
     "dev:custom": "uni -p",
     "dev": "npm run dev:h5",
@@ -41,7 +42,10 @@
     "lint": "eslint --ext .js,.ts,.vue .",
     "lint:css": "stylelint **/*.scss",
     "lint:css:fix": "stylelint --fix **/*.scss",
-    "lint:fix": "eslint --fix --ext .js,.ts,.vue ."
+    "lint:fix": "eslint --fix --ext .js,.ts,.vue .",
+    "mp:ci": "node script/mp-preview.mjs",
+    "mp:preview": "node script/mp-preview.mjs --mode=preview",
+    "mp:upload": "node script/mp-preview.mjs --mode=upload"
   },
   "dependencies": {
     "@dcloudio/uni-app": "3.0.0-4080420251103001",
@@ -60,8 +64,8 @@
     "@dcloudio/uni-mp-weixin": "3.0.0-4080420251103001",
     "@dcloudio/uni-mp-xhs": "3.0.0-4080420251103001",
     "@dcloudio/uni-quickapp-webview": "3.0.0-4080420251103001",
-    "@tdesign/uniapp": "^0.7.1",
-    "@tdesign/uniapp-chat": "^0.2.0",
+    "@tdesign/uniapp": "^0.7.3",
+    "@tdesign/uniapp-chat": "^0.2.1",
     "t-comm": "^3.0.25",
     "tdesign-uniapp": "^0.5.3",
     "vue": "^3.4.21",
@@ -86,6 +90,7 @@
     "@typescript-eslint/parser": "7.18.0",
     "@vue/runtime-core": "^3.4.21",
     "@vue/tsconfig": "^0.7.0",
+    "dotenv": "^17.3.1",
     "eslint": "8.57.1",
     "eslint-config-light": "^1.5.3",
     "eslint-config-light-vue3": "^1.0.11",
@@ -103,6 +108,7 @@
     "husky": "^9.1.7",
     "less": "^4.4.2",
     "lint-staged": "^16.2.7",
+    "miniprogram-ci": "^2.1.26",
     "postcss": "8.4.49",
     "postcss-comment": "^2.0.0",
     "postcss-html": "1.6.0",

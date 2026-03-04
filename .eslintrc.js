@@ -17,6 +17,13 @@ module.exports = {
   },
   overrides: [
     {
+      files: ['*.mjs'],
+      parserOptions: {
+        project: 'tsconfig.eslint.json',
+        sourceType: 'module',
+      },
+    },
+    {
       files: ['*.js', '*.ts'],
       excludedFiles: ['*.test.js', '*.spec.js'],
       parserOptions: {

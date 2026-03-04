@@ -19,3 +19,6 @@ dist
 *.njsproj
 *.sln
 *.sw?
+
+wx-mp-private.key
+wx-mp-preview-qrcode.png
