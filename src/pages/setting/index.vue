@@ -21,7 +21,7 @@
       />
     </t-cell-group>
   </view>
-  <t-toast ref="t-toast" />
+  <TToast ref="t-toast" />
 </template>
 
 <script setup lang="ts">
@@ -58,7 +58,9 @@ const onEleClick = (item: MenuItem) => {
     uni.navigateTo({ url });
     return;
   }
-  showToast({ message: title });
+  showToast({
+    message: title,
+  });
 };
 </script>
 

@@ -212,7 +212,9 @@ const onEleClick = (item: any) => {
     uni.navigateTo({ url });
     return;
   }
-  showToast({ message: name });
+  showToast({
+    message: name,
+  });
 };
 </script>
 

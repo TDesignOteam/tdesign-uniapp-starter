@@ -138,7 +138,7 @@ const onRefresh = async () => {
 const showOperMsg = (content: string) => {
   setTimeout(() => {
     MessagePlugin.success({
-      offset: [120, 32] as unknown as object,
+      offset: [120, 32],
       duration: 4000,
       content,
     });
