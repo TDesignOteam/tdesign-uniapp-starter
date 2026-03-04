@@ -33,20 +33,47 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
-      - name: 评论 PR（构建中）
+      - name: 查找或创建评论
         if: steps.check-author.outputs.allowed == 'true'
         id: bot-comment
         uses: actions/github-script@v7
         with:
           script: |
+            const MARKER = '<!-- mp-preview-bot -->';
             const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
-            const { data: comment } = await github.rest.issues.createComment({
+            const body = `${MARKER}\n⏳ 正在构建小程序预览版本，请稍候...\n\n🔗 [查看构建日志](${runUrl})`;
+
+            // 查找已有的机器人评论
+            const { data: comments } = await github.rest.issues.listComments({
               issue_number: context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: `⏳ 正在构建小程序预览版本，请稍候...\n\n🔗 [查看构建日志](${runUrl})`
             });
-            core.setOutput('comment-id', comment.id);
+            const existing = comments.find(c => c.body && c.body.includes(MARKER));
+
+            let commentId;
+            if (existing) {
+              // 复用已有评论
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+              commentId = existing.id;
+              core.info(`♻️ 复用已有评论 #${commentId}`);
+            } else {
+              // 创建新评论
+              const { data: comment } = await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body,
+              });
+              commentId = comment.id;
+              core.info(`✨ 创建新评论 #${commentId}`);
+            }
+            core.setOutput('comment-id', commentId);
 
       - uses: pnpm/action-setup@v4
         if: steps.check-author.outputs.allowed == 'true'
@@ -112,11 +139,13 @@ jobs:
             const robot = '${{ steps.mp-preview.outputs.robot }}';
             const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
 
+            const MARKER = '<!-- mp-preview-bot -->';
             await github.rest.issues.updateComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               comment_id: ${{ steps.bot-comment.outputs.comment-id }},
               body: [
+                MARKER,
                 `### 📱 小程序预览`,
                 ``,
                 `<img alt="小程序预览二维码" src="${cosUrl}" width="280" />`,
@@ -136,6 +165,7 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
+            const MARKER = '<!-- mp-preview-bot -->';
             const commentId = '${{ steps.bot-comment.outputs.comment-id }}';
             const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
             if (commentId) {
@@ -143,6 +173,6 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 comment_id: Number(commentId),
-                body: `### ❌ 小程序预览构建失败\n\n🔗 [查看构建日志](${runUrl})`
+                body: `${MARKER}\n### ❌ 小程序预览构建失败\n\n🔗 [查看构建日志](${runUrl})`
               });
             }
