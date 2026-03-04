@@ -3,6 +3,8 @@ name: MP_PREVIEW
 on:
   pull_request:
     types: [opened, synchronize, reopened]
+  push:
+    branches: [develop]
 
 concurrency:
   group: mp-preview-${{ github.event.pull_request.number || github.sha }}
