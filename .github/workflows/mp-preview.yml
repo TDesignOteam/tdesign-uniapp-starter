@@ -1,0 +1,135 @@
+name: MP_PREVIEW
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+concurrency:
+  group: mp-preview-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 校验 PR 发起者
+        id: check-author
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const author = context.payload.pull_request.user.login;
+            const allowedUsers = ['novlan1', 'yao'];
+            const allowed = allowedUsers.includes(author);
+            core.info(`PR author: ${author}, allowed: ${allowed}`);
+            core.setOutput('allowed', String(allowed));
+            core.setOutput('author', author);
+
+      - name: 跳过非白名单用户
+        if: steps.check-author.outputs.allowed != 'true'
+        run: echo "⏭️ 用户 ${{ steps.check-author.outputs.author }} 不在白名单中，跳过预览构建"
+
+      - uses: actions/checkout@v6
+        if: steps.check-author.outputs.allowed == 'true'
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: 评论 PR（构建中）
+        if: steps.check-author.outputs.allowed == 'true'
+        id: bot-comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const { data: comment } = await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `⏳ 正在构建小程序预览版本，请稍候...\n\n🔗 [查看构建日志](${runUrl})`
+            });
+            core.setOutput('comment-id', comment.id);
+
+      - uses: pnpm/action-setup@v4
+        if: steps.check-author.outputs.allowed == 'true'
+
+      - uses: actions/setup-node@v6
+        if: steps.check-author.outputs.allowed == 'true'
+        with:
+          node-version-file: .node-version
+
+      - name: 安装依赖
+        if: steps.check-author.outputs.allowed == 'true'
+        run: pnpm install
+
+      - name: 安装 miniprogram-ci
+        if: steps.check-author.outputs.allowed == 'true'
+        run: pnpm add miniprogram-ci -w --save-dev
+
+      - name: 构建 & 上传预览
+        if: steps.check-author.outputs.allowed == 'true'
+        id: mp-preview
+        env:
+          MINI_APP_ID: ${{ secrets.TDESIGN_UNI_APP_ID }}
+          MINI_APP_PRIVATE_KEY: ${{ secrets.TDESIGN_UNI_MINI_KEY }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PR_TITLE: ${{ github.event.pull_request.title }}
+          COMMIT_SHA: ${{ github.event.pull_request.head.sha }}
+        run: node script/mp-preview.mjs
+
+      # - name: 上传二维码到腾讯云 COS
+      #   if: steps.check-author.outputs.allowed == 'true'
+      #   uses: LeeJim/tencent-cos-action@main
+      #   id: cos
+      #   with:
+      #     secretId: ${{ secrets.TENCENT_COS_SECRET_ID }}
+      #     secretKey: ${{ secrets.TENCENT_COS_SECRET_KEY }}
+      #     bucket: mp-qrcode-1255404841
+      #     region: ap-guangzhou
+      #     content: preview-qrcode.png
+
+      - name: 评论 PR（预览二维码）
+        if: steps.check-author.outputs.allowed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const author = '${{ steps.check-author.outputs.author }}';
+            const sha = '${{ github.event.pull_request.head.sha }}'.slice(0, 7);
+            const cosUrl = '${{ steps.cos.outputs.url }}';
+            const version = `${{ steps.mp-preview.outputs.version }}`;
+            const robot = '${{ steps.mp-preview.outputs.robot }}';
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+
+            await github.rest.issues.updateComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              comment_id: ${{ steps.bot-comment.outputs.comment-id }},
+              body: [
+                `### 📱 小程序预览`,
+                ``,
+                `<img alt="小程序预览二维码" src="${cosUrl}" width="280" />`,
+                ``,
+                `| 信息 | 详情 |`,
+                `|------|------|`,
+                `| **版本** | \`${version}\` |`,
+                `| **机器人** | #${robot} |`,
+                `| **提交** | \`${sha}\` |`,
+                `| **构建者** | @${author} |`,
+                `| **CI** | [查看日志](${runUrl}) |`,
+              ].join('\n')
+            });
+
+      - name: 评论 PR（构建失败）
+        if: failure() && steps.check-author.outputs.allowed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const commentId = '${{ steps.bot-comment.outputs.comment-id }}';
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            if (commentId) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: Number(commentId),
+                body: `### ❌ 小程序预览构建失败\n\n🔗 [查看构建日志](${runUrl})`
+              });
+            }
