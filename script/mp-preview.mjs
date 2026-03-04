@@ -1,11 +1,16 @@
 /**
- * 小程序 PR 预览脚本
+ * 小程序 CI 脚本（预览 & 上传）
  *
  * 功能：
  * 1. 校验 PR 发起者是否在白名单中
  * 2. 根据不同用户分配不同的机器人号
  * 3. 执行 UniApp 小程序构建
- * 4. 调用微信小程序 CI 上传并生成预览二维码
+ * 4. 调用微信小程序 CI 生成预览二维码 或 上传代码到微信后台
+ *
+ * 使用方式：
+ * - 预览+上传（默认）: node script/mp-preview.mjs
+ * - 仅预览:            node script/mp-preview.mjs --mode=preview
+ * - 仅上传:            node script/mp-preview.mjs --mode=upload
  *
  * 环境变量：
  * - MINI_APP_ID: 小程序 AppID
@@ -21,8 +26,14 @@ import { writeFileSync, existsSync, unlinkSync, readFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const ROOT_DIR = resolve(__dirname, '..');
+import dotenv from 'dotenv';
+
+// 本地开发时从 .env.local 加载环境变量（不覆盖已有的环境变量）
+const __filename = fileURLToPath(import.meta.url);
+const __scriptDir = dirname(__filename);
+dotenv.config({ path: resolve(__scriptDir, '..', '.env.local') });
+
+const ROOT_DIR = resolve(__scriptDir, '..');
 
 // ===================== 配置 =====================
 
@@ -49,16 +60,38 @@ const BUILD_COMMAND = 'npm run build:mp';
 const PROJECT_PATH = resolve(ROOT_DIR, 'dist/build/mp-weixin');
 
 /** 预览二维码输出路径 */
-const QRCODE_OUTPUT = resolve(ROOT_DIR, 'preview-qrcode.png');
+const QRCODE_OUTPUT = resolve(ROOT_DIR, 'wx-mp-preview-qrcode.png');
+
+/** 公共 CI 编译设置 */
+const CI_SETTING = {
+  es6: true,
+  es7: true,
+  minify: true,
+  autoPrefixWXSS: true,
+  minifyWXML: true,
+};
+
+/**
+ * 解析命令行参数中的 --mode 值
+ * 不指定时默认 'all'（同时执行 preview 和 upload）
+ */
+function getMode() {
+  const modeArg = process.argv.find((arg) => arg.startsWith('--mode='));
+  const mode = modeArg ? modeArg.split('=')[1] : 'all';
+  if (!['preview', 'upload', 'all'].includes(mode)) {
+    throw new Error(`不支持的模式: ${mode}，可选值: preview, upload, all`);
+  }
+  return mode;
+}
 
 // ===================== 工具函数 =====================
 
 function log(msg) {
-  console.log(`[mp-preview] ${msg}`);
+  console.log(`[mp-ci] ${msg}`);
 }
 
 function error(msg) {
-  console.error(`[mp-preview] ❌ ${msg}`);
+  console.error(`[mp-ci] ❌ ${msg}`);
 }
 
 function run(cmd, options = {}) {
@@ -121,13 +154,22 @@ function getRobot(author) {
  * 写入小程序上传密钥文件
  */
 function writePrivateKey() {
-  const privateKeyBase64 = getEnv('MINI_APP_PRIVATE_KEY');
-  const keyPath = resolve(ROOT_DIR, 'private.key');
+  const privateKeyRaw = getEnv('MINI_APP_PRIVATE_KEY');
+  const keyPath = resolve(ROOT_DIR, 'wx-mp-private.key');
 
   // 密钥可能是 Base64 编码的，也可能是直接的 PEM 内容
-  let keyContent = privateKeyBase64;
-  if (!privateKeyBase64.includes('BEGIN')) {
-    keyContent = Buffer.from(privateKeyBase64, 'base64').toString('utf-8');
+  let keyContent = privateKeyRaw;
+  if (!privateKeyRaw.includes('BEGIN')) {
+    // Base64 编码的密钥，先解码
+    keyContent = Buffer.from(privateKeyRaw, 'base64').toString('utf-8');
+  }
+
+  // 处理换行符：环境变量中 \n 可能被转义为字面量 "\\n"，需要替换为真正的换行符
+  keyContent = keyContent.replace(/\\n/g, '\n');
+
+  // 确保文件以换行符结尾
+  if (!keyContent.endsWith('\n')) {
+    keyContent += '\n';
   }
 
   writeFileSync(keyPath, keyContent);
@@ -149,12 +191,9 @@ function build() {
 }
 
 /**
- * 调用微信 CI 上传预览
+ * 创建 miniprogram-ci 项目实例（公共复用）
  */
-async function preview({ appId, keyPath, robot, version, description }) {
-  log('📱 开始上传小程序预览...');
-
-  // 动态导入 miniprogram-ci
+async function createProject({ appId, keyPath }) {
   const ci = await import('miniprogram-ci');
 
   const project = new ci.default.Project({
@@ -165,6 +204,17 @@ async function preview({ appId, keyPath, robot, version, description }) {
     ignores: ['node_modules/**/*'],
   });
 
+  return { ci, project };
+}
+
+/**
+ * 调用微信 CI 生成预览二维码
+ */
+async function preview({ appId, keyPath, robot, version, description }) {
+  log('📱 开始上传小程序预览...');
+
+  const { ci, project } = await createProject({ appId, keyPath });
+
   const previewResult = await ci.default.preview({
     project,
     desc: description,
@@ -172,13 +222,7 @@ async function preview({ appId, keyPath, robot, version, description }) {
     robot,
     qrcodeFormat: 'image',
     qrcodeOutputDest: QRCODE_OUTPUT,
-    setting: {
-      es6: true,
-      es7: true,
-      minify: true,
-      autoPrefixWXSS: true,
-      minifyWXML: true,
-    },
+    setting: CI_SETTING,
     onProgressUpdate: (info) => {
       if (info._msg) {
         log(info._msg);
@@ -190,6 +234,32 @@ async function preview({ appId, keyPath, robot, version, description }) {
   log(`预览二维码已保存至: ${QRCODE_OUTPUT}`);
 
   return previewResult;
+}
+
+/**
+ * 调用微信 CI 上传代码到微信后台
+ */
+async function upload({ appId, keyPath, robot, version, description }) {
+  log('📦 开始上传小程序到微信后台...');
+
+  const { ci, project } = await createProject({ appId, keyPath });
+
+  const uploadResult = await ci.default.upload({
+    project,
+    desc: description,
+    version,
+    robot,
+    setting: CI_SETTING,
+    onProgressUpdate: (info) => {
+      if (info._msg) {
+        log(info._msg);
+      }
+    },
+  });
+
+  log(`✅ 上传成功，版本号: ${version}`);
+
+  return uploadResult;
 }
 
 /**
@@ -209,13 +279,17 @@ function cleanup(keyPath) {
 // ===================== 主流程 =====================
 
 async function main() {
+  const mode = getMode();
   const author = getEnv('PR_AUTHOR');
   const prNumber = getEnv('PR_NUMBER', false);
   const prTitle = getEnv('PR_TITLE', false);
   const commitSha = getEnv('COMMIT_SHA', false);
   const appId = getEnv('MINI_APP_ID');
 
+  const modeLabel = { preview: '仅预览', upload: '仅上传', all: '预览+上传' };
+
   log('========================================');
+  log(`模式: ${modeLabel[mode]}`);
   log(`PR #${prNumber}: ${prTitle}`);
   log(`发起者: ${author}`);
   log(`Commit: ${commitSha?.slice(0, 7)}`);
@@ -234,22 +308,24 @@ async function main() {
 
   try {
     // 4. 构建
-    build();
+    // build();
 
-    // 5. 上传预览
+    // 5. 根据模式执行预览或上传
     const version = `PR#${prNumber}-${commitSha?.slice(0, 7) || 'unknown'}`;
     const description = `PR #${prNumber}: ${prTitle || '预览版本'}`;
 
-    await preview({
-      appId,
-      keyPath,
-      robot,
-      version,
-      description,
-    });
+    const ciParams = { appId, keyPath, robot, version, description };
+
+    if (mode === 'preview' || mode === 'all') {
+      await preview(ciParams);
+      setOutput('qrcode-path', QRCODE_OUTPUT);
+    }
+
+    if (mode === 'upload' || mode === 'all') {
+      await upload(ciParams);
+    }
 
     // 6. 设置输出
-    setOutput('qrcode-path', QRCODE_OUTPUT);
     setOutput('robot', String(robot));
     setOutput('version', version);
 

@@ -60,11 +60,24 @@ jobs:
         if: steps.check-author.outputs.allowed == 'true'
         run: pnpm install
 
-      - name: 安装 miniprogram-ci
+      - name: 构建小程序
         if: steps.check-author.outputs.allowed == 'true'
-        run: npm install miniprogram-ci --save-dev
+        run: pnpm run build:mp
 
-      - name: 构建 & 上传预览
+      - name: 清理依赖 & 安装 miniprogram-ci
+        if: steps.check-author.outputs.allowed == 'true'
+        run: |
+          rm -rf node_modules
+          node -e "
+            const fs = require('fs');
+            const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+            delete pkg.dependencies;
+            delete pkg.devDependencies;
+            fs.writeFileSync('package.json', JSON.stringify(pkg, null, 2));
+          "
+          npm install miniprogram-ci dotenv
+
+      - name: 上传预览
         if: steps.check-author.outputs.allowed == 'true'
         id: mp-preview
         env:
