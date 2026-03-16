@@ -64,7 +64,7 @@
     "@dcloudio/uni-mp-weixin": "3.0.0-4080420251103001",
     "@dcloudio/uni-mp-xhs": "3.0.0-4080420251103001",
     "@dcloudio/uni-quickapp-webview": "3.0.0-4080420251103001",
-    "@tdesign/uniapp": "https://pkg.pr.new/@tdesign/uniapp@4312",
+    "@tdesign/uniapp": "^0.7.3",
     "@tdesign/uniapp-chat": "^0.2.1",
     "t-comm": "^3.0.25",
     "tdesign-uniapp": "^0.5.3",
