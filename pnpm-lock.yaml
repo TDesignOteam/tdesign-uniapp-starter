@@ -57,11 +57,11 @@ importers:
         specifier: 3.0.0-4080420251103001
         version: 3.0.0-4080420251103001(postcss@8.4.49)(rollup@4.59.0)(vue@3.5.29(typescript@5.5.4))
       '@tdesign/uniapp':
-        specifier: ^0.7.3
-        version: 0.7.3
+        specifier: https://pkg.pr.new/@tdesign/uniapp@4350
+        version: https://pkg.pr.new/@tdesign/uniapp@4350
       '@tdesign/uniapp-chat':
-        specifier: ^0.2.1
-        version: 0.2.1
+        specifier: https://pkg.pr.new/@tdesign/uniapp-chat@4350
+        version: https://pkg.pr.new/@tdesign/uniapp-chat@4350
       t-comm:
         specifier: ^3.0.25
         version: 3.1.1
@@ -2294,6 +2294,7 @@ packages:
     engines: {node: '>= 10.0.0'}
     cpu: [arm]
     os: [linux]
+    libc: [musl]
 
   '@parcel/watcher-linux-arm64-glibc@2.5.6':
     resolution: {integrity: sha512-f2g/DT3NhGPdBmMWYoxixqYr3v/UXcmLOYy16Bx0TM20Tchduwr4EaCbmxh1321TABqPGDpS8D/ggOTaljijOA==}
@@ -2648,11 +2649,13 @@ packages:
   '@swc/types@0.1.25':
     resolution: {integrity: sha512-iAoY/qRhNH8a/hBvm3zKj9qQ4oc2+3w1unPJa2XvTK3XjeLXtzcCingVPw/9e5mn1+0yPqxcBGp9Jf0pkfMb1g==}
 
-  '@tdesign/uniapp-chat@0.2.1':
-    resolution: {integrity: sha512-ZIZzfFK2wypKtj8iRUlL9Lpi4DB34LttMaspCDClsdpzy9kXo4AV1/P243Ncd1cnglQU68aB+do119r+SsESdg==}
+  '@tdesign/uniapp-chat@https://pkg.pr.new/@tdesign/uniapp-chat@4350':
+    resolution: {integrity: sha512-dH5R1xjaQARbrpZeM5/e9zNr7it220kfytpuYX9Pk0460F6VKCnW1lUSvAL+FP1T3PGgw60W4XxG1PFd8HejWA==, tarball: https://pkg.pr.new/@tdesign/uniapp-chat@4350}
+    version: 0.2.1
 
-  '@tdesign/uniapp@0.7.3':
-    resolution: {integrity: sha512-9rEClT6bUWwZw5tt+vmNU5rW0jPVJhJlsl8Dxvmmf9iyyLhdk9bGVfz9DeH+R3kykAIft0rz4l2lAjsolpIYkQ==}
+  '@tdesign/uniapp@https://pkg.pr.new/@tdesign/uniapp@4350':
+    resolution: {integrity: sha512-wO4DTA6+UNojgHkcfedOg153DPCDnRZ77R5cGvKZNpg2kLmjNB8GIcGUuuAbbsOaKGnkeF0J7z3hVku+P26uRw==, tarball: https://pkg.pr.new/@tdesign/uniapp@4350}
+    version: 0.7.3
 
   '@tokenizer/token@0.3.0':
     resolution: {integrity: sha512-OvjF+z51L3ov0OyAU0duzsYuvO01PH7x4t6DJx+guahgTnBHkhJdG7soQeTSFLWN3efnHyibZ4Z8l2EuWwJN3A==}
@@ -12451,9 +12454,9 @@ snapshots:
     dependencies:
       '@swc/counter': 0.1.3
 
-  '@tdesign/uniapp-chat@0.2.1': {}
+  '@tdesign/uniapp-chat@https://pkg.pr.new/@tdesign/uniapp-chat@4350': {}
 
-  '@tdesign/uniapp@0.7.3': {}
+  '@tdesign/uniapp@https://pkg.pr.new/@tdesign/uniapp@4350': {}
 
   '@tokenizer/token@0.3.0': {}
 
