@@ -57,8 +57,8 @@ importers:
         specifier: 3.0.0-4080420251103001
         version: 3.0.0-4080420251103001(postcss@8.4.49)(rollup@4.59.0)(vue@3.5.29(typescript@5.5.4))
       '@tdesign/uniapp':
-        specifier: https://pkg.pr.new/@tdesign/uniapp@4368
-        version: https://pkg.pr.new/@tdesign/uniapp@4368
+        specifier: https://pkg.pr.new/@tdesign/uniapp@4373
+        version: https://pkg.pr.new/@tdesign/uniapp@4373
       '@tdesign/uniapp-chat':
         specifier: https://pkg.pr.new/@tdesign/uniapp-chat@4350
         version: https://pkg.pr.new/@tdesign/uniapp-chat@4350
@@ -2294,7 +2294,6 @@ packages:
     engines: {node: '>= 10.0.0'}
     cpu: [arm]
     os: [linux]
-    libc: [musl]
 
   '@parcel/watcher-linux-arm64-glibc@2.5.6':
     resolution: {integrity: sha512-f2g/DT3NhGPdBmMWYoxixqYr3v/UXcmLOYy16Bx0TM20Tchduwr4EaCbmxh1321TABqPGDpS8D/ggOTaljijOA==}
@@ -2659,8 +2658,8 @@ packages:
   '@tdesign/uniapp@0.7.3':
     resolution: {integrity: sha512-9rEClT6bUWwZw5tt+vmNU5rW0jPVJhJlsl8Dxvmmf9iyyLhdk9bGVfz9DeH+R3kykAIft0rz4l2lAjsolpIYkQ==}
 
-  '@tdesign/uniapp@https://pkg.pr.new/@tdesign/uniapp@4368':
-    resolution: {integrity: sha512-VegDux5pW6Sf0lK40Hg+dpxkmIuJwp22brLC43hRYXhqHdd++nieusdlhvcmsKd8LYnS7tCMpgq9FTFp+5NP/Q==, tarball: https://pkg.pr.new/@tdesign/uniapp@4368}
+  '@tdesign/uniapp@https://pkg.pr.new/@tdesign/uniapp@4373':
+    resolution: {integrity: sha512-fbGZZFvmLMxA+pb+sGnly4Zb4o3bHODo3ONNMun7kZ2M6kpYN78lFwAwDL/KnNMVNKqKCL2NoMoX4UBKhJRqLQ==, tarball: https://pkg.pr.new/@tdesign/uniapp@4373}
     version: 0.8.0
 
   '@tokenizer/token@0.3.0':
@@ -8721,6 +8720,7 @@ packages:
 
   whatwg-encoding@1.0.5:
     resolution: {integrity: sha512-b5lim54JOPN9HtzvK9HFXvBma/rnfFeqsic0hSpjtDbVxR3dJKLc+KB4V6GgiGOvl7CY/KNh8rxSo9DKQrnUEw==}
+    deprecated: Use @exodus/bytes instead for a more spec-conformant and faster implementation
 
   whatwg-encoding@3.1.1:
     resolution: {integrity: sha512-6qN4hJdMwfYBtE3YBTTHhoeuUrDBPZmbQaxWAqSALV/MeEnR5z1xd8UKud2RAkFoPkmB+hli1TZSnyi84xz1vQ==}
@@ -11572,7 +11572,7 @@ snapshots:
 
   '@jimp/bmp@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
       bmp-js: 0.1.0
@@ -11635,7 +11635,7 @@ snapshots:
 
   '@jimp/gif@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
       gifwrap: 0.9.4
@@ -11651,7 +11651,7 @@ snapshots:
 
   '@jimp/jpeg@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
       jpeg-js: 0.4.4
@@ -11665,7 +11665,7 @@ snapshots:
 
   '@jimp/plugin-blit@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
@@ -11678,7 +11678,7 @@ snapshots:
 
   '@jimp/plugin-blur@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
@@ -11691,7 +11691,7 @@ snapshots:
 
   '@jimp/plugin-circle@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
@@ -11705,7 +11705,7 @@ snapshots:
 
   '@jimp/plugin-color@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
       tinycolor2: 1.6.0
@@ -11722,7 +11722,7 @@ snapshots:
 
   '@jimp/plugin-contain@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-blit@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-scale@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13)))':
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/plugin-blit': 0.16.13(@jimp/custom@0.16.13)
       '@jimp/plugin-resize': 0.16.13(@jimp/custom@0.16.13)
@@ -11741,7 +11741,7 @@ snapshots:
 
   '@jimp/plugin-cover@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-crop@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-scale@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13)))':
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/plugin-crop': 0.16.13(@jimp/custom@0.16.13)
       '@jimp/plugin-resize': 0.16.13(@jimp/custom@0.16.13)
@@ -11757,7 +11757,7 @@ snapshots:
 
   '@jimp/plugin-crop@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
@@ -11770,7 +11770,7 @@ snapshots:
 
   '@jimp/plugin-displace@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
@@ -11783,7 +11783,7 @@ snapshots:
 
   '@jimp/plugin-dither@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
@@ -11796,7 +11796,7 @@ snapshots:
 
   '@jimp/plugin-fisheye@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
@@ -11810,7 +11810,7 @@ snapshots:
 
   '@jimp/plugin-flip@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-rotate@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-blit@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-crop@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13)))':
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/plugin-rotate': 0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-blit@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-crop@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13))
       '@jimp/utils': 0.16.13
@@ -11824,7 +11824,7 @@ snapshots:
 
   '@jimp/plugin-gaussian@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
@@ -11837,7 +11837,7 @@ snapshots:
 
   '@jimp/plugin-invert@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
@@ -11850,7 +11850,7 @@ snapshots:
 
   '@jimp/plugin-mask@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
@@ -11863,7 +11863,7 @@ snapshots:
 
   '@jimp/plugin-normalize@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
@@ -11880,7 +11880,7 @@ snapshots:
 
   '@jimp/plugin-print@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-blit@0.16.13(@jimp/custom@0.16.13))':
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/plugin-blit': 0.16.13(@jimp/custom@0.16.13)
       '@jimp/utils': 0.16.13
@@ -11897,7 +11897,7 @@ snapshots:
 
   '@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
 
@@ -11913,7 +11913,7 @@ snapshots:
 
   '@jimp/plugin-rotate@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-blit@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-crop@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13))':
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/plugin-blit': 0.16.13(@jimp/custom@0.16.13)
       '@jimp/plugin-crop': 0.16.13(@jimp/custom@0.16.13)
@@ -11930,7 +11930,7 @@ snapshots:
 
   '@jimp/plugin-scale@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13))':
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/plugin-resize': 0.16.13(@jimp/custom@0.16.13)
       '@jimp/utils': 0.16.13
@@ -11946,7 +11946,7 @@ snapshots:
 
   '@jimp/plugin-shadow@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-blur@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13))':
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/plugin-blur': 0.16.13(@jimp/custom@0.16.13)
       '@jimp/plugin-resize': 0.16.13(@jimp/custom@0.16.13)
@@ -11963,7 +11963,7 @@ snapshots:
 
   '@jimp/plugin-threshold@0.16.13(@jimp/custom@0.16.13)(@jimp/plugin-color@0.16.13(@jimp/custom@0.16.13))(@jimp/plugin-resize@0.16.13(@jimp/custom@0.16.13))':
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/plugin-color': 0.16.13(@jimp/custom@0.16.13)
       '@jimp/plugin-resize': 0.16.13(@jimp/custom@0.16.13)
@@ -12038,7 +12038,7 @@ snapshots:
 
   '@jimp/png@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       '@jimp/utils': 0.16.13
       pngjs: 3.4.0
@@ -12052,7 +12052,7 @@ snapshots:
 
   '@jimp/tiff@0.16.13(@jimp/custom@0.16.13)':
     dependencies:
-      '@babel/runtime': 7.21.0
+      '@babel/runtime': 7.28.6
       '@jimp/custom': 0.16.13
       utif: 2.0.1
 
@@ -12477,7 +12477,7 @@ snapshots:
 
   '@tdesign/uniapp@0.7.3': {}
 
-  '@tdesign/uniapp@https://pkg.pr.new/@tdesign/uniapp@4368': {}
+  '@tdesign/uniapp@https://pkg.pr.new/@tdesign/uniapp@4373': {}
 
   '@tokenizer/token@0.3.0': {}
 
