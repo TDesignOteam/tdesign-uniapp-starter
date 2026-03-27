@@ -2,6 +2,12 @@
   <NavComp nav-type="search" />
   <view class="home-container">
     <view class="home-content">
+      <!-- 测试 uniapp-chat 的 easycom -->
+      <!-- <t-chat-loading
+        animation="dots"
+        text="加载中..."
+      /> -->
+
       <t-tabs default-value="recommend">
         <t-tab-panel
           label="推荐"
