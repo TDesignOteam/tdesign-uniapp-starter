@@ -57,11 +57,11 @@ importers:
         specifier: 3.0.0-4080420251103001
         version: 3.0.0-4080420251103001(postcss@8.4.49)(rollup@4.59.0)(vue@3.5.29(typescript@5.5.4))
       '@tdesign/uniapp':
-        specifier: https://pkg.pr.new/@tdesign/uniapp@4373
-        version: https://pkg.pr.new/@tdesign/uniapp@4373
+        specifier: https://pkg.pr.new/@tdesign/uniapp@4385
+        version: https://pkg.pr.new/@tdesign/uniapp@4385
       '@tdesign/uniapp-chat':
-        specifier: https://pkg.pr.new/@tdesign/uniapp-chat@4350
-        version: https://pkg.pr.new/@tdesign/uniapp-chat@4350
+        specifier: https://pkg.pr.new/@tdesign/uniapp-chat@4385
+        version: https://pkg.pr.new/@tdesign/uniapp-chat@4385
       t-comm:
         specifier: ^3.0.25
         version: 3.1.1
@@ -2300,12 +2300,14 @@ packages:
     engines: {node: '>= 10.0.0'}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@parcel/watcher-linux-arm64-musl@2.5.6':
     resolution: {integrity: sha512-qb6naMDGlbCwdhLj6hgoVKJl2odL34z2sqkC7Z6kzir8b5W65WYDpLB6R06KabvZdgoHI/zxke4b3zR0wAbDTA==}
     engines: {node: '>= 10.0.0'}
     cpu: [arm64]
     os: [linux]
+    libc: [musl]
 
   '@parcel/watcher-linux-x64-glibc@2.5.6':
     resolution: {integrity: sha512-kbT5wvNQlx7NaGjzPFu8nVIW1rWqV780O7ZtkjuWaPUgpv2NMFpjYERVi0UYj1msZNyCzGlaCWEtzc+exjMGbQ==}
@@ -2459,6 +2461,7 @@ packages:
     resolution: {integrity: sha512-jYgUGk5aLd1nUb1CtQ8E+t5JhLc9x5WdBKew9ZgAXg7DBk0ZHErLHdXM24rfX+bKrFe+Xp5YuJo54I5HFjGDAA==}
     cpu: [arm64]
     os: [linux]
+    libc: [glibc]
 
   '@rollup/rollup-linux-arm64-musl@4.59.0':
     resolution: {integrity: sha512-peZRVEdnFWZ5Bh2KeumKG9ty7aCXzzEsHShOZEFiCQlDEepP1dpUl/SrUNXNg13UmZl+gzVDPsiCwnV1uI0RUA==}
@@ -2648,18 +2651,18 @@ packages:
   '@swc/types@0.1.25':
     resolution: {integrity: sha512-iAoY/qRhNH8a/hBvm3zKj9qQ4oc2+3w1unPJa2XvTK3XjeLXtzcCingVPw/9e5mn1+0yPqxcBGp9Jf0pkfMb1g==}
 
-  '@tdesign/uniapp-chat@0.2.1':
-    resolution: {integrity: sha512-ZIZzfFK2wypKtj8iRUlL9Lpi4DB34LttMaspCDClsdpzy9kXo4AV1/P243Ncd1cnglQU68aB+do119r+SsESdg==}
+  '@tdesign/uniapp-chat@0.2.2':
+    resolution: {integrity: sha512-utg/aQOMyJv8fyy10PNg8JAqiilOhKYF0BstZYwU5BG+AAse5H9uxnBjeF0rv81V3qCWq2l00f24gRdGSu9wuA==}
 
-  '@tdesign/uniapp-chat@https://pkg.pr.new/@tdesign/uniapp-chat@4350':
-    resolution: {integrity: sha512-dH5R1xjaQARbrpZeM5/e9zNr7it220kfytpuYX9Pk0460F6VKCnW1lUSvAL+FP1T3PGgw60W4XxG1PFd8HejWA==, tarball: https://pkg.pr.new/@tdesign/uniapp-chat@4350}
-    version: 0.2.1
+  '@tdesign/uniapp-chat@https://pkg.pr.new/@tdesign/uniapp-chat@4385':
+    resolution: {integrity: sha512-seQwDw2tzQQLEt7snPUjMYJ+YSSDtAOWdnrZnJKq72RqcU4IwjI6dM/1GVjWG/9dlfYfl+4wbdR5IBUaf1r7HQ==, tarball: https://pkg.pr.new/@tdesign/uniapp-chat@4385}
+    version: 0.2.2
 
   '@tdesign/uniapp@0.7.3':
     resolution: {integrity: sha512-9rEClT6bUWwZw5tt+vmNU5rW0jPVJhJlsl8Dxvmmf9iyyLhdk9bGVfz9DeH+R3kykAIft0rz4l2lAjsolpIYkQ==}
 
-  '@tdesign/uniapp@https://pkg.pr.new/@tdesign/uniapp@4373':
-    resolution: {integrity: sha512-fbGZZFvmLMxA+pb+sGnly4Zb4o3bHODo3ONNMun7kZ2M6kpYN78lFwAwDL/KnNMVNKqKCL2NoMoX4UBKhJRqLQ==, tarball: https://pkg.pr.new/@tdesign/uniapp@4373}
+  '@tdesign/uniapp@https://pkg.pr.new/@tdesign/uniapp@4385':
+    resolution: {integrity: sha512-7G9m86zxc1mBEYUrBxZL17woNXzr+LDSz167B6QeXs55U67OBPe7oo78SruIhtjfAsIYW5XTxhHGyA+xpo+htw==, tarball: https://pkg.pr.new/@tdesign/uniapp@4385}
     version: 0.8.0
 
   '@tokenizer/token@0.3.0':
@@ -8192,8 +8195,8 @@ packages:
     resolution: {integrity: sha512-i2wChNabq6Jgbock0uJCB1PTKAo7f3TdzdmObYnMDlvQ2lhLszuWpN0I2SJ+FW2vaD3QE+0RHUA5NgFCWEGGAw==}
     hasBin: true
 
-  t-comm@3.1.14:
-    resolution: {integrity: sha512-qWB0x+wm9AXDs8tBy4qD/LBN5jKaIXeTRJfRon+fV6jrxo/OV+GydES+wy9MXpxhm0RTKWFkxcoLVcql9OTDSw==}
+  t-comm@3.1.15:
+    resolution: {integrity: sha512-B7bShN7U5ZP6uSaurjbAtXvrIDPPJvZMhjJ74j9WL78ncEl1xeMttZUc6+98eJ/OqakqfNKzoPcXWR0x/NvgCA==}
     hasBin: true
 
   table@6.9.0:
@@ -8720,7 +8723,6 @@ packages:
 
   whatwg-encoding@1.0.5:
     resolution: {integrity: sha512-b5lim54JOPN9HtzvK9HFXvBma/rnfFeqsic0hSpjtDbVxR3dJKLc+KB4V6GgiGOvl7CY/KNh8rxSo9DKQrnUEw==}
-    deprecated: Use @exodus/bytes instead for a more spec-conformant and faster implementation
 
   whatwg-encoding@3.1.1:
     resolution: {integrity: sha512-6qN4hJdMwfYBtE3YBTTHhoeuUrDBPZmbQaxWAqSALV/MeEnR5z1xd8UKud2RAkFoPkmB+hli1TZSnyi84xz1vQ==}
@@ -12232,7 +12234,7 @@ snapshots:
       imapflow: 1.2.11
       loader-utils: 2.0.4
       mailparser: 3.9.3
-      t-comm: 3.1.14
+      t-comm: 3.1.15
       tinify: 1.8.2
       turndown: 7.2.2
     transitivePeerDependencies:
@@ -12394,18 +12396,18 @@ snapshots:
     dependencies:
       '@sinonjs/commons': 1.8.6
 
-  '@stylelint/postcss-css-in-js@0.37.3(postcss-syntax@0.36.2(postcss-html@0.36.0(postcss-syntax@0.36.2(postcss-html@1.6.0)(postcss-scss@4.0.9(postcss@8.4.49))(postcss@8.4.49))(postcss@7.0.39))(postcss-less@3.1.4)(postcss-scss@2.1.1)(postcss@7.0.39))(postcss@7.0.39)':
+  '@stylelint/postcss-css-in-js@0.37.3(postcss-syntax@0.36.2(postcss-html@1.6.0)(postcss-scss@4.0.9(postcss@8.4.49))(postcss@8.4.49))(postcss@7.0.39)':
     dependencies:
       '@babel/core': 7.29.0
       postcss: 7.0.39
-      postcss-syntax: 0.36.2(postcss-html@0.36.0(postcss-syntax@0.36.2(postcss-html@1.6.0)(postcss-scss@4.0.9(postcss@8.4.49))(postcss@8.4.49))(postcss@7.0.39))(postcss-less@3.1.4)(postcss-scss@2.1.1)(postcss@7.0.39)
+      postcss-syntax: 0.36.2(postcss-html@0.36.0)(postcss-less@3.1.4)(postcss-scss@2.1.1)(postcss@7.0.39)
     transitivePeerDependencies:
       - supports-color
 
-  '@stylelint/postcss-markdown@0.36.2(postcss-syntax@0.36.2(postcss-html@0.36.0(postcss-syntax@0.36.2(postcss-html@1.6.0)(postcss-scss@4.0.9(postcss@8.4.49))(postcss@8.4.49))(postcss@7.0.39))(postcss-less@3.1.4)(postcss-scss@2.1.1)(postcss@7.0.39))(postcss@7.0.39)':
+  '@stylelint/postcss-markdown@0.36.2(postcss-syntax@0.36.2(postcss-html@1.6.0)(postcss-scss@4.0.9(postcss@8.4.49))(postcss@8.4.49))(postcss@7.0.39)':
     dependencies:
       postcss: 7.0.39
-      postcss-syntax: 0.36.2(postcss-html@0.36.0(postcss-syntax@0.36.2(postcss-html@1.6.0)(postcss-scss@4.0.9(postcss@8.4.49))(postcss@8.4.49))(postcss@7.0.39))(postcss-less@3.1.4)(postcss-scss@2.1.1)(postcss@7.0.39)
+      postcss-syntax: 0.36.2(postcss-html@0.36.0)(postcss-less@3.1.4)(postcss-scss@2.1.1)(postcss@7.0.39)
       remark: 13.0.0
       unist-util-find-all-after: 3.0.2
     transitivePeerDependencies:
@@ -12471,13 +12473,13 @@ snapshots:
     dependencies:
       '@swc/counter': 0.1.3
 
-  '@tdesign/uniapp-chat@0.2.1': {}
+  '@tdesign/uniapp-chat@0.2.2': {}
 
-  '@tdesign/uniapp-chat@https://pkg.pr.new/@tdesign/uniapp-chat@4350': {}
+  '@tdesign/uniapp-chat@https://pkg.pr.new/@tdesign/uniapp-chat@4385': {}
 
   '@tdesign/uniapp@0.7.3': {}
 
-  '@tdesign/uniapp@https://pkg.pr.new/@tdesign/uniapp@4373': {}
+  '@tdesign/uniapp@https://pkg.pr.new/@tdesign/uniapp@4385': {}
 
   '@tokenizer/token@0.3.0': {}
 
@@ -18117,7 +18119,7 @@ snapshots:
     dependencies:
       htmlparser2: 3.10.1
       postcss: 7.0.39
-      postcss-syntax: 0.36.2(postcss-html@0.36.0(postcss-syntax@0.36.2(postcss-html@1.6.0)(postcss-scss@4.0.9(postcss@8.4.49))(postcss@8.4.49))(postcss@7.0.39))(postcss-less@3.1.4)(postcss-scss@2.1.1)(postcss@7.0.39)
+      postcss-syntax: 0.36.2(postcss-html@0.36.0)(postcss-less@3.1.4)(postcss-scss@2.1.1)(postcss@7.0.39)
 
   postcss-html@1.6.0:
     dependencies:
@@ -18361,7 +18363,7 @@ snapshots:
       postcss-value-parser: 4.2.0
       svgo: 2.8.0
 
-  postcss-syntax@0.36.2(postcss-html@0.36.0(postcss-syntax@0.36.2(postcss-html@1.6.0)(postcss-scss@4.0.9(postcss@8.4.49))(postcss@8.4.49))(postcss@7.0.39))(postcss-less@3.1.4)(postcss-scss@2.1.1)(postcss@7.0.39):
+  postcss-syntax@0.36.2(postcss-html@0.36.0)(postcss-less@3.1.4)(postcss-scss@2.1.1)(postcss@7.0.39):
     dependencies:
       postcss: 7.0.39
     optionalDependencies:
@@ -19340,8 +19342,8 @@ snapshots:
 
   stylelint@13.13.1:
     dependencies:
-      '@stylelint/postcss-css-in-js': 0.37.3(postcss-syntax@0.36.2(postcss-html@0.36.0(postcss-syntax@0.36.2(postcss-html@1.6.0)(postcss-scss@4.0.9(postcss@8.4.49))(postcss@8.4.49))(postcss@7.0.39))(postcss-less@3.1.4)(postcss-scss@2.1.1)(postcss@7.0.39))(postcss@7.0.39)
-      '@stylelint/postcss-markdown': 0.36.2(postcss-syntax@0.36.2(postcss-html@0.36.0(postcss-syntax@0.36.2(postcss-html@1.6.0)(postcss-scss@4.0.9(postcss@8.4.49))(postcss@8.4.49))(postcss@7.0.39))(postcss-less@3.1.4)(postcss-scss@2.1.1)(postcss@7.0.39))(postcss@7.0.39)
+      '@stylelint/postcss-css-in-js': 0.37.3(postcss-syntax@0.36.2(postcss-html@1.6.0)(postcss-scss@4.0.9(postcss@8.4.49))(postcss@8.4.49))(postcss@7.0.39)
+      '@stylelint/postcss-markdown': 0.36.2(postcss-syntax@0.36.2(postcss-html@1.6.0)(postcss-scss@4.0.9(postcss@8.4.49))(postcss@8.4.49))(postcss@7.0.39)
       autoprefixer: 9.8.8
       balanced-match: 2.0.0
       chalk: 4.1.2
@@ -19375,7 +19377,7 @@ snapshots:
       postcss-sass: 0.4.4
       postcss-scss: 2.1.1
       postcss-selector-parser: 6.1.2
-      postcss-syntax: 0.36.2(postcss-html@0.36.0(postcss-syntax@0.36.2(postcss-html@1.6.0)(postcss-scss@4.0.9(postcss@8.4.49))(postcss@8.4.49))(postcss@7.0.39))(postcss-less@3.1.4)(postcss-scss@2.1.1)(postcss@7.0.39)
+      postcss-syntax: 0.36.2(postcss-html@0.36.0)(postcss-less@3.1.4)(postcss-scss@2.1.1)(postcss@7.0.39)
       postcss-value-parser: 4.2.0
       resolve-from: 5.0.0
       slash: 3.0.0
@@ -19516,11 +19518,11 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  t-comm@3.1.14:
+  t-comm@3.1.15:
     dependencies:
       '@babel/runtime': 7.28.6
       '@tdesign/uniapp': 0.7.3
-      '@tdesign/uniapp-chat': 0.2.1
+      '@tdesign/uniapp-chat': 0.2.2
       axios: 1.13.6
       cheerio: 1.2.0
       commander: 10.0.1
