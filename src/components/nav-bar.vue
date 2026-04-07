@@ -13,18 +13,23 @@
             custom-style="padding: 12rpx"
             @click="openDrawer"
           />
-          <t-search
+          <view
             v-if="navType === 'search'"
-            shape="round"
-            placeholder="请搜索你想要的内容"
             @click="searchTurn"
-          />
+          >
+            <t-search
+              shape="round"
+              placeholder="请搜索你想要的内容"
+              :disabled="true"
+              @click="searchTurn"
+            />
+          </view>
         </view>
       </template>
     </t-navbar>
 
     <t-drawer
-      :style="{ paddingTop: statusHeight + 'px' }"
+      :custom-style="'padding-top: ' + statusHeight + 'px'"
       :visible="visible"
       :items="sidebar"
       placement="left"
