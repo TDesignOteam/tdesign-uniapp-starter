@@ -214,7 +214,7 @@ export function initMock() {
           if (options.complete) {
             options.complete({} as any);
           }
-        }, 300);
+        }, 10);
         const task: UniApp.RequestTask = {
           abort: () => {},
           onHeadersReceived: () => {},

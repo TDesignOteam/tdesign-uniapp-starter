@@ -5,6 +5,7 @@
       custom-style="width: 340rpx;height:340rpx;"
       :src="url"
       mode="aspectFill"
+      lazy
     />
     <view class="home-card__info">
       <text>{{ desc }}</text>

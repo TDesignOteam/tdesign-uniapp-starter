@@ -1,7 +1,7 @@
 import { safeJsonParse } from 't-comm/es/json/json-parse';
 
 /** 模拟网络请求的延迟 */
-function delay(ms = 500): Promise<void> {
+function delay(ms = 10): Promise<void> {
   return new Promise((resolve) => {
     setTimeout(resolve, ms);
   });

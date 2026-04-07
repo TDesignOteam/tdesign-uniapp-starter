@@ -1,7 +1,7 @@
 import config from '@/config';
 
 const { baseUrl } = config;
-const delay = config.isMock ? 500 : 0;
+const delay = config.isMock ? 10 : 0;
 
 
 function request<T = any>(url: string, method: 'GET' | 'POST' | 'PUT' | 'DELETE' = 'GET', data: any = {}): Promise<T> {

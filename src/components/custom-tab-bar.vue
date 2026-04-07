@@ -2,7 +2,6 @@
   <!-- <view class="custom-tab-bar"> -->
   <t-tab-bar
     fixed
-    placeholder
     :value="value"
     theme="tag"
     :split="false"

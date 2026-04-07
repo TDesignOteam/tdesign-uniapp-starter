@@ -8,7 +8,9 @@
         text="加载中..."
       /> -->
 
-      <t-tabs default-value="recommend">
+      <t-tabs
+        default-value="recommend"
+      >
         <t-tab-panel
           label="推荐"
           value="recommend"
@@ -20,7 +22,7 @@
           >
             <view class="home-card-list">
               <t-swiper
-                :list="swiperList"
+                :list="swiperList.map(item => item.image )"
                 :navigation="{ type: 'dots-bar' }"
                 height="488rpx"
                 custom-style="width: 340rpx"
@@ -39,15 +41,22 @@
           label="我的关注"
           value="follow"
         >
-          <view class="home-card-list">
-            <Card
-              v-for="(item, index) in focusCardInfo"
-              :key="index"
-              :desc="item.desc"
-              :url="item.url"
-              :tags="item.tags"
-            />
-          </view>
+          <scroll-view
+            class="follow-scroll"
+            scroll-y
+            enhanced
+            :bounces="false"
+          >
+            <view class="home-card-list">
+              <Card
+                v-for="(item, index) in focusCardInfo"
+                :key="index"
+                :desc="item.desc"
+                :url="item.url"
+                :tags="item.tags"
+              />
+            </view>
+          </scroll-view>
         </t-tab-panel>
       </t-tabs>
     </view>
@@ -90,12 +99,13 @@ interface CardItem {
   tags: { text: string; theme: 'default' | 'primary' | 'warning' | 'danger' | 'success' }[];
 }
 
-type SwiperItem = string;
+type SwiperItem = { image: string };
 
 const enable = ref(false);
 const swiperList = ref<SwiperItem[]>([]);
 const cardInfo = ref<CardItem[]>([]);
 const focusCardInfo = ref<CardItem[]>([]);
+
 
 const fetchData = async () => {
   const [cardRes, swiperRes] = await Promise.all([
@@ -105,7 +115,7 @@ const fetchData = async () => {
 
   cardInfo.value = cardRes.data;
   focusCardInfo.value = cardRes.data.slice(0, 3);
-  swiperList.value = swiperRes.data.map((item: { image: string }) => item.image);
+  swiperList.value = swiperRes.data;
 };
 
 onMounted(() => {
@@ -178,7 +188,7 @@ const goRelease = () => {
 
     &__content {
       height: calc(100% - @home-tab-item-height);
-      overflow: auto;
+      overflow: hidden;
       background-color: @bg-color;
     }
   }
@@ -189,7 +199,22 @@ const goRelease = () => {
     flex-wrap: wrap;
     gap: 24rpx 12rpx;
     padding: 24rpx;
+    padding-bottom: calc(24rpx + env(safe-area-inset-bottom));
     background-color: @bg-color;
+  }
+
+
+  :deep(.t-tab-panel--active) {
+    height: 100%;
+  }
+
+
+  :deep(.t-tabs__content-inner) {
+    height: 100%;
+  }
+
+  .follow-scroll {
+    height: 100%;
   }
 }
 
