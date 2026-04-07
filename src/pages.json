@@ -50,7 +50,8 @@
 				{
 					"path": "index",
 					"style": {
-						"navigationStyle": "custom"
+						"navigationStyle": "custom",
+						"disableScroll": true
 					}
 				}
 			]

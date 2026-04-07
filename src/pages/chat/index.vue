@@ -69,11 +69,11 @@
 
     <view
       class="block"
-      :style="{ marginBottom: keyboardHeight + 'px' }"
+      :style="{ height: 'calc(env(safe-area-inset-bottom) + 129rpx + ' + keyboardHeight + 'px)' }"
     />
     <view
       class="bottom"
-      :style="{ marginBottom: keyboardHeight + 'px' }"
+      :style="{ bottom: keyboardHeight + 'px' }"
     >
       <view class="input">
         <input
@@ -165,10 +165,12 @@ const update = (data: { userId: number; avatar: string; name: string; messages: 
 
 // 处理唤起键盘事件
 const handleKeyboardHeightChange = (event: any) => {
-  const { height } = event;
-  if (!height) return;
+  // 兼容小程序（event.detail.height）和 H5（event.height）
+  const height = event?.detail?.height ?? event?.height ?? 0;
   keyboardHeight.value = height;
-  nextTick(scrollToBottom);
+  if (height > 0) {
+    nextTick(scrollToBottom);
+  }
 };
 
 // 处理收起键盘事件
@@ -331,6 +333,7 @@ onUnload(() => {
 
 .block {
   height: calc(env(safe-area-inset-bottom) + 129rpx);
+  transition: height 0.2s ease;
 }
 
 .bottom {
