@@ -3,7 +3,8 @@
 		{
 			"path": "pages/home/index",
 			"style": {
-				"navigationStyle": "custom"
+				"navigationStyle": "custom",
+				"disableScroll": true
 			}
 		},
 		{

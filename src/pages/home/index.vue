@@ -174,7 +174,7 @@ const goRelease = () => {
 @home-tab-item-height: 96rpx;
 
 .home-container {
-  height: calc(100vh - @tab-bar-height);
+  height: calc(100vh - @tab-bar-height - env(safe-area-inset-bottom));
 
   .home-content {
     height: calc(100% - @nav-bar-height);
