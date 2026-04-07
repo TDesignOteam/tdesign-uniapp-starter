@@ -22,6 +22,7 @@
         </view>
       </template>
     </t-navbar>
+
     <t-drawer
       :style="{ paddingTop: statusHeight + 'px' }"
       :visible="visible"

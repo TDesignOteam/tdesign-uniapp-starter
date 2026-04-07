@@ -11,8 +11,8 @@ function delay(ms = 10): Promise<void> {
 const mockData = [
   {
     userId: 1,
-    name: 'Sean',
-    avatar: '/static/chat/avatar-Sean.png',
+    name: 'Novlan',
+    avatar: '/static/chat/avatar-Novlan.jpeg',
     messages: [
       { messageId: 1, from: 1, content: '那明天准时见哦😊', time: 1690646400000, read: true },
       { messageId: 2, from: 0, content: '好的，我会记得的', time: 1690646400000, read: true },

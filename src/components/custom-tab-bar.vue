@@ -1,5 +1,4 @@
 <template>
-  <!-- <view class="custom-tab-bar"> -->
   <t-tab-bar
     fixed
     :value="value"

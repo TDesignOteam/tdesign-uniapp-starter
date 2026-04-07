@@ -2,7 +2,9 @@
   <t-navbar
     title="搜索"
     left-arrow
+    :delta="0"
     placeholder
+    @go-back="navigateBack"
   />
   <view class="page search-page">
     <view class="search-input">
@@ -92,6 +94,7 @@ import { ref } from 'vue';
 import { onShow } from '@dcloudio/uni-app';
 
 import request from '@/api/request';
+import { navigateBack } from '@/utils/navigate';
 
 const historyWords = ref<string[]>([]);
 const popularWords = ref<string[]>([]);

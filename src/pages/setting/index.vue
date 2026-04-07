@@ -1,8 +1,11 @@
 <template>
+  <t-toast ref="t-toast" />
   <t-navbar
     title="设置"
     left-arrow
+    :delta="0"
     placeholder
+    @go-back="navigateBack"
   />
   <view class="setting">
     <t-cell-group
@@ -21,13 +24,14 @@
       />
     </t-cell-group>
   </view>
-  <TToast ref="t-toast" />
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
 
 import { showToast } from '@tdesign/uniapp/toast/index.js';
+
+import { navigateBack } from '@/utils/navigate';
 
 interface MenuItem {
   title: string;

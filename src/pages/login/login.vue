@@ -1,7 +1,9 @@
 <template>
   <t-navbar
     left-arrow
+    :delta="0"
     placeholder
+    @go-back="navigateBack"
   />
   <view class="page login">
     <view class="login__title">
@@ -139,6 +141,7 @@
 import { ref, computed } from 'vue';
 
 import request from '@/api/request';
+import { navigateBack } from '@/utils/navigate';
 
 const phoneNumber = ref('');
 const isPhoneNumber = ref(false);

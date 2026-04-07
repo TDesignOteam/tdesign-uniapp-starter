@@ -4,7 +4,9 @@
       t-class="nav-bar"
       :title="name"
       left-arrow
+      :delta="0"
       placeholder
+      @go-back="navigateBack"
     />
     <view class="chat-container">
       <scroll-view
@@ -107,6 +109,7 @@ import { ref, nextTick } from 'vue';
 import { onLoad, onUnload } from '@dcloudio/uni-app';
 
 import { fetchMessageList } from '@/mock/chat';
+import { navigateBack } from '@/utils/navigate';
 
 interface Message {
   messageId: number | null;

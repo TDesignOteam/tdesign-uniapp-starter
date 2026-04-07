@@ -2,7 +2,9 @@
   <t-navbar
     title="数据中心"
     left-arrow
+    :delta="0"
     placeholder
+    @go-back="navigateBack"
   />
   <view class="data-center">
     <view class="card first">
@@ -97,6 +99,7 @@
 import { ref, onMounted } from 'vue';
 
 import request from '@/api/request';
+import { navigateBack } from '@/utils/navigate';
 
 interface DataItem {
   name: string;

@@ -1,7 +1,9 @@
 <template>
   <t-navbar
     left-arrow
+    :delta="0"
     placeholder
+    @go-back="navigateBack"
   />
   <view class="page login-code">
     <view class="login-code__title">
@@ -53,6 +55,7 @@ import { ref, onUnmounted } from 'vue';
 import { onLoad } from '@dcloudio/uni-app';
 
 import request from '@/api/request';
+import { navigateBack } from '@/utils/navigate';
 
 const phoneNumber = ref('');
 const sendCodeCount = ref(60);

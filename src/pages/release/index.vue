@@ -2,7 +2,9 @@
   <t-navbar
     title="发布动态"
     left-arrow
+    :delta="0"
     placeholder
+    @go-back="navigateBack"
   />
   <view class="page">
     <view class="release-container">
@@ -77,6 +79,8 @@
 import { ref } from 'vue';
 
 import type { UploadFile } from '@tdesign/uniapp/upload/type.ts';
+
+import { navigateBack } from '@/utils/navigate';
 
 const originFiles = ref<UploadFile[]>([
   { url: '/static/image1.png', name: 'uploaded1.png', type: 'image', status: 'done' },

@@ -109,7 +109,7 @@ export function initMock() {
     code: 200,
     data: {
       name: 'TDesign',
-      image: '/static/avatar1.png',
+      image: '/static/avatar.jpeg',
       star: 'Lv.5',
       city: '深圳',
       gender: 0,

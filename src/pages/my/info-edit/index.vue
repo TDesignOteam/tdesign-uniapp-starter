@@ -1,8 +1,10 @@
 <template>
   <t-navbar
     left-arrow
+    :delta="0"
     title="个人信息"
     placeholder
+    @go-back="navigateBack"
   />
   <view class="info-edit">
     <t-cell
@@ -127,11 +129,13 @@
 <script setup lang="ts">
 import { ref, onMounted, reactive } from 'vue';
 
-import request from '@/api/request';
-
 import { areaList } from './area-data';
 
 import type { UploadFile } from '@tdesign/uniapp/upload/type.ts';
+
+import request from '@/api/request';
+import { navigateBack } from '@/utils/navigate';
+
 
 interface PersonInfo {
   name: string;
