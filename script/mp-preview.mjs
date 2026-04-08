@@ -56,8 +56,13 @@ const DEFAULT_ROBOT = 10;
 /** 构建命令 */
 // const BUILD_COMMAND = 'npm run build:mp';
 
-/** 小程序项目产物目录（相对于项目根目录） */
-const PROJECT_PATH = resolve(ROOT_DIR, 'dist/build/mp-weixin');
+/** 小程序项目产物目录（支持通过 --project-path= 参数自定义） */
+const PROJECT_PATH = (() => {
+  const arg = process.argv.find(a => a.startsWith('--project-path='));
+  return arg
+    ? resolve(ROOT_DIR, arg.split('=')[1])
+    : resolve(ROOT_DIR, 'dist/build/mp-weixin');
+})();
 
 /** 预览二维码输出路径 */
 const QRCODE_OUTPUT = resolve(ROOT_DIR, 'wx-mp-preview-qrcode.png');

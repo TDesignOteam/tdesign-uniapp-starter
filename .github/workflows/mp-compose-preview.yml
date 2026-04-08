@@ -1,0 +1,52 @@
+name: MP_COMPOSE_PREVIEW
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [develop]
+  workflow_dispatch:
+
+concurrency:
+  group: mp-compose-preview-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: true
+
+jobs:
+  compose-preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - name: 安装 pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: 安装 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: 缓存外部仓库（复用 clone 和 node_modules）
+        uses: actions/cache@v4
+        with:
+          path: .tmp-compose
+          key: compose-repos-${{ runner.os }}
+
+      - name: 安装当前项目依赖
+        run: pnpm install
+
+      - name: 融合构建
+        run: node script/mp-compose-build.mjs
+
+      - name: 小程序预览/上传
+        env:
+          MINI_APP_ID: ${{ secrets.TDESIGN_UNI_APP_ID }}
+          MINI_APP_PRIVATE_KEY: ${{ secrets.TDESIGN_UNI_MINI_KEY }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login || github.actor }}
+          PR_NUMBER: ${{ github.event.pull_request.number || '' }}
+          PR_TITLE: ${{ github.event.pull_request.title || github.event.head_commit.message || 'compose preview' }}
+          COMMIT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          IS_PR: ${{ github.event_name == 'pull_request' && 'true' || 'false' }}
+        run: node script/mp-preview.mjs --project-path=dist/mini-merge

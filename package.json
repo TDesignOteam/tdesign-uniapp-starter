@@ -54,7 +54,9 @@
     "lint:fix": "eslint --fix --ext .js,.ts,.vue .",
     "mp:ci": "node script/mp-preview.mjs",
     "mp:preview": "node script/mp-preview.mjs --mode=preview",
-    "mp:upload": "node script/mp-preview.mjs --mode=upload"
+    "mp:upload": "node script/mp-preview.mjs --mode=upload",
+    "mp:compose": "node script/mp-compose-build.mjs",
+    "mp:compose:preview": "npm run mp:compose && node script/mp-preview.mjs --project-path=dist/mini-merge"
   },
   "dependencies": {
     "@dcloudio/uni-app": "3.0.0-4080420251103001",
@@ -117,12 +119,16 @@
     "husky": "^9.1.7",
     "less": "^4.4.2",
     "lint-staged": "^16.2.7",
-    "miniprogram-ci": "^2.1.26",
+    "miniprogram-ci": "^2.1.31",
+    "mp-guru-cli": "^1.0.14",
+    "nanoid": "^5.1.7",
+    "picocolors": "^1.1.1",
     "postcss": "8.4.49",
     "postcss-comment": "^2.0.0",
     "postcss-html": "1.6.0",
     "postcss-loader": "~3.0.0",
     "postcss-scss": "4.0.9",
+    "source-map-js": "^1.2.1",
     "stylelint": "14.16.1",
     "stylelint-config-common": "1.0.10",
     "stylelint-plugin-light": "^1.0.17",
