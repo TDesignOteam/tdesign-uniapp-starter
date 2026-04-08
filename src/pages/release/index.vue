@@ -83,8 +83,8 @@ import type { UploadFile } from '@tdesign/uniapp/upload/type.ts';
 import { navigateBack } from '@/utils/navigate';
 
 const originFiles = ref<UploadFile[]>([
-  { url: '/static/image1.png', name: 'uploaded1.png', type: 'image', status: 'done' },
-  { url: '/static/image2.png', name: 'uploaded2.png', type: 'image', status: 'done' },
+  { url: 'https://cdn.uwayfly.com/tdesign-uniapp/starter/image1.png', name: 'uploaded1.png', type: 'image', status: 'done' },
+  { url: 'https://cdn.uwayfly.com/tdesign-uniapp/starter/image2.png', name: 'uploaded2.png', type: 'image', status: 'done' },
 ]);
 
 const gridConfig = ref({

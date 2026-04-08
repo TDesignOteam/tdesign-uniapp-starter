@@ -119,7 +119,7 @@ interface Message {
   read: boolean;
 }
 
-const myAvatar = ref('/static/chat/avatar.png');
+const myAvatar = ref('https://cdn.uwayfly.com/tdesign-uniapp/starter/chat/avatar.png');
 const userId = ref<number | null>(null);
 const avatar = ref('');
 const name = ref('');

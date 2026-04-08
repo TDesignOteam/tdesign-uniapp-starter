@@ -9,7 +9,7 @@ export function initMock() {
     message: '请求成功',
     data: [
       {
-        url: '/static/home/card0.png',
+        url: 'https://cdn.uwayfly.com/tdesign-uniapp/starter/home/card0.png',
         desc: '少年,星空与梦想',
         tags: [
           { text: 'AI绘画', theme: 'primary' },
@@ -17,7 +17,7 @@ export function initMock() {
         ],
       },
       {
-        url: '/static/home/card1.png',
+        url: 'https://cdn.uwayfly.com/tdesign-uniapp/starter/home/card1.png',
         desc: '仰望星空的少女',
         tags: [
           { text: 'AI绘画', theme: 'primary' },
@@ -25,7 +25,7 @@ export function initMock() {
         ],
       },
       {
-        url: '/static/home/card3.png',
+        url: 'https://cdn.uwayfly.com/tdesign-uniapp/starter/home/card3.png',
         desc: '仰望星空的少年',
         tags: [
           { text: 'AI绘画', theme: 'primary' },
@@ -33,7 +33,7 @@ export function initMock() {
         ],
       },
       {
-        url: '/static/home/card2.png',
+        url: 'https://cdn.uwayfly.com/tdesign-uniapp/starter/home/card2.png',
         desc: '少年,星空与梦想',
         tags: [
           { text: 'AI绘画', theme: 'primary' },
@@ -41,7 +41,7 @@ export function initMock() {
         ],
       },
       {
-        url: '/static/home/card4.png',
+        url: 'https://cdn.uwayfly.com/tdesign-uniapp/starter/home/card4.png',
         desc: '多彩的天空',
         tags: [
           { text: 'AI绘画', theme: 'primary' },
@@ -55,9 +55,9 @@ export function initMock() {
     code: 200,
     message: '请求成功',
     data: [
-      { image: '/static/home/swiper0.png' },
-      { image: '/static/home/card0.png' },
-      { image: '/static/home/card1.png' },
+      { image: 'https://cdn.uwayfly.com/tdesign-uniapp/starter/home/swiper0.png' },
+      { image: 'https://cdn.uwayfly.com/tdesign-uniapp/starter/home/card0.png' },
+      { image: 'https://cdn.uwayfly.com/tdesign-uniapp/starter/home/card1.png' },
     ],
   };
 
@@ -97,10 +97,10 @@ export function initMock() {
     code: 200,
     data: {
       service: [
-        { name: '帮助中心', image: '/static/icon_doc.png', url: '' },
-        { name: '官方地图', image: '/static/icon_map.png', url: '' },
-        { name: 'QQ群', image: '/static/icon_qq.png', url: '' },
-        { name: 'TDesign', image: '/static/icon_td.png', url: '' },
+        { name: '帮助中心', image: 'https://cdn.uwayfly.com/tdesign-uniapp/starter/icon_doc.png', url: '' },
+        { name: '官方地图', image: 'https://cdn.uwayfly.com/tdesign-uniapp/starter/icon_map.png', url: '' },
+        { name: 'QQ群', image: 'https://cdn.uwayfly.com/tdesign-uniapp/starter/icon_qq.png', url: '' },
+        { name: 'TDesign', image: 'https://cdn.uwayfly.com/tdesign-uniapp/starter/icon_td.png', url: '' },
       ],
     },
   };
@@ -109,7 +109,7 @@ export function initMock() {
     code: 200,
     data: {
       name: 'TDesign',
-      image: '/static/avatar.jpeg',
+      image: 'https://cdn.uwayfly.com/tdesign-uniapp/starter/avatar.jpeg',
       star: 'Lv.5',
       city: '深圳',
       gender: 0,
@@ -117,8 +117,8 @@ export function initMock() {
       address: ['440000', '440300'],
       introduction: 'TDesign 是腾讯各业务团队在服务业务过程中沉淀的一套企业级设计体系。',
       photos: [
-        { url: '/static/image1.png', name: 'image1.png', type: 'image' },
-        { url: '/static/image2.png', name: 'image2.png', type: 'image' },
+        { url: 'https://cdn.uwayfly.com/tdesign-uniapp/starter/image1.png', name: 'image1.png', type: 'image' },
+        { url: 'https://cdn.uwayfly.com/tdesign-uniapp/starter/image2.png', name: 'image2.png', type: 'image' },
       ],
     },
   };

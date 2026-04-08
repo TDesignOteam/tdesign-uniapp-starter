@@ -3,7 +3,7 @@
   <view class="my">
     <image
       class="nav-bg"
-      src="/static/bg_navbar.png"
+      src="https://cdn.uwayfly.com/tdesign-uniapp/starter/bg_navbar.png"
     />
     <Nav title-text="我的" />
     <view class="my-info">

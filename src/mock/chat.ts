@@ -12,7 +12,7 @@ const mockData = [
   {
     userId: 1,
     name: 'Novlan',
-    avatar: '/static/chat/avatar-Novlan.jpeg',
+    avatar: 'https://cdn.uwayfly.com/tdesign-uniapp/starter/chat/avatar-Novlan.jpeg',
     messages: [
       { messageId: 1, from: 1, content: '那明天准时见哦😊', time: 1690646400000, read: true },
       { messageId: 2, from: 0, content: '好的，我会记得的', time: 1690646400000, read: true },
@@ -29,25 +29,25 @@ const mockData = [
   {
     userId: 2,
     name: 'Mollymolly',
-    avatar: '/static/chat/avatar-Mollymolly.png',
+    avatar: 'https://cdn.uwayfly.com/tdesign-uniapp/starter/chat/avatar-Mollymolly.png',
     messages: [{ messageId: 5, from: 1, content: '好久不见，最近咋样？', time: 1692100800000, read: true }],
   },
   {
     userId: 3,
     name: 'Andrew',
-    avatar: '/static/chat/avatar-Andrew.png',
+    avatar: 'https://cdn.uwayfly.com/tdesign-uniapp/starter/chat/avatar-Andrew.png',
     messages: [{ messageId: 6, from: 0, content: '现在没空，晚点再联系你哈', time: 1690084800000, read: true }],
   },
   {
     userId: 4,
     name: 'Kingdom',
-    avatar: '/static/chat/avatar-Kingdom.png',
+    avatar: 'https://cdn.uwayfly.com/tdesign-uniapp/starter/chat/avatar-Kingdom.png',
     messages: [{ messageId: 7, from: 1, content: '真的吗？', time: 1656880200000, read: true }],
   },
   {
     userId: 5,
     name: 'Paige',
-    avatar: '/static/chat/avatar-Paige.png',
+    avatar: 'https://cdn.uwayfly.com/tdesign-uniapp/starter/chat/avatar-Paige.png',
     messages: [
       { messageId: 8, from: 1, content: '此次要评审的首页和专区页改版的交互方案', time: 1652963880000, read: true },
     ],
