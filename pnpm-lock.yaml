@@ -57,11 +57,11 @@ importers:
         specifier: 3.0.0-4080420251103001
         version: 3.0.0-4080420251103001(postcss@8.4.49)(rollup@4.59.0)(vue@3.5.29(typescript@5.5.4))
       '@tdesign/uniapp':
-        specifier: https://pkg.pr.new/@tdesign/uniapp@4368
-        version: https://pkg.pr.new/@tdesign/uniapp@4368
+        specifier: ^0.8.1
+        version: 0.8.1
       '@tdesign/uniapp-chat':
-        specifier: https://pkg.pr.new/@tdesign/uniapp-chat@4368
-        version: https://pkg.pr.new/@tdesign/uniapp-chat@4368
+        specifier: ^0.2.3
+        version: 0.2.3
       t-comm:
         specifier: ^3.0.25
         version: 3.1.1
@@ -2663,19 +2663,14 @@ packages:
   '@swc/types@0.1.25':
     resolution: {integrity: sha512-iAoY/qRhNH8a/hBvm3zKj9qQ4oc2+3w1unPJa2XvTK3XjeLXtzcCingVPw/9e5mn1+0yPqxcBGp9Jf0pkfMb1g==}
 
-  '@tdesign/uniapp-chat@0.2.2':
-    resolution: {integrity: sha512-utg/aQOMyJv8fyy10PNg8JAqiilOhKYF0BstZYwU5BG+AAse5H9uxnBjeF0rv81V3qCWq2l00f24gRdGSu9wuA==}
-
-  '@tdesign/uniapp-chat@https://pkg.pr.new/@tdesign/uniapp-chat@4368':
-    resolution: {integrity: sha512-7648u6osWiz6MP6Ofr1IJ0iOqlm/iUXNjpUOx7YySfBKgMcB8rVjNRvOS/EMPamvM3sZGeVbU8nysooNOCQmkQ==, tarball: https://pkg.pr.new/@tdesign/uniapp-chat@4368}
-    version: 0.2.2
+  '@tdesign/uniapp-chat@0.2.3':
+    resolution: {integrity: sha512-I2PcuUbMZzfWin1seFmkUm8yhoebQMq3I6ewC+2e1s00rMf4mD7/MzS8w94IoZ53PO+UBzFFaBoEXEhQsY5frw==}
 
   '@tdesign/uniapp@0.7.3':
     resolution: {integrity: sha512-9rEClT6bUWwZw5tt+vmNU5rW0jPVJhJlsl8Dxvmmf9iyyLhdk9bGVfz9DeH+R3kykAIft0rz4l2lAjsolpIYkQ==}
 
-  '@tdesign/uniapp@https://pkg.pr.new/@tdesign/uniapp@4368':
-    resolution: {integrity: sha512-AggzlBpAq3BwYHA9ta2JCmY//Ni+S70LuvGyTT2VAb81Rf+w4HN3i1DacXudMgGoG32TbG3emfqLVq2Dz6H4Dg==, tarball: https://pkg.pr.new/@tdesign/uniapp@4368}
-    version: 0.8.0
+  '@tdesign/uniapp@0.8.1':
+    resolution: {integrity: sha512-zYKIkgulDg4i4h6o+wIbA9kSKM9l6x6RtuvbaQwJ3NjbwbeB573BuwjsiMzjkWpl6AzajX0rEjwFBMgqABKPeA==}
 
   '@tokenizer/token@0.3.0':
     resolution: {integrity: sha512-OvjF+z51L3ov0OyAU0duzsYuvO01PH7x4t6DJx+guahgTnBHkhJdG7soQeTSFLWN3efnHyibZ4Z8l2EuWwJN3A==}
@@ -13403,13 +13398,11 @@ snapshots:
     dependencies:
       '@swc/counter': 0.1.3
 
-  '@tdesign/uniapp-chat@0.2.2': {}
-
-  '@tdesign/uniapp-chat@https://pkg.pr.new/@tdesign/uniapp-chat@4368': {}
+  '@tdesign/uniapp-chat@0.2.3': {}
 
   '@tdesign/uniapp@0.7.3': {}
 
-  '@tdesign/uniapp@https://pkg.pr.new/@tdesign/uniapp@4368': {}
+  '@tdesign/uniapp@0.8.1': {}
 
   '@tokenizer/token@0.3.0': {}
 
@@ -20617,7 +20610,7 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.28.6
       '@tdesign/uniapp': 0.7.3
-      '@tdesign/uniapp-chat': 0.2.2
+      '@tdesign/uniapp-chat': 0.2.3
       axios: 1.13.6
       cheerio: 1.2.0
       commander: 10.0.1
