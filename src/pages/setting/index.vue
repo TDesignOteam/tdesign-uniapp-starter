@@ -29,7 +29,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-import { showToast } from '@tdesign/uniapp/toast/index.js';
+import { showToast } from '@tdesign/uniapp';
 
 import { navigateBack } from '@/utils/navigate';
 

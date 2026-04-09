@@ -84,7 +84,7 @@ import { ref, onMounted } from 'vue';
 
 import { onLoad } from '@dcloudio/uni-app';
 
-import MessagePlugin from '@tdesign/uniapp/message/index.js';
+import { MessagePlugin } from '@tdesign/uniapp';
 
 import request from '@/api/request';
 

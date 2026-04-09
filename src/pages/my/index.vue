@@ -116,7 +116,7 @@ import { ref, onMounted } from 'vue';
 
 import { onShow } from '@dcloudio/uni-app';
 
-import { showToast } from '@tdesign/uniapp/toast/index.js';
+import { showToast } from '@tdesign/uniapp';
 
 import request from '@/api/request';
 import CustomTabBar from '@/components/custom-tab-bar.vue';

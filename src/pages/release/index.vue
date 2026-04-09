@@ -78,7 +78,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-import type { UploadFile } from '@tdesign/uniapp/upload/type.ts';
+import type { UploadFile } from '@tdesign/uniapp';
 
 import { navigateBack } from '@/utils/navigate';
 

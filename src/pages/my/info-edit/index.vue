@@ -131,7 +131,7 @@ import { ref, onMounted, reactive } from 'vue';
 
 import { areaList } from './area-data';
 
-import type { UploadFile } from '@tdesign/uniapp/upload/type.ts';
+import type { UploadFile } from '@tdesign/uniapp';
 
 import request from '@/api/request';
 import { navigateBack } from '@/utils/navigate';
