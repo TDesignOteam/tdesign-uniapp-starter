@@ -16,6 +16,13 @@
 
 基于 Vue 3 + TypeScript + Vite + TDesign Uniapp 的跨端移动应用开发模板，支持 H5、微信小程序、支付宝小程序等多平台。
 
+## 📱 扫码预览
+
+| 平台 | 预览 |
+ --- | --- |
+| H5 | <img src="./docs/image/tdesign-uniapp-starter-h5.png" width="200" /> |
+| 小程序 | <img src="./docs/image/tdesign-uniapp-starter-h5.png" width="200" /> |
+
 ## ✨ 特性
 
 - 🎨 **TDesign 组件库** - 腾讯出品的企业级设计体系
@@ -150,10 +157,6 @@ pnpm type-check
 - [uni-app 官方文档](https://uniapp.dcloud.net.cn/)
 - [Vue 3 文档](https://cn.vuejs.org/)
 - [Vite 文档](https://cn.vitejs.dev/)
-
-## 📱 扫码预览
-
-<img src="./docs/image/tdesign-uniapp-starter-h5.png" width="300" />
 
 ## 🎨 设计稿
 
