@@ -21,7 +21,7 @@
 | 平台 | 预览 |
  --- | --- |
 | H5 | <img src="./docs/image/tdesign-uniapp-starter-h5.png" width="200" /> |
-| 小程序 | <img src="./docs/image/tdesign-uniapp-starter-h5.png" width="200" /> |
+| 小程序 | <img src="./docs/image/tdesign-uniapp-starter-home-mp.png" width="200" /> |
 
 ## ✨ 特性
 
