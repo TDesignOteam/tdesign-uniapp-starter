@@ -16,13 +16,6 @@
 
 基于 Vue 3 + TypeScript + Vite + TDesign Uniapp 的跨端移动应用开发模板，支持 H5、微信小程序、支付宝小程序等多平台。
 
-## 📱 扫码预览
-
-| 平台 | 预览 |
- --- | --- |
-| H5 | <img src="./docs/image/tdesign-uniapp-starter-h5.png" width="200" /> |
-| 小程序 | <img src="./docs/image/tdesign-uniapp-starter-home-mp.png" width="200" /> |
-
 ## ✨ 特性
 
 - 🎨 **TDesign 组件库** - 腾讯出品的企业级设计体系
@@ -64,7 +57,7 @@ pnpm dev:h5
 pnpm dev:mp-weixin
 ```
 
-## 📱 多平台开发
+## 多平台开发
 
 ### 开发模式
 
@@ -130,7 +123,7 @@ pnpm type-check
 
 > 💡 提交代码时会自动运行 lint-staged 进行代码检查和修复
 
-## 📁 项目结构
+## 项目结构
 
 ```
 ├── src/
@@ -152,17 +145,22 @@ pnpm type-check
 └── package.json          # 项目依赖
 ```
 
-## 🔗 相关链接
+## 相关链接
+
 - [TDesign Uniapp 组件库](https://tdesign.tencent.com/uniapp/getting-started)
 - [uni-app 官方文档](https://uniapp.dcloud.net.cn/)
 - [Vue 3 文档](https://cn.vuejs.org/)
 - [Vite 文档](https://cn.vitejs.dev/)
 
-## 🎨 设计稿
+## 扫码预览
+
+<img src="./docs/image/tdesign-uniapp-starter-qrcode.png" height="200" />
+
+## 设计稿
 
 - **移动端通用场景页面模版**: [CoDesign](https://codesign.qq.com/s/567449555703953)
 - **访问密码**: `F2FO`
 
-## 📄 License
+## License
 
 [MIT](LICENSE)
