@@ -2,7 +2,6 @@
   "extends": "@vue/tsconfig/tsconfig.json",
   "compilerOptions": {
     "sourceMap": true,
-    "baseUrl": ".",
     "moduleResolution": "bundler",
     "paths": {
       "@/*": [
@@ -14,7 +13,8 @@
       "dom"
     ],
     "types": [
-      "@dcloudio/types"
+      "@dcloudio/types",
+      "@tdesign/uniapp/global",
     ]
   },
   "include": [
@@ -22,6 +22,5 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "node_modules/@tdesign/uniapp/global.d.ts"
   ]
 }

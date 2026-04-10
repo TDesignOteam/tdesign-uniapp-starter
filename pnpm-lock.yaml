@@ -57,11 +57,11 @@ importers:
         specifier: 3.0.0-4080420251103001
         version: 3.0.0-4080420251103001(postcss@8.5.6)(rollup@4.53.2)(vue@3.5.24(typescript@4.9.5))
       '@tdesign/uniapp':
-        specifier: ^0.7.1
-        version: 0.7.1
+        specifier: ^0.8.1
+        version: 0.8.1
       '@tdesign/uniapp-chat':
-        specifier: ^0.2.0
-        version: 0.2.0
+        specifier: ^0.2.3
+        version: 0.2.3
       tdesign-uniapp:
         specifier: ^0.5.3
         version: 0.5.3
@@ -1369,6 +1369,7 @@ packages:
     resolution: {integrity: sha512-ah59c1YkCxKExPP8O9PwOvs+XRLKwh/mV+3YdKqQ5AMQ0r4M4ZDuOrpWkUaqO7fzAHdINzV9tEVu8vNw48z0lA==}
     cpu: [x64]
     os: [linux]
+    libc: [musl]
 
   '@rollup/rollup-openharmony-arm64@4.53.2':
     resolution: {integrity: sha512-4VEd19Wmhr+Zy7hbUsFZ6YXEiP48hE//KPLCSVNY5RMGX2/7HZ+QkN55a3atM1C/BZCGIgqN+xrVgtdak2S9+A==}
@@ -1401,11 +1402,11 @@ packages:
   '@sinonjs/fake-timers@8.1.0':
     resolution: {integrity: sha512-OAPJUAtgeINhh/TAlUID4QTs53Njm7xzddaVlEs/SXwgtiD1tW22zAB/W1wdqfrpmikgaWQ9Fw6Ws+hsiRm5Vg==}
 
-  '@tdesign/uniapp-chat@0.2.0':
-    resolution: {integrity: sha512-s0rBvQlk6qWU7U4Z+DMA42IvuGaSXEr8NQZ4M0lzMwpxsamh/6vTUhJkSM52hl1rMCKbPXw+zp93tZ7G2C4DQg==}
+  '@tdesign/uniapp-chat@0.2.3':
+    resolution: {integrity: sha512-I2PcuUbMZzfWin1seFmkUm8yhoebQMq3I6ewC+2e1s00rMf4mD7/MzS8w94IoZ53PO+UBzFFaBoEXEhQsY5frw==}
 
-  '@tdesign/uniapp@0.7.1':
-    resolution: {integrity: sha512-okWrwqcnzjGiMfkafdHsHDePi4ykUo/45Iko7yyL/uVS2kR5aWjCVmjiE+olGvAMPKurshl7e0Q3Q7SZL8r4uA==}
+  '@tdesign/uniapp@0.8.1':
+    resolution: {integrity: sha512-zYKIkgulDg4i4h6o+wIbA9kSKM9l6x6RtuvbaQwJ3NjbwbeB573BuwjsiMzjkWpl6AzajX0rEjwFBMgqABKPeA==}
 
   '@tootallnate/once@1.1.2':
     resolution: {integrity: sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==}
@@ -5756,9 +5757,9 @@ snapshots:
     dependencies:
       '@sinonjs/commons': 1.8.6
 
-  '@tdesign/uniapp-chat@0.2.0': {}
+  '@tdesign/uniapp-chat@0.2.3': {}
 
-  '@tdesign/uniapp@0.7.1': {}
+  '@tdesign/uniapp@0.8.1': {}
 
   '@tootallnate/once@1.1.2': {}
 
