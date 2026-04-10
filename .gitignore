@@ -22,3 +22,5 @@ dist
 
 wx-mp-private.key
 wx-mp-preview-qrcode.png
+
+.tmp-compose
