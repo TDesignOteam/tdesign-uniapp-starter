@@ -1,50 +1,52 @@
 <template>
-  <t-navbar
-    left-arrow
-    :delta="0"
-    placeholder
-    @go-back="navigateBack"
-  />
-  <view class="page login-code">
-    <view class="login-code__title">
-      请输入验证码
-    </view>
-    <view class="login-code__tips">
-      验证码已通过短信发送至 {{ phoneNumber }}
-    </view>
-    <view class="login-code__input">
-      <t-input
-        v-model:value="verifyCode"
-        placeholder="输入验证码"
-        type="number"
-        @change="onVerifycodeChange"
-      >
-        <template #suffix>
-          <view class="suffix">
-            <view class="suffix--line" />
-            <t-link
-              size="medium"
-              hover
-              :disabled="sendCodeCount !== 0"
-              theme="primary"
-              :content="sendCodeCount === 0 ? '发送验证码' : sendCodeCount + '秒后重发'"
-              @click="sendCode"
-            />
-          </view>
-        </template>
-      </t-input>
-    </view>
+  <view class="login-code-root">
+    <t-navbar
+      left-arrow
+      :delta="0"
+      placeholder
+      @go-back="navigateBack"
+    />
+    <view class="page login-code">
+      <view class="login-code__title">
+        请输入验证码
+      </view>
+      <view class="login-code__tips">
+        验证码已通过短信发送至 {{ phoneNumber }}
+      </view>
+      <view class="login-code__input">
+        <t-input
+          v-model:value="verifyCode"
+          placeholder="输入验证码"
+          type="number"
+          @change="onVerifycodeChange"
+        >
+          <template #suffix>
+            <view class="suffix">
+              <view class="suffix--line" />
+              <t-link
+                size="medium"
+                hover
+                :disabled="sendCodeCount !== 0"
+                theme="primary"
+                :content="sendCodeCount === 0 ? '发送验证码' : sendCodeCount + '秒后重发'"
+                @click="sendCode"
+              />
+            </view>
+          </template>
+        </t-input>
+      </view>
 
-    <view class="login-code__button">
-      <t-button
-        theme="primary"
-        size="large"
-        block
-        :disabled="!verifyCode"
-        @click="login"
-      >
-        登录
-      </t-button>
+      <view class="login-code__button">
+        <t-button
+          theme="primary"
+          size="large"
+          block
+          :disabled="!verifyCode"
+          @click="login"
+        >
+          登录
+        </t-button>
+      </view>
     </view>
   </view>
 </template>
@@ -56,6 +58,7 @@ import { onLoad } from '@dcloudio/uni-app';
 
 import request from '@/api/request';
 import { navigateBack } from '@/utils/navigate';
+
 
 const phoneNumber = ref('');
 const sendCodeCount = ref(60);
@@ -108,9 +111,15 @@ onUnmounted(() => {
 </script>
 
 <style lang="less" scoped>
+.login-code-root {
+  min-height: 100vh;
+  background-color: var(--td-bg-color-container, #fff);
+  color: var(--td-text-color-primary, rgba(0, 0, 0, 0.9));
+}
+
 .login-code {
   &__title {
-    color: rgba(0, 0, 0, 0.9);
+    color: var(--td-text-color-primary, rgba(0, 0, 0, 0.9));
     font-size: 56rpx;
     font-weight: 600;
     line-height: 72rpx;
@@ -119,7 +128,7 @@ onUnmounted(() => {
 
   &__tips {
     margin: 0 32rpx;
-    color: rgba(0, 0, 0, 0.4);
+    color: var(--td-text-color-placeholder, rgba(0, 0, 0, 0.4));
     font-size: 24rpx;
     line-height: 40rpx;
   }
@@ -136,7 +145,7 @@ onUnmounted(() => {
     .suffix--line {
       width: 2rpx;
       height: 48rpx;
-      background-color: #f3f3f3;
+      background-color: var(--td-component-stroke, #f3f3f3);
       margin-right: 32rpx;
     }
   }

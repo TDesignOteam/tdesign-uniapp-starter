@@ -97,7 +97,7 @@ const handleChange = (e: any) => {
   right: 0;
   bottom: 0;
   z-index: 999;
-  background-color: #fff;
+  background-color: var(--td-bg-color-container, #fff);
   padding-bottom: env(safe-area-inset-bottom);
 
   --td-tab-bar-height: @tab-bar-height;

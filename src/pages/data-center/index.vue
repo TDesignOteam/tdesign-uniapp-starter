@@ -1,95 +1,97 @@
 <template>
-  <t-navbar
-    title="数据中心"
-    left-arrow
-    :delta="0"
-    placeholder
-    @go-back="navigateBack"
-  />
-  <view class="data-center">
-    <view class="card first">
-      <view class="card-header">
-        <view class="card-header__title">
-          整体情况
-        </view>
-        <view class="card-header__desc">
-          截止12:00累计数值
-        </view>
-      </view>
-      <view class="card-content">
-        <view
-          v-for="(item, index) in totalSituationDataList"
-          :key="index"
-          class="card-content__item"
-        >
-          <view class="card-content__item--desc">
-            {{ item.name }}
+  <view class="data-center-root">
+    <t-navbar
+      title="数据中心"
+      left-arrow
+      :delta="0"
+      placeholder
+      @go-back="navigateBack"
+    />
+    <view class="data-center">
+      <view class="card first">
+        <view class="card-header">
+          <view class="card-header__title">
+            整体情况
           </view>
-          <view class="card-content__item--count">
-            {{ item.number }}
+          <view class="card-header__desc">
+            截止12:00累计数值
           </view>
         </view>
+        <view class="card-content">
+          <view
+            v-for="(item, index) in totalSituationDataList"
+            :key="index"
+            class="card-content__item"
+          >
+            <view class="card-content__item--desc">
+              {{ item.name }}
+            </view>
+            <view class="card-content__item--count">
+              {{ item.number }}
+            </view>
+          </view>
+        </view>
       </view>
-    </view>
 
-    <view class="card second">
-      <view class="card-header">
-        <view class="card-header__title">
-          互动情况
+      <view class="card second">
+        <view class="card-header">
+          <view class="card-header__title">
+            互动情况
+          </view>
+        </view>
+        <view class="card-content">
+          <view
+            v-for="(item, index) in interactionSituationDataList"
+            :key="index"
+            class="card-content__item"
+          >
+            <view class="card-content__item--desc">
+              {{ item.name }}
+            </view>
+            <view class="card-content__item--count">
+              <text>{{ item.number }}</text>
+              <text class="unit">
+                次
+              </text>
+            </view>
+          </view>
         </view>
       </view>
-      <view class="card-content">
-        <view
-          v-for="(item, index) in interactionSituationDataList"
-          :key="index"
-          class="card-content__item"
-        >
-          <view class="card-content__item--desc">
-            {{ item.name }}
+
+      <view class="card third">
+        <view class="card-header">
+          <view class="card-header__title">
+            完播率
           </view>
-          <view class="card-content__item--count">
-            <text>{{ item.number }}</text>
-            <text class="unit">
-              次
+        </view>
+        <view class="card-content">
+          <view
+            v-for="(item, index) in completeRateDataList"
+            :key="index"
+            class="card-content__item"
+          >
+            <text class="progress__label">
+              {{ item.time }}
             </text>
+            <view class="progress__content">
+              <t-progress :percentage="item.percentage" />
+            </view>
           </view>
         </view>
       </view>
-    </view>
 
-    <view class="card third">
-      <view class="card-header">
-        <view class="card-header__title">
-          完播率
-        </view>
-      </view>
-      <view class="card-content">
-        <view
-          v-for="(item, index) in completeRateDataList"
-          :key="index"
-          class="card-content__item"
-        >
-          <text class="progress__label">
-            {{ item.time }}
-          </text>
-          <view class="progress__content">
-            <t-progress :percentage="item.percentage" />
+      <view class="card forth">
+        <view class="card-header">
+          <view class="card-header__title">
+            按区域统计
           </view>
         </view>
-      </view>
-    </view>
-
-    <view class="card forth">
-      <view class="card-header">
-        <view class="card-header__title">
-          按区域统计
+        <view class="card-content">
+          <t-empty
+            icon="info-circle-filled"
+            description="Empty Data"
+          />
         </view>
-      </view>
-      <view class="card-content">
-        <t-empty
-          icon="info-circle-filled"
-          description="Empty Data"
-        />
       </view>
     </view>
   </view>
@@ -100,6 +102,7 @@ import { ref, onMounted } from 'vue';
 
 import request from '@/api/request';
 import { navigateBack } from '@/utils/navigate';
+
 
 interface DataItem {
   name: string;
@@ -138,6 +141,11 @@ onMounted(() => {
 </script>
 
 <style lang="less" scoped>
+.data-center-root {
+  min-height: 100vh;
+  background-color: var(--td-bg-color-page, #f3f3f3);
+}
+
 .card {
   display: inline-flex;
   flex-direction: column;
@@ -146,7 +154,7 @@ onMounted(() => {
   width: 100%;
   padding: 24rpx 32rpx 32rpx 32rpx;
   box-sizing: border-box;
-  background-color: #fff;
+  background-color: var(--td-bg-color-container, #fff);
 
   .card-header {
     width: 100%;
@@ -154,14 +162,14 @@ onMounted(() => {
     justify-content: space-between;
 
     &__title {
-      color: rgba(0, 0, 0, 0.9);
+      color: var(--td-text-color-primary, rgba(0, 0, 0, 0.9));
       font-size: 32rpx;
       font-weight: 600;
       line-height: 48rpx;
     }
 
     &__desc {
-      color: rgba(0, 0, 0, 0.4);
+      color: var(--td-text-color-placeholder, rgba(0, 0, 0, 0.4));
       font-size: 24rpx;
       line-height: 40rpx;
     }
@@ -180,7 +188,7 @@ onMounted(() => {
       flex: 1 0 0;
 
       &--desc {
-        color: rgba(0, 0, 0, 0.4);
+        color: var(--td-text-color-placeholder, rgba(0, 0, 0, 0.4));
         font-size: 24rpx;
         line-height: 40rpx;
       }
@@ -189,6 +197,7 @@ onMounted(() => {
         font-size: 48rpx;
         font-weight: 600;
         line-height: 64rpx;
+        color: var(--td-text-color-primary, rgba(0, 0, 0, 0.9));
       }
     }
   }
@@ -199,7 +208,7 @@ onMounted(() => {
     &__item {
       &:first-child {
         .card-content__item--count {
-          color: #0052d9;
+          color: var(--td-brand-color, #0052d9);
         }
       }
     }
@@ -235,7 +244,7 @@ onMounted(() => {
 
   .unit {
     margin-left: 4rpx;
-    color: rgba(0, 0, 0, 0.6);
+    color: var(--td-text-color-secondary, rgba(0, 0, 0, 0.6));
     font-size: 20rpx;
     font-weight: 400;
     line-height: 32rpx;
@@ -260,6 +269,10 @@ onMounted(() => {
 
   .progress__content {
     flex: 1 0 0;
+  }
+
+  .progress__label {
+    color: var(--td-text-color-primary, rgba(0, 0, 0, 0.9));
   }
 }
 

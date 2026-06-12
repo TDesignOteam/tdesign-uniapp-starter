@@ -1,33 +1,35 @@
 <template>
-  <Nav
-    nav-type="title"
-    title-text="全部消息"
-  />
-  <scroll-view
-    class="message-list"
-    scroll-y
-    refresher-enabled
-    :refresher-triggered="loading"
-    @refresherrefresh="getMessageList"
-  >
-    <t-cell
-      v-for="(item, index) in messageList"
-      :key="index"
-      :image="item.avatar"
-      :title="item.name"
-      :description="item.messages[item.messages.length - 1].content"
-      hover
-      @click="toChat(item.userId)"
+  <view class="page-root">
+    <Nav
+      nav-type="title"
+      title-text="全部消息"
+    />
+    <scroll-view
+      class="message-list"
+      scroll-y
+      refresher-enabled
+      :refresher-triggered="loading"
+      @refresherrefresh="getMessageList"
     >
-      <template #right-icon>
-        <t-badge
-          :count="computeUnreadNum(item.messages)"
-          class="wrapper"
-        />
-      </template>
-    </t-cell>
-  </scroll-view>
-  <CustomTabBar />
+      <t-cell
+        v-for="(item, index) in messageList"
+        :key="index"
+        :image="item.avatar"
+        :title="item.name"
+        :description="item.messages[item.messages.length - 1].content"
+        hover
+        @click="toChat(item.userId)"
+      >
+        <template #right-icon>
+          <t-badge
+            :count="computeUnreadNum(item.messages)"
+            class="wrapper"
+          />
+        </template>
+      </t-cell>
+    </scroll-view>
+    <CustomTabBar />
+  </view>
 </template>
 
 <script setup lang="ts">
@@ -38,6 +40,7 @@ import { onShow } from '@dcloudio/uni-app';
 import CustomTabBar from '@/components/custom-tab-bar.vue';
 import Nav from '@/components/nav-bar.vue';
 import { fetchMessageList, markMessagesRead } from '@/mock/chat';
+
 
 interface Message {
   messageId: number;
@@ -149,6 +152,15 @@ onShow(() => {
 </script>
 
 <style lang="less" scoped>
+.page-root {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  min-height: 100vh;
+  padding-bottom: calc(env(safe-area-inset-bottom) + 112rpx);
+  background-color: var(--td-bg-color-page, #f3f3f3);
+}
+
 page {
   display: flex;
   flex-direction: column;
@@ -158,7 +170,7 @@ page {
 }
 
 .nav-bar {
-  border-bottom: 1rpx solid #e7e7e7;
+  border-bottom: 1rpx solid var(--td-component-stroke, #e7e7e7);
 }
 
 .message-list {

@@ -45,7 +45,7 @@
             <t-icon
               name="edit"
               size="40rpx"
-              color="#000000e6"
+              color="var(--td-text-color-primary, #000000e6)"
               @click="onNavigateTo"
             />
           </template>
@@ -107,8 +107,8 @@
         @click="onEleClick(item)"
       />
     </t-cell-group>
+    <CustomTabBar />
   </view>
-  <CustomTabBar />
 </template>
 
 <script setup lang="ts">
@@ -235,7 +235,7 @@ const onEleClick = (item: any) => {
   &-info,
   &-service,
   &-setting {
-    background-color: #fff;
+    background-color: var(--td-bg-color-container, #fff);
   }
 
   &-info {
@@ -271,7 +271,7 @@ const onEleClick = (item: any) => {
     }
 
     .split-line {
-      border-right: 1px solid #e7e7e7;
+      border-right: 1px solid var(--td-component-stroke, #e7e7e7);
     }
 
     --td-spacer-1: 32rpx;
@@ -280,7 +280,7 @@ const onEleClick = (item: any) => {
       .name {
         line-height: 48rpx;
         font-size: 32rpx;
-        color: #000000e6;
+        color: var(--td-text-color-primary, #000000e6);
         font-weight: 600;
       }
 
@@ -288,7 +288,6 @@ const onEleClick = (item: any) => {
         display: flex;
         margin-top: 16rpx;
 
-        --td-text-color-primary: #000000e6;
         --td-tag-medium-font-size: 20rpx;
         --td-tag-medium-icon-size: 24rpx;
       }
@@ -319,7 +318,7 @@ const onEleClick = (item: any) => {
       line-height: 44rpx;
       padding-left: 40rpx;
       margin-top: 32rpx;
-      color: #000000e6;
+      color: var(--td-text-color-primary, #000000e6);
       font-size: 28rpx;
       font-weight: 600;
     }

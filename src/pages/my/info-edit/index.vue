@@ -1,129 +1,131 @@
 <template>
-  <t-navbar
-    left-arrow
-    :delta="0"
-    title="个人信息"
-    placeholder
-    @go-back="navigateBack"
-  />
-  <view class="info-edit">
-    <t-cell
-      t-class="info-edit__cell"
-      title="用户名"
-    >
-      <template #note>
-        <t-input
-          v-model:value="personInfo.name"
-          borderless
-          placeholder="请输入用户名"
-          @change="onNameChange"
-        />
-      </template>
-    </t-cell>
-    <t-cell
-      t-class="info-edit__cell"
-      title="性别"
-    >
-      <template #note>
-        <t-radio-group
-          borderless
-          :default-value="personInfo.gender"
-          :options="genderOptions"
-          :value="personInfo.gender"
-          t-class="info-edit__gender"
-          @change="onGenderChange"
-        />
-      </template>
-    </t-cell>
-    <t-cell
-      arrow
-      :note="personInfo.birth || ''"
-      title="生日"
-      @click="showPicker('birth')"
+  <view class="info-edit-root">
+    <t-navbar
+      left-arrow
+      :delta="0"
+      title="个人信息"
+      placeholder
+      @go-back="navigateBack"
     />
-    <t-cell
-      arrow
-      :note="addressText || ''"
-      title="地址"
-      @click="showPicker('address')"
+    <view class="info-edit">
+      <t-cell
+        t-class="info-edit__cell"
+        title="用户名"
+      >
+        <template #note>
+          <t-input
+            v-model:value="personInfo.name"
+            borderless
+            placeholder="请输入用户名"
+            @change="onNameChange"
+          />
+        </template>
+      </t-cell>
+      <t-cell
+        t-class="info-edit__cell"
+        title="性别"
+      >
+        <template #note>
+          <t-radio-group
+            borderless
+            :default-value="personInfo.gender"
+            :options="genderOptions"
+            :value="personInfo.gender"
+            t-class="info-edit__gender"
+            @change="onGenderChange"
+          />
+        </template>
+      </t-cell>
+      <t-cell
+        arrow
+        :note="personInfo.birth || ''"
+        title="生日"
+        @click="showPicker('birth')"
+      />
+      <t-cell
+        arrow
+        :note="addressText || ''"
+        title="地址"
+        @click="showPicker('address')"
+      />
+      <t-cell
+        t-class="info-edit__cell"
+        title="个人简介"
+      >
+        <template #note>
+          <t-textarea
+            :disable-default-padding="true"
+            indicator
+            :maxcharacter="50"
+            placeholder="请输入个人简介"
+            t-class="info-edit__introduction"
+            :value="personInfo.introduction"
+            @blur="onIntroductionChange"
+          />
+        </template>
+      </t-cell>
+      <t-cell
+        :bordered="false"
+        t-class="info-edit__cell"
+        title="相片墙"
+      >
+        <template #note>
+          <t-upload
+            draggable
+            :files="personInfo.photos"
+            :grid-config="gridConfig"
+            :media-type="['image']"
+            t-class="info-edit__photos"
+            @drop="onPhotosDrop"
+            @remove="onPhotosRemove"
+            @success="onPhotosSuccess"
+          />
+        </template>
+      </t-cell>
+    </view>
+
+    <view class="info-edit__save">
+      <t-button
+        block
+        size="medium"
+        theme="primary"
+        @click="onSaveInfo"
+      >
+        保存
+      </t-button>
+    </view>
+
+    <t-date-time-picker
+      auto-close
+      cancel-btn="取消"
+      confirm-btn="确认"
+      :default-value="personInfo.birth"
+      :end="birthEnd"
+      format="YYYY-MM-DD"
+      mode="date"
+      :start="birthStart"
+      title="选择生日"
+      :value="personInfo.birth"
+      :visible="birthVisible"
+      @cancel="hidePicker('birth')"
+      @change="onBirthChange"
     />
-    <t-cell
-      t-class="info-edit__cell"
-      title="个人简介"
+
+    <t-picker
+      cancel-btn="取消"
+      confirm-btn="确认"
+      title="选择地址"
+      :value="personInfo.address"
+      :visible="addressVisible"
+      @cancel="hidePicker('address')"
+      @change="onAddressChange"
+      @close="hidePicker('address')"
+      @pick="onAreaPick"
     >
-      <template #note>
-        <t-textarea
-          :disable-default-padding="true"
-          indicator
-          :maxcharacter="50"
-          placeholder="请输入个人简介"
-          t-class="info-edit__introduction"
-          :value="personInfo.introduction"
-          @blur="onIntroductionChange"
-        />
-      </template>
-    </t-cell>
-    <t-cell
-      :bordered="false"
-      t-class="info-edit__cell"
-      title="相片墙"
-    >
-      <template #note>
-        <t-upload
-          draggable
-          :files="personInfo.photos"
-          :grid-config="gridConfig"
-          :media-type="['image']"
-          t-class="info-edit__photos"
-          @drop="onPhotosDrop"
-          @remove="onPhotosRemove"
-          @success="onPhotosSuccess"
-        />
-      </template>
-    </t-cell>
+      <t-picker-item :options="provinces" />
+      <t-picker-item :options="cities" />
+    </t-picker>
   </view>
-
-  <view class="info-edit__save">
-    <t-button
-      block
-      size="medium"
-      theme="primary"
-      @click="onSaveInfo"
-    >
-      保存
-    </t-button>
-  </view>
-
-  <t-date-time-picker
-    auto-close
-    cancel-btn="取消"
-    confirm-btn="确认"
-    :default-value="personInfo.birth"
-    :end="birthEnd"
-    format="YYYY-MM-DD"
-    mode="date"
-    :start="birthStart"
-    title="选择生日"
-    :value="personInfo.birth"
-    :visible="birthVisible"
-    @cancel="hidePicker('birth')"
-    @change="onBirthChange"
-  />
-
-  <t-picker
-    cancel-btn="取消"
-    confirm-btn="确认"
-    title="选择地址"
-    :value="personInfo.address"
-    :visible="addressVisible"
-    @cancel="hidePicker('address')"
-    @change="onAddressChange"
-    @close="hidePicker('address')"
-    @pick="onAreaPick"
-  >
-    <t-picker-item :options="provinces" />
-    <t-picker-item :options="cities" />
-  </t-picker>
 </template>
 
 <script setup lang="ts">
@@ -275,8 +277,13 @@ onMounted(() => {
 </script>
 
 <style lang="less" scoped>
+.info-edit-root {
+  min-height: 100vh;
+  background-color: var(--td-bg-color-container, #fff);
+}
+
 page {
-  background-color: #fff;
+  background-color: var(--td-bg-color-container, #fff);
 }
 
 .info-edit {

@@ -1,28 +1,30 @@
 <template>
-  <t-toast ref="t-toast" />
-  <t-navbar
-    title="设置"
-    left-arrow
-    :delta="0"
-    placeholder
-    @go-back="navigateBack"
-  />
-  <view class="setting">
-    <t-cell-group
-      v-for="(group, index) in menuData"
-      :key="index"
-      theme="card"
-    >
-      <t-cell
-        v-for="item in group"
-        :key="item.type"
-        :title="item.title"
-        hover
-        arrow
-        :left-icon="item.icon"
-        @click="onEleClick(item)"
-      />
-    </t-cell-group>
+  <view class="page-root">
+    <t-toast ref="t-toast" />
+    <t-navbar
+      title="设置"
+      left-arrow
+      :delta="0"
+      placeholder
+      @go-back="navigateBack"
+    />
+    <view class="setting">
+      <t-cell-group
+        v-for="(group, index) in menuData"
+        :key="index"
+        theme="card"
+      >
+        <t-cell
+          v-for="item in group"
+          :key="item.type"
+          :title="item.title"
+          hover
+          arrow
+          :left-icon="item.icon"
+          @click="onEleClick(item)"
+        />
+      </t-cell-group>
+    </view>
   </view>
 </template>
 
@@ -46,7 +48,6 @@ const menuData = ref<MenuItem[][]>([
     { title: '通知设置', url: '', icon: 'notification', type: 'notification' },
   ],
   [
-    { title: '深色模式', url: '', icon: 'image', type: 'dark' },
     { title: '字体大小', url: '', icon: 'chart', type: 'font' },
     { title: '播放设置', url: '', icon: 'sound', type: 'play' },
   ],
@@ -69,6 +70,11 @@ const onEleClick = (item: MenuItem) => {
 </script>
 
 <style lang="less" scoped>
+.page-root {
+  min-height: 100vh;
+  background-color: var(--td-bg-color-page, #f3f3f3);
+}
+
 .setting :deep(.t-cell-group) {
   margin: 32rpx;
 }

@@ -10,10 +10,15 @@ import { connectSocket, fetchUnreadNum } from './mock/chat';
 import { initMock } from './mock/index';
 import createBus from './utils/event-bus';
 
+import { useTheme } from '@/composables/use-theme';
+
 // 初始化 Mock 数据
 if (config.isMock) {
   initMock();
 }
+
+// 初始化主题（绑定系统主题监听 + 同步导航栏颜色等）
+const { applyTheme } = useTheme();
 
 // 全局状态
 const globalData = reactive({
@@ -78,6 +83,9 @@ const connect = () => {
 
 onLaunch(() => {
   console.log('App Launch');
+
+  // 应用当前主题（同步导航栏颜色、页面背景色等）
+  applyTheme();
 
   // #ifdef MP-WEIXIN
   const updateManager = uni.getUpdateManager();

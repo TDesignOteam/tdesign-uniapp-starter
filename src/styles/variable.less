@@ -8,15 +8,18 @@
 @font-size-small: 14px;
 @font-size-mini: 12px;
 
-/* color */
-@bg-color: #f3f3f3;
-@bg-color-white: #ffffff;
+/* color
+ * 注：以下颜色使用 TDesign 主题 CSS 变量，可自动跟随亮/暗主题切换。
+ * 静态色值仅作为 fallback。
+ */
+@bg-color: var(--td-bg-color-page, #f3f3f3);
+@bg-color-white: var(--td-bg-color-container, #ffffff);
 
-@brand7-normal: #0052d9;
-@gy1: #000000e6;
-@gy2: #00000099;
-@gy3: #00000066;
-@gray3: #e7e7e7;
+@brand7-normal: var(--td-brand-color, #0052d9);
+@gy1: var(--td-text-color-primary, #000000e6);
+@gy2: var(--td-text-color-secondary, #00000099);
+@gy3: var(--td-text-color-placeholder, #00000066);
+@gray3: var(--td-component-stroke, #e7e7e7);
 
 @headline-medium: 28px;
 @body-large: 16px;

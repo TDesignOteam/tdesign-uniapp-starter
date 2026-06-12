@@ -81,7 +81,7 @@
           type="text"
           confirm-type="send"
           placeholder="请输入"
-          placeholder-style="color: #00000066"
+          placeholder-class="chat-input-placeholder"
           :adjust-position="false"
           hold-keyboard
           confirm-hold
@@ -265,11 +265,12 @@ onUnload(() => {
   box-sizing: border-box;
   height: 100vh;
   font-size: 32rpx;
-  background-color: #fff;
+  background-color: var(--td-bg-color-container, #fff);
+  color: var(--td-text-color-primary, rgba(0, 0, 0, 0.9));
 }
 
 .chat-page :deep(.nav-bar) {
-  border-bottom: 1rpx solid #e7e7e7;
+  border-bottom: 1rpx solid var(--td-component-stroke, #e7e7e7);
 }
 
 .chat-container {
@@ -293,7 +294,7 @@ onUnload(() => {
   justify-content: center;
   align-items: flex-end;
   height: 56rpx;
-  color: #00000066;
+  color: var(--td-text-color-placeholder, #00000066);
   font-size: 24rpx;
   line-height: 40rpx;
 }
@@ -316,12 +317,14 @@ onUnload(() => {
 .message.self {
   border-radius: 24rpx 0 24rpx 24rpx;
   margin-left: auto;
-  background-color: #d9e1ff;
+  background-color: var(--td-brand-color-light, #d9e1ff);
+  color: var(--td-text-color-primary, rgba(0, 0, 0, 0.9));
 }
 
 .message.other {
   border-radius: 0 24rpx 24rpx 24rpx;
-  background-color: #f3f3f3;
+  background-color: var(--td-bg-color-component, #f3f3f3);
+  color: var(--td-text-color-primary, rgba(0, 0, 0, 0.9));
 }
 
 .chat-container :deep(.loading) {
@@ -346,8 +349,8 @@ onUnload(() => {
   align-items: center;
   gap: 24rpx;
   padding: 24rpx 24rpx calc(env(safe-area-inset-bottom) + 24rpx);
-  border-top: 1rpx solid #e7e7e7;
-  background-color: #ffffff;
+  border-top: 1rpx solid var(--td-component-stroke, #e7e7e7);
+  background-color: var(--td-bg-color-container, #fff);
 }
 
 .input {
@@ -356,8 +359,9 @@ onUnload(() => {
   height: 80rpx;
   padding: 16rpx 32rpx;
   border-radius: 40rpx;
-  border: 1rpx solid #dcdcdc;
-  background: #f3f3f3;
+  border: 1rpx solid var(--td-component-border, #dcdcdc);
+  background: var(--td-bg-color-component, #f3f3f3);
+  color: var(--td-text-color-primary, rgba(0, 0, 0, 0.9));
   line-height: 48rpx;
 }
 
@@ -366,6 +370,11 @@ onUnload(() => {
   height: 48rpx;
   line-height: 48rpx;
   margin-bottom: 40rpx;
+  color: var(--td-text-color-primary, rgba(0, 0, 0, 0.9));
+}
+
+.chat-input-placeholder {
+  color: var(--td-text-color-placeholder, rgba(0, 0, 0, 0.4));
 }
 
 .bottom :deep(.send) {

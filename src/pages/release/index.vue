@@ -1,75 +1,77 @@
 <template>
-  <t-navbar
-    title="发布动态"
-    left-arrow
-    :delta="0"
-    placeholder
-    @go-back="navigateBack"
-  />
-  <view class="page">
-    <view class="release-container">
-      <view class="upload box">
-        <t-upload
-          :media-type="['image']"
-          :files="originFiles"
-          :grid-config="gridConfig"
-          :max="4"
-          @success="handleSuccess"
-          @remove="handleRemove"
-        />
-      </view>
-      <view class="desc box">
-        <view class="desc-label">
-          添加描述
+  <view class="release-root">
+    <t-navbar
+      title="发布动态"
+      left-arrow
+      :delta="0"
+      placeholder
+      @go-back="navigateBack"
+    />
+    <view class="page">
+      <view class="release-container">
+        <view class="upload box">
+          <t-upload
+            :media-type="['image']"
+            :files="originFiles"
+            :grid-config="gridConfig"
+            :max="4"
+            @success="handleSuccess"
+            @remove="handleRemove"
+          />
         </view>
-        <t-textarea
-          placeholder="分享你此刻的想法"
-          :maxlength="500"
-          :disable-default-padding="true"
-          indicator
-        />
-      </view>
-      <view class="taggroup box">
-        <t-cell title="添加标签">
-          <template #note>
-            <t-check-tag
-              v-for="(tag, index) in tags"
-              :key="index"
-              class="tag-class"
-              size="medium"
-              :default-checked="index === 0"
-              variant="dark"
-              :content="`#${tag}`"
-            />
-          </template>
-        </t-cell>
-      </view>
-      <view class="location box">
-        <t-cell
-          title="所在位置"
-          hover
-          arrow
-          left-icon="location"
-          @click="gotoMap"
-        />
-      </view>
-      <view class="btngroup box">
-        <t-button
-          class="btn-class"
-          theme="light"
-          icon="file-copy"
-          content="存草稿"
-          size="large"
-          @click="saveDraft"
-        />
-        <t-button
-          class="btn-class"
-          theme="primary"
-          icon="upload"
-          content="发布"
-          size="large"
-          @click="release"
-        />
+        <view class="desc box">
+          <view class="desc-label">
+            添加描述
+          </view>
+          <t-textarea
+            placeholder="分享你此刻的想法"
+            :maxlength="500"
+            :disable-default-padding="true"
+            indicator
+          />
+        </view>
+        <view class="taggroup box">
+          <t-cell title="添加标签">
+            <template #note>
+              <t-check-tag
+                v-for="(tag, index) in tags"
+                :key="index"
+                class="tag-class"
+                size="medium"
+                :default-checked="index === 0"
+                variant="dark"
+                :content="`#${tag}`"
+              />
+            </template>
+          </t-cell>
+        </view>
+        <view class="location box">
+          <t-cell
+            title="所在位置"
+            hover
+            arrow
+            left-icon="location"
+            @click="gotoMap"
+          />
+        </view>
+        <view class="btngroup box">
+          <t-button
+            class="btn-class"
+            theme="light"
+            icon="file-copy"
+            content="存草稿"
+            size="large"
+            @click="saveDraft"
+          />
+          <t-button
+            class="btn-class"
+            theme="primary"
+            icon="upload"
+            content="发布"
+            size="large"
+            @click="release"
+          />
+        </view>
       </view>
     </view>
   </view>
@@ -81,6 +83,7 @@ import { ref } from 'vue';
 import type { UploadFile } from '@tdesign/uniapp';
 
 import { navigateBack } from '@/utils/navigate';
+
 
 const originFiles = ref<UploadFile[]>([
   { url: 'https://cdn.uwayfly.com/tdesign-uniapp/starter/image1.png', name: 'uploaded1.png', type: 'image', status: 'done' },
@@ -132,6 +135,18 @@ defineOptions({
 </script>
 
 <style lang="less" scoped>
+.release-root {
+  min-height: 100vh;
+  background-color: var(--td-bg-color-page, #f3f3f3);
+
+  // 覆盖全局 .page 的 container 背景色，避免 release 页白色透底
+  :deep(.page),
+  & > .page {
+    background-color: var(--td-bg-color-page, #f3f3f3) !important;
+    color: var(--td-text-color-primary, rgba(0, 0, 0, 0.9));
+  }
+}
+
 .release-container {
   display: flex;
   flex-direction: column;
@@ -165,6 +180,8 @@ defineOptions({
     align-items: flex-start;
     justify-content: space-between;
     box-sizing: border-box;
+    background-color: var(--td-bg-color-container, #fff);
+    color: var(--td-text-color-primary, rgba(0, 0, 0, 0.9));
 
     // .desc-class
     :deep(.t-textarea) {
@@ -188,6 +205,11 @@ defineOptions({
     :deep(.t-tag) {
       margin-left: 24rpx;
     }
+    background-color: var(--td-bg-color-container, #fff);
+  }
+
+  .location {
+    background-color: var(--td-bg-color-container, #fff);
   }
 
   .btngroup {

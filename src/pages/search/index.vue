@@ -1,90 +1,92 @@
 <template>
-  <t-navbar
-    title="搜索"
-    left-arrow
-    :delta="0"
-    placeholder
-    @go-back="navigateBack"
-  />
-  <view class="page search-page">
-    <view class="search-input">
-      <t-search
-        v-model:value="searchValue"
-        left-icon="search"
-        action="取消"
-        shape="round"
-        placeholder="请搜索你想要的内容"
-        :focus="true"
-        @submit="handleSubmit"
-        @action-click="actionHandle"
+  <view class="search-root">
+    <t-navbar
+      title="搜索"
+      left-arrow
+      :delta="0"
+      placeholder
+      @go-back="navigateBack"
+    />
+    <view class="page search-page">
+      <view class="search-input">
+        <t-search
+          v-model:value="searchValue"
+          left-icon="search"
+          action="取消"
+          shape="round"
+          placeholder="请搜索你想要的内容"
+          :focus="true"
+          @submit="handleSubmit"
+          @action-click="actionHandle"
+        />
+      </view>
+      <view class="search-wrap">
+        <view class="history-wrap">
+          <view class="search-header">
+            <text class="search-title">
+              历史记录
+            </text>
+            <t-icon
+              name="delete"
+              size="large"
+              class="search-clear"
+              @click="handleClearHistory"
+            />
+          </view>
+          <view class="search-content">
+            <view
+              v-for="(item, index) in historyWords"
+              :key="index"
+              class="search-item"
+              hover-class="hover-history-item"
+              @click="handleHistoryTap(index)"
+              @longpress="deleteCurr(index)"
+            >
+              <t-tag
+                class="history-item margin-12"
+                :max-width="343"
+                variant="light"
+              >
+                {{ item }}
+              </t-tag>
+            </view>
+          </view>
+        </view>
+        <view class="popular-wrap">
+          <view class="search-header">
+            <text class="search-title">
+              搜索发现
+            </text>
+          </view>
+          <view class="search-content">
+            <view
+              v-for="(item, index) in popularWords"
+              :key="index"
+              class="search-item"
+              hover-class="hover-history-item"
+              @click="handlePopularTap(index)"
+            >
+              <t-tag
+                class="popular-item margin-12"
+                :max-width="343"
+                variant="light"
+                icon="search"
+              >
+                {{ item }}
+              </t-tag>
+            </view>
+          </view>
+        </view>
+      </view>
+      <t-dialog
+        :visible="dialogShow"
+        :content="dialog.message"
+        confirm-btn="确定"
+        :cancel-btn="dialog.showCancelButton ? '取消' : ''"
+        @confirm="confirm"
+        @close="close"
       />
     </view>
-    <view class="search-wrap">
-      <view class="history-wrap">
-        <view class="search-header">
-          <text class="search-title">
-            历史记录
-          </text>
-          <t-icon
-            name="delete"
-            size="large"
-            class="search-clear"
-            @click="handleClearHistory"
-          />
-        </view>
-        <view class="search-content">
-          <view
-            v-for="(item, index) in historyWords"
-            :key="index"
-            class="search-item"
-            hover-class="hover-history-item"
-            @click="handleHistoryTap(index)"
-            @longpress="deleteCurr(index)"
-          >
-            <t-tag
-              class="history-item margin-12"
-              :max-width="343"
-              variant="light"
-            >
-              {{ item }}
-            </t-tag>
-          </view>
-        </view>
-      </view>
-      <view class="popular-wrap">
-        <view class="search-header">
-          <text class="search-title">
-            搜索发现
-          </text>
-        </view>
-        <view class="search-content">
-          <view
-            v-for="(item, index) in popularWords"
-            :key="index"
-            class="search-item"
-            hover-class="hover-history-item"
-            @click="handlePopularTap(index)"
-          >
-            <t-tag
-              class="popular-item margin-12"
-              :max-width="343"
-              variant="light"
-              icon="search"
-            >
-              {{ item }}
-            </t-tag>
-          </view>
-        </view>
-      </view>
-    </view>
-    <t-dialog
-      :visible="dialogShow"
-      :content="dialog.message"
-      confirm-btn="确定"
-      :cancel-btn="dialog.showCancelButton ? '取消' : ''"
-      @confirm="confirm"
-      @close="close"
-    />
   </view>
 </template>
 
@@ -95,6 +97,7 @@ import { onShow } from '@dcloudio/uni-app';
 
 import request from '@/api/request';
 import { navigateBack } from '@/utils/navigate';
+
 
 const historyWords = ref<string[]>([]);
 const popularWords = ref<string[]>([]);
@@ -188,6 +191,11 @@ onShow(() => {
 </script>
 
 <style lang="less" scoped>
+.search-root {
+  min-height: 100vh;
+  background-color: var(--td-bg-color-page, #f3f3f3);
+}
+
 .search-input {
   padding: 16rpx 0;
 }
@@ -195,8 +203,10 @@ onShow(() => {
 .search-page {
   box-sizing: border-box;
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   padding: 0 30rpx;
+  background-color: var(--td-bg-color-page, #f3f3f3) !important;
+  color: var(--td-text-color-primary, rgba(0, 0, 0, 0.9));
 }
 
 .search-page :deep(.t-class__input-container) {
@@ -205,7 +215,7 @@ onShow(() => {
 
 .search-page :deep(.t-search__input) {
   font-size: 28rpx !important;
-  color: #333 !important;
+  color: var(--td-text-color-primary, #333) !important;
 }
 
 .search-page .search-wrap {
@@ -227,7 +237,7 @@ onShow(() => {
   font-size: 30rpx;
   font-family: PingFangSC-Semibold, PingFang SC;
   font-weight: 600;
-  color: rgba(51, 51, 51, 1);
+  color: var(--td-text-color-primary, rgba(51, 51, 51, 1));
   line-height: 42rpx;
 }
 
@@ -235,7 +245,7 @@ onShow(() => {
   font-size: 30rpx;
   font-family: PingFang SC;
   line-height: 32rpx;
-  color: #999999;
+  color: var(--td-text-color-placeholder, #999999);
   font-weight: bold;
 }
 
@@ -249,7 +259,7 @@ onShow(() => {
 }
 
 .search-page .search-item {
-  color: #333333;
+  color: var(--td-text-color-primary, #333333);
   font-size: 24rpx;
   line-height: 32rpx;
   font-weight: 400;
@@ -270,10 +280,10 @@ onShow(() => {
 }
 
 .search-page .search-item .popular-item {
-  background: #f3f3f3;
+  background: var(--td-bg-color-component, #f3f3f3);
 }
 
 .search-page .search-item .history-item {
-  background: #e7e7e7;
+  background: var(--td-bg-color-component-active, #e7e7e7);
 }
 </style>

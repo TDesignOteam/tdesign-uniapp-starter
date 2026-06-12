@@ -1,82 +1,84 @@
 <template>
-  <NavComp nav-type="search" />
-  <view class="home-container">
-    <view class="home-content">
-      <!-- 测试 uniapp-chat 的 easycom -->
-      <!-- <t-chat-loading
+  <view class="page-root">
+    <NavComp nav-type="search" />
+    <view class="home-container">
+      <view class="home-content">
+        <!-- 测试 uniapp-chat 的 easycom -->
+        <!-- <t-chat-loading
         animation="dots"
         text="加载中..."
       /> -->
 
-      <t-tabs
-        default-value="recommend"
-      >
-        <t-tab-panel
-          label="推荐"
-          value="recommend"
+        <t-tabs
+          default-value="recommend"
         >
-          <t-pull-down-refresh
-            :value="enable"
-            :loading-texts="['下拉刷新', '松手刷新', '正在刷新', '刷新完成']"
-            @refresh="onRefresh"
+          <t-tab-panel
+            label="推荐"
+            value="recommend"
           >
-            <view class="home-card-list">
-              <t-swiper
-                :list="swiperList.map(item => item.image )"
-                :navigation="{ type: 'dots-bar' }"
-                height="488rpx"
-                custom-style="width: 340rpx"
-              />
-              <Card
-                v-for="(item, index) in cardInfo"
-                :key="index"
-                :desc="item.desc"
-                :url="item.url"
-                :tags="item.tags"
-              />
-            </view>
-          </t-pull-down-refresh>
-        </t-tab-panel>
-        <t-tab-panel
-          label="我的关注"
-          value="follow"
-        >
-          <scroll-view
-            class="follow-scroll"
-            scroll-y
-            enhanced
-            :bounces="false"
+            <t-pull-down-refresh
+              :value="enable"
+              :loading-texts="['下拉刷新', '松手刷新', '正在刷新', '刷新完成']"
+              @refresh="onRefresh"
+            >
+              <view class="home-card-list">
+                <t-swiper
+                  :list="swiperList.map(item => item.image )"
+                  :navigation="{ type: 'dots-bar' }"
+                  height="488rpx"
+                  custom-style="width: 340rpx"
+                />
+                <Card
+                  v-for="(item, index) in cardInfo"
+                  :key="index"
+                  :desc="item.desc"
+                  :url="item.url"
+                  :tags="item.tags"
+                />
+              </view>
+            </t-pull-down-refresh>
+          </t-tab-panel>
+          <t-tab-panel
+            label="我的关注"
+            value="follow"
           >
-            <view class="home-card-list">
-              <Card
-                v-for="(item, index) in focusCardInfo"
-                :key="index"
-                :desc="item.desc"
-                :url="item.url"
-                :tags="item.tags"
-              />
-            </view>
-          </scroll-view>
-        </t-tab-panel>
-      </t-tabs>
+            <scroll-view
+              class="follow-scroll"
+              scroll-y
+              enhanced
+              :bounces="false"
+            >
+              <view class="home-card-list">
+                <Card
+                  v-for="(item, index) in focusCardInfo"
+                  :key="index"
+                  :desc="item.desc"
+                  :url="item.url"
+                  :tags="item.tags"
+                />
+              </view>
+            </scroll-view>
+          </t-tab-panel>
+        </t-tabs>
+      </view>
     </view>
-  </view>
 
-  <view class="home-release">
-    <t-button
-      theme="primary"
-      size="large"
-      icon="add"
-      shape="round"
-      @click="goRelease"
-    >
-      发布
-    </t-button>
+    <view class="home-release">
+      <t-button
+        theme="primary"
+        size="large"
+        icon="add"
+        shape="round"
+        @click="goRelease"
+      >
+        发布
+      </t-button>
+    </view>
+    <t-message
+      ref="t-message"
+    />
+    <CustomTabBar />
   </view>
-  <t-message
-    ref="t-message"
-  />
-  <CustomTabBar />
 </template>
 
 <script setup lang="ts">
@@ -172,6 +174,11 @@ const goRelease = () => {
 @import '@/styles/variable.less';
 
 @home-tab-item-height: 96rpx;
+
+.page-root {
+  min-height: 100vh;
+  background-color: var(--td-bg-color-page, #f3f3f3);
+}
 
 .home-container {
   height: calc(100vh - @tab-bar-height - env(safe-area-inset-bottom));
