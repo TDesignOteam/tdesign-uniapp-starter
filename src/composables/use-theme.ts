@@ -40,8 +40,20 @@ function detectSystemTheme(): ResolvedTheme {
 
 /**
  * 同步原生导航栏颜色（仅小程序生效，H5 端会被静默忽略）
+ *
+ * 注：本项目所有页面均为 navigationStyle: "custom"（自定义导航栏），
+ * 因此小程序端的 setNavigationBarColor 实际不会生效，并且在 onLaunch
+ * 阶段调用还会触发 "page not found" 报错；这里仅保留 try/catch 兜底。
  */
 function syncNavigationBarColor(theme: ResolvedTheme) {
+  // 没有可用页面或页面是自定义导航栏时直接跳过
+  try {
+    const pages = (typeof getCurrentPages === 'function') ? getCurrentPages() : [];
+    if (!pages || pages.length === 0) return;
+  } catch {
+    return;
+  }
+
   try {
     uni.setNavigationBarColor({
       frontColor: theme === 'dark' ? '#ffffff' : '#000000',
