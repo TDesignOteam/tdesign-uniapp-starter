@@ -57,8 +57,8 @@ importers:
         specifier: 3.0.0-4080420251103001
         version: 3.0.0-4080420251103001(postcss@8.4.49)(rollup@4.59.0)(vue@3.5.29(typescript@5.5.4))
       '@tdesign/uniapp':
-        specifier: ^0.9.1
-        version: 0.9.1
+        specifier: ^0.10.0
+        version: 0.10.0
       '@tdesign/uniapp-chat':
         specifier: ^0.2.4
         version: 0.2.4
@@ -2668,11 +2668,11 @@ packages:
   '@tdesign/uniapp-chat@0.2.4':
     resolution: {integrity: sha512-Rn99uWlcJUbyD7PW7GAQ6xDj8CuHg68FQYKFQAUF1sziW4go9y5fF31f+d49e2nFnvzPz7UcooJ7Y5AXpcX8xg==}
 
+  '@tdesign/uniapp@0.10.0':
+    resolution: {integrity: sha512-0pBgrCf97DQQOiVsvhYlYhVK4BWSNlsnP8ruFfGP0102B4IdnywB/HK+YIdEAmwWiCuOrY1ZV6AKY+oioGN7NA==}
+
   '@tdesign/uniapp@0.7.3':
     resolution: {integrity: sha512-9rEClT6bUWwZw5tt+vmNU5rW0jPVJhJlsl8Dxvmmf9iyyLhdk9bGVfz9DeH+R3kykAIft0rz4l2lAjsolpIYkQ==}
-
-  '@tdesign/uniapp@0.9.1':
-    resolution: {integrity: sha512-ir/84B+zE3vzL5IvXePbXb8XP9I6kmb1doTmsuFPSoMH46SfwVDo60hRJnDjCeLQnH183tQ4XqPEHsgATqztgg==}
 
   '@tokenizer/token@0.3.0':
     resolution: {integrity: sha512-OvjF+z51L3ov0OyAU0duzsYuvO01PH7x4t6DJx+guahgTnBHkhJdG7soQeTSFLWN3efnHyibZ4Z8l2EuWwJN3A==}
@@ -13394,9 +13394,9 @@ snapshots:
 
   '@tdesign/uniapp-chat@0.2.4': {}
 
-  '@tdesign/uniapp@0.7.3': {}
+  '@tdesign/uniapp@0.10.0': {}
 
-  '@tdesign/uniapp@0.9.1': {}
+  '@tdesign/uniapp@0.7.3': {}
 
   '@tokenizer/token@0.3.0': {}
 
