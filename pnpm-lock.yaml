@@ -57,8 +57,8 @@ importers:
         specifier: 3.0.0-4080420251103001
         version: 3.0.0-4080420251103001(postcss@8.4.49)(rollup@4.59.0)(vue@3.5.29(typescript@5.5.4))
       '@tdesign/uniapp':
-        specifier: ^0.10.0
-        version: 0.10.0
+        specifier: ^0.10.1
+        version: 0.10.1
       '@tdesign/uniapp-chat':
         specifier: ^0.2.4
         version: 0.2.4
@@ -2668,11 +2668,8 @@ packages:
   '@tdesign/uniapp-chat@0.2.4':
     resolution: {integrity: sha512-Rn99uWlcJUbyD7PW7GAQ6xDj8CuHg68FQYKFQAUF1sziW4go9y5fF31f+d49e2nFnvzPz7UcooJ7Y5AXpcX8xg==}
 
-  '@tdesign/uniapp@0.10.0':
-    resolution: {integrity: sha512-0pBgrCf97DQQOiVsvhYlYhVK4BWSNlsnP8ruFfGP0102B4IdnywB/HK+YIdEAmwWiCuOrY1ZV6AKY+oioGN7NA==}
-
-  '@tdesign/uniapp@0.7.3':
-    resolution: {integrity: sha512-9rEClT6bUWwZw5tt+vmNU5rW0jPVJhJlsl8Dxvmmf9iyyLhdk9bGVfz9DeH+R3kykAIft0rz4l2lAjsolpIYkQ==}
+  '@tdesign/uniapp@0.10.1':
+    resolution: {integrity: sha512-7Gn/KmDn2reKwnlmRpYMcDVPvOK/l7DP8BcmSBOjMJb9yplK9hll8we1zOjQ9UnFy1hiDORSiRDW5FMUtlIGWg==}
 
   '@tokenizer/token@0.3.0':
     resolution: {integrity: sha512-OvjF+z51L3ov0OyAU0duzsYuvO01PH7x4t6DJx+guahgTnBHkhJdG7soQeTSFLWN3efnHyibZ4Z8l2EuWwJN3A==}
@@ -8258,8 +8255,8 @@ packages:
     resolution: {integrity: sha512-i2wChNabq6Jgbock0uJCB1PTKAo7f3TdzdmObYnMDlvQ2lhLszuWpN0I2SJ+FW2vaD3QE+0RHUA5NgFCWEGGAw==}
     hasBin: true
 
-  t-comm@3.2.42:
-    resolution: {integrity: sha512-40jM1l4Z07RbF9ncvBiJq1UgjyR8hlv9NEyzsCroBgzLOTC193dU0G+Wnxdh+ABdsp2yHLpIk987GpwwMWbUcQ==}
+  t-comm@3.3.0:
+    resolution: {integrity: sha512-/TvVLMkgXgOZFcCZDS3SvWVfyhkGD4uDfDE8Rl2JUwBxXwztlwoilVIXxD9eB8wRldWECh5veU0Fn9P/d86GxQ==}
     hasBin: true
 
   table@6.9.0:
@@ -8784,7 +8781,6 @@ packages:
 
   whatwg-encoding@1.0.5:
     resolution: {integrity: sha512-b5lim54JOPN9HtzvK9HFXvBma/rnfFeqsic0hSpjtDbVxR3dJKLc+KB4V6GgiGOvl7CY/KNh8rxSo9DKQrnUEw==}
-    deprecated: Use @exodus/bytes instead for a more spec-conformant and faster implementation
 
   whatwg-encoding@3.1.1:
     resolution: {integrity: sha512-6qN4hJdMwfYBtE3YBTTHhoeuUrDBPZmbQaxWAqSALV/MeEnR5z1xd8UKud2RAkFoPkmB+hli1TZSnyi84xz1vQ==}
@@ -13153,7 +13149,7 @@ snapshots:
       imapflow: 1.2.11
       loader-utils: 2.0.4
       mailparser: 3.9.3
-      t-comm: 3.2.42
+      t-comm: 3.3.0
       tinify: 1.8.2
       turndown: 7.2.2
     transitivePeerDependencies:
@@ -13394,9 +13390,7 @@ snapshots:
 
   '@tdesign/uniapp-chat@0.2.4': {}
 
-  '@tdesign/uniapp@0.10.0': {}
-
-  '@tdesign/uniapp@0.7.3': {}
+  '@tdesign/uniapp@0.10.1': {}
 
   '@tokenizer/token@0.3.0': {}
 
@@ -20600,10 +20594,10 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  t-comm@3.2.42:
+  t-comm@3.3.0:
     dependencies:
       '@babel/runtime': 7.28.6
-      '@tdesign/uniapp': 0.7.3
+      '@tdesign/uniapp': 0.10.1
       '@tdesign/uniapp-chat': 0.2.4
       axios: 1.13.6
       cheerio: 1.2.0
