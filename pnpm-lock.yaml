@@ -57,11 +57,11 @@ importers:
         specifier: 3.0.0-4080420251103001
         version: 3.0.0-4080420251103001(postcss@8.4.49)(rollup@4.59.0)(vue@3.5.29(typescript@5.5.4))
       '@tdesign/uniapp':
-        specifier: ^0.10.2
-        version: 0.10.2
+        specifier: ^1.0.0
+        version: 1.0.0
       '@tdesign/uniapp-chat':
-        specifier: ^0.2.4
-        version: 0.2.4
+        specifier: ^1.0.0
+        version: 1.0.0
       t-comm:
         specifier: ^3.3.15
         version: 3.3.15
@@ -2365,14 +2365,12 @@ packages:
     engines: {node: '>= 10.0.0'}
     cpu: [arm64]
     os: [linux]
-    libc: [glibc]
 
   '@parcel/watcher-linux-arm64-musl@2.5.6':
     resolution: {integrity: sha512-qb6naMDGlbCwdhLj6hgoVKJl2odL34z2sqkC7Z6kzir8b5W65WYDpLB6R06KabvZdgoHI/zxke4b3zR0wAbDTA==}
     engines: {node: '>= 10.0.0'}
     cpu: [arm64]
     os: [linux]
-    libc: [musl]
 
   '@parcel/watcher-linux-x64-glibc@2.5.6':
     resolution: {integrity: sha512-kbT5wvNQlx7NaGjzPFu8nVIW1rWqV780O7ZtkjuWaPUgpv2NMFpjYERVi0UYj1msZNyCzGlaCWEtzc+exjMGbQ==}
@@ -2714,14 +2712,17 @@ packages:
   '@tdesign/uniapp-chat@0.2.4':
     resolution: {integrity: sha512-Rn99uWlcJUbyD7PW7GAQ6xDj8CuHg68FQYKFQAUF1sziW4go9y5fF31f+d49e2nFnvzPz7UcooJ7Y5AXpcX8xg==}
 
+  '@tdesign/uniapp-chat@1.0.0':
+    resolution: {integrity: sha512-Dq6pLZZzSvD+7mf8uydoHz7963Iqty0z8ocMfhzTXw/qI1EaVLc28b+NM9wwoUcsYjMZ1oLyZFDR7TOlswfMpQ==}
+
   '@tdesign/uniapp@0.10.1':
     resolution: {integrity: sha512-7Gn/KmDn2reKwnlmRpYMcDVPvOK/l7DP8BcmSBOjMJb9yplK9hll8we1zOjQ9UnFy1hiDORSiRDW5FMUtlIGWg==}
 
-  '@tdesign/uniapp@0.10.2':
-    resolution: {integrity: sha512-fkPmRiTgAjfo++WlJzNB3RZgt8PQTI4X7B8RFF/eb4Vc0huta8dch01iD1f+FJ7ebEsdRmEYkWcrKnGUsxPXwQ==}
-
   '@tdesign/uniapp@0.7.3':
     resolution: {integrity: sha512-9rEClT6bUWwZw5tt+vmNU5rW0jPVJhJlsl8Dxvmmf9iyyLhdk9bGVfz9DeH+R3kykAIft0rz4l2lAjsolpIYkQ==}
+
+  '@tdesign/uniapp@1.0.0':
+    resolution: {integrity: sha512-QWJKTs4LUS1TOyIX6LYm8Ot0EGq2NCp1TjUjS7mBslkfh3PYwco76PI3Z6ueUP6YpPV8pVGWIAoKXiz+bF6sjw==}
 
   '@tokenizer/token@0.3.0':
     resolution: {integrity: sha512-OvjF+z51L3ov0OyAU0duzsYuvO01PH7x4t6DJx+guahgTnBHkhJdG7soQeTSFLWN3efnHyibZ4Z8l2EuWwJN3A==}
@@ -8375,6 +8376,10 @@ packages:
     resolution: {integrity: sha512-L7v9Je6ZimOLjkH0Olmlf/q5nsakzSjqaSMhgcAcpRYboZO7NhvwIEpEDk7uP4VDXKmiI3uGnJdQwh+lJTw3KQ==}
     hasBin: true
 
+  t-comm@3.3.32:
+    resolution: {integrity: sha512-7zoxQywmyhzPcIh+UL4rzf+21+gmDyS3y0S3dHeSH6RatJUpR+jnmzAmUnlh4kefpSphbqRJ9E7DTPmehm8sIg==}
+    hasBin: true
+
   table@6.9.0:
     resolution: {integrity: sha512-9kY+CygyYM6j02t5YFHbNz2FN5QmYGv9zAjVp4lCDjlCw7amdckXlEt/bjMhUIfj4ThGRE4gCUH5+yGnNuPo5A==}
     engines: {node: '>=10.0.0'}
@@ -8901,6 +8906,7 @@ packages:
 
   whatwg-encoding@1.0.5:
     resolution: {integrity: sha512-b5lim54JOPN9HtzvK9HFXvBma/rnfFeqsic0hSpjtDbVxR3dJKLc+KB4V6GgiGOvl7CY/KNh8rxSo9DKQrnUEw==}
+    deprecated: Use @exodus/bytes instead for a more spec-conformant and faster implementation
 
   whatwg-encoding@3.1.1:
     resolution: {integrity: sha512-6qN4hJdMwfYBtE3YBTTHhoeuUrDBPZmbQaxWAqSALV/MeEnR5z1xd8UKud2RAkFoPkmB+hli1TZSnyi84xz1vQ==}
@@ -13299,7 +13305,7 @@ snapshots:
       '@tdesign/uniapp': 0.7.3
       '@tdesign/uniapp-chat': 0.2.4
       axios: 1.18.1
-      t-comm: 3.3.15
+      t-comm: 3.3.32
     transitivePeerDependencies:
       - debug
       - supports-color
@@ -13319,7 +13325,7 @@ snapshots:
       imapflow: 1.4.6
       loader-utils: 2.0.4
       mailparser: 3.9.14
-      t-comm: 3.3.15
+      t-comm: 3.3.32
       tinify: 1.8.3
       turndown: 7.2.4
       turndown-plugin-gfm: 1.0.2
@@ -13567,11 +13573,13 @@ snapshots:
 
   '@tdesign/uniapp-chat@0.2.4': {}
 
+  '@tdesign/uniapp-chat@1.0.0': {}
+
   '@tdesign/uniapp@0.10.1': {}
 
-  '@tdesign/uniapp@0.10.2': {}
-
   '@tdesign/uniapp@0.7.3': {}
+
+  '@tdesign/uniapp@1.0.0': {}
 
   '@tokenizer/token@0.3.0': {}
 
@@ -13848,7 +13856,7 @@ snapshots:
       globby: 11.1.0
       is-glob: 4.0.3
       minimatch: 9.0.3
-      semver: 7.7.4
+      semver: 7.8.5
       ts-api-utils: 1.4.3(typescript@5.5.4)
     optionalDependencies:
       typescript: 5.5.4
@@ -13894,7 +13902,7 @@ snapshots:
       '@typescript-eslint/types': 6.21.0
       '@typescript-eslint/typescript-estree': 6.21.0(typescript@5.5.4)
       eslint: 8.57.1
-      semver: 7.7.4
+      semver: 7.8.5
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -15262,7 +15270,7 @@ snapshots:
 
   builtins@5.1.0:
     dependencies:
-      semver: 7.7.4
+      semver: 7.8.5
 
   bytes@3.1.2: {}
 
@@ -15525,7 +15533,7 @@ snapshots:
       make-dir: 3.1.0
       onetime: 5.1.2
       pkg-up: 3.1.0
-      semver: 7.7.4
+      semver: 7.8.5
 
   confbox@0.1.8: {}
 
@@ -20840,6 +20848,24 @@ snapshots:
       tar: 6.2.1
     transitivePeerDependencies:
       - debug
+
+  t-comm@3.3.32:
+    dependencies:
+      '@babel/runtime': 7.28.6
+      '@tdesign/uniapp': 0.10.1
+      '@tdesign/uniapp-chat': 0.2.4
+      axios: 1.18.1
+      cheerio: 1.2.0
+      commander: 10.0.1
+      cron-parser: 4.9.0
+      jose: 4.15.9
+      qs: 6.15.0
+      request: 2.88.2
+      semver: 7.8.5
+      tar: 6.2.1
+    transitivePeerDependencies:
+      - debug
+      - supports-color
 
   table@6.9.0:
     dependencies:
